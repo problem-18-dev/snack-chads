@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d1ejujm206u82"]
+
+[ext_resource type="Script" uid="uid://c6die6u2bs4kn" path="res://scenes/world_boundary/world_boundary.gd" id="1_oevys"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_23swt"]
+
+[node name="WorldBoundary" type="Area2D" unique_id=1117372907]
+collision_layer = 16
+script = ExtResource("1_oevys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=994977640]
+shape = SubResource("WorldBoundaryShape2D_23swt")
+one_way_collision_margin = 128.0
+debug_color = Color(1, 0, 0.05490196, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

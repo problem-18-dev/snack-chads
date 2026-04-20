@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://oixjpegbqcmd"]
+
+[ext_resource type="Script" uid="uid://dscklwxigthbp" path="res://scenes/debug/debug.gd" id="1_kfclf"]
+
+[node name="Debug" type="Control" unique_id=1012360878]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kfclf")
+
+[node name="DebugRect" type="ColorRect" parent="." unique_id=194616270]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+color = Color(1, 1, 1, 0.13333334)
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugRect" unique_id=121294463]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PrimaryMarginContainer"
+
+[node name="LogsContainer" type="VBoxContainer" parent="DebugRect/MarginContainer" unique_id=2029065230]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2

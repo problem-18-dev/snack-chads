@@ -1,0 +1,14 @@
+[gd_resource type="Theme" format=3 uid="uid://dm2a8fvc6fv71"]
+
+[sub_resource type="SystemFont" id="SystemFont_tsbh2"]
+
+[resource]
+default_font = SubResource("SystemFont_tsbh2")
+DebugLabel/base_type = &"Label"
+DebugLabel/colors/font_color = Color(1, 1, 1, 1)
+DebugLabel/font_sizes/font_size = 8
+PrimaryMarginContainer/base_type = &"MarginContainer"
+PrimaryMarginContainer/constants/margin_bottom = 8
+PrimaryMarginContainer/constants/margin_left = 8
+PrimaryMarginContainer/constants/margin_right = 8
+PrimaryMarginContainer/constants/margin_top = 8

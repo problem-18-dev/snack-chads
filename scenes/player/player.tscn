@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d251v5fi15bp4"]
+
+[ext_resource type="Script" uid="uid://c6bm1rpeem5yr" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="PackedScene" uid="uid://svuuufslcxip" path="res://core/state_machine/state_machine.tscn" id="2_dovo2"]
+[ext_resource type="Texture2D" uid="uid://cf6ad8m1aymix" path="res://scenes/player/sprites/player_placeholder.png" id="2_p47bc"]
+[ext_resource type="Script" uid="uid://bjph4ifm2gg4m" path="res://scenes/player/states/player_idle.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://22xqrsuw6gaa" path="res://scenes/player/states/player_air.gd" id="4_lvxji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
+size = Vector2(16, 16)
+
+[node name="Player" type="CharacterBody2D" unique_id=532083412]
+collision_mask = 24
+script = ExtResource("1_8afob")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1040741919]
+offset = Vector2(0, -32)
+process_callback = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1365819839]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_gmlin")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1725214857]
+position = Vector2(0, -8)
+texture = ExtResource("2_p47bc")
+
+[node name="StateMachine" parent="." unique_id=1355614857 node_paths=PackedStringArray("initial_state") instance=ExtResource("2_dovo2")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=30973086]
+script = ExtResource("3_gmlin")
+
+[node name="Air" type="Node" parent="StateMachine" unique_id=1981997201]
+script = ExtResource("4_lvxji")

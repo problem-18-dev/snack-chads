@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://canwl3xxuqfwg"]
+
+[ext_resource type="PackedScene" uid="uid://cr8m2y6kd6po4" path="res://scenes/coin/coin.tscn" id="1_4gkfv"]
+[ext_resource type="PackedScene" uid="uid://d251v5fi15bp4" path="res://scenes/player/player.tscn" id="1_23swt"]
+[ext_resource type="Script" uid="uid://b5s8uc2cr66mg" path="res://core/game/game.gd" id="1_risx7"]
+[ext_resource type="PackedScene" uid="uid://oixjpegbqcmd" path="res://scenes/debug/debug.tscn" id="1_slpoq"]
+[ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/world_boundary/world_boundary.tscn" id="2_dfm4s"]
+
+[sub_resource type="Gradient" id="Gradient_23swt"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.43562287, 0.66395545, 0.68152314, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dfm4s"]
+gradient = SubResource("Gradient_23swt")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfm4s"]
+size = Vector2(464, 16)
+
+[node name="Game" type="Node" unique_id=1227929736]
+script = ExtResource("1_risx7")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1580366487]
+
+[node name="Debug" parent="HUD" unique_id=1012360878 instance=ExtResource("1_slpoq")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Platform" type="StaticBody2D" parent="." unique_id=193451499]
+position = Vector2(0, 8)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform" unique_id=723913350]
+position = Vector2(-7.6293945e-06, 0)
+scale = Vector2(1.8125, 16)
+texture = SubResource("GradientTexture1D_dfm4s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=679537060]
+shape = SubResource("RectangleShape2D_dfm4s")
+
+[node name="Coins" type="Node2D" parent="." unique_id=1814667081]
+
+[node name="Coin" parent="Coins" unique_id=342927246 instance=ExtResource("1_4gkfv")]
+position = Vector2(64, -8)
+
+[node name="Coin2" parent="Coins" unique_id=1267511245 instance=ExtResource("1_4gkfv")]
+position = Vector2(88, -64)
+
+[node name="Coin3" parent="Coins" unique_id=915184522 instance=ExtResource("1_4gkfv")]
+position = Vector2(192, -8)
+
+[node name="Coin4" parent="Coins" unique_id=691146388 instance=ExtResource("1_4gkfv")]
+position = Vector2(128, -112)
+
+[node name="Coin5" parent="Coins" unique_id=534548593 instance=ExtResource("1_4gkfv")]
+position = Vector2(168, -64)
+
+[node name="Coin6" parent="Coins" unique_id=1280653371 instance=ExtResource("1_4gkfv")]
+position = Vector2(-192, -8)
+
+[node name="Coin7" parent="Coins" unique_id=841153520 instance=ExtResource("1_4gkfv")]
+position = Vector2(-128, -8)
+
+[node name="Coin8" parent="Coins" unique_id=1994428530 instance=ExtResource("1_4gkfv")]
+position = Vector2(-64, -8)
+
+[node name="Player" parent="." unique_id=532083412 instance=ExtResource("1_23swt")]
+
+[node name="WorldBoundary" parent="." unique_id=229183395 instance=ExtResource("2_dfm4s")]
+position = Vector2(0, 88)
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]
