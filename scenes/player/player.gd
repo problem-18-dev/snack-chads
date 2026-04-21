@@ -5,14 +5,22 @@ extends CharacterBody2D
 signal died
 
 @export_group("Movement")
+@export_subgroup("Air")
+@export var air_movement_speed := 100.0
+@export var air_movement_weight := 0.025
 @export_subgroup("Jump")
 @export var jump_force := 450.0
+@export_subgroup("Walking")
+@export var walk_speed := 125.0
+@export var walk_accel := 0.2
+@export var walk_deccel := 0.13
 @export_subgroup("Running")
-@export var run_speed := 150.0
+@export var run_speed := 175.0
+@export var run_accel := 0.27
 
 
 func _physics_process(_delta: float) -> void:
-	_handle_movement()
+	Debug.log("Player velocity: " + str(velocity.floor()))
 
 
 func die() -> void:
@@ -24,10 +32,6 @@ func reset() -> void:
 	global_position = Vector2.ZERO
 
 
-func _handle_movement() -> void:
+func get_direction() -> float:
 	var direction := Input.get_axis("left", "right")
-	if is_zero_approx(direction):
-		velocity.x = 0
-		return
-	
-	velocity.x = direction * run_speed
+	return direction

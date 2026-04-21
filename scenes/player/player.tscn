@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cf6ad8m1aymix" path="res://scenes/player/sprites/player_placeholder.png" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://bjph4ifm2gg4m" path="res://scenes/player/states/player_idle.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://22xqrsuw6gaa" path="res://scenes/player/states/player_air.gd" id="4_lvxji"]
+[ext_resource type="Script" uid="uid://bjcr78gqjqpbv" path="res://scenes/player/states/player_walk.gd" id="6_75vfm"]
+[ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
 size = Vector2(16, 16)
@@ -12,6 +14,7 @@ size = Vector2(16, 16)
 [node name="Player" type="CharacterBody2D" unique_id=532083412]
 collision_mask = 24
 script = ExtResource("1_8afob")
+metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1040741919]
 offset = Vector2(0, -32)
@@ -33,3 +36,9 @@ script = ExtResource("3_gmlin")
 
 [node name="Air" type="Node" parent="StateMachine" unique_id=1981997201]
 script = ExtResource("4_lvxji")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=117815317]
+script = ExtResource("6_75vfm")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=982010846]
+script = ExtResource("7_0owmy")

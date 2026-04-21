@@ -4,6 +4,10 @@ extends Control
 @onready var logs_container: VBoxContainer = %LogsContainer
 
 
+func _ready() -> void:
+	Debug.setup(self)
+
+
 func log(text: String) -> void:
 	_add_log(text)
 
