@@ -20,6 +20,7 @@ func _add_log(text: String) -> void:
 	var logs := logs_container.get_child_count()
 	
 	if logs > 6:
+		logs_container.remove_child(logs_container.get_children()[0])
 		logs_container.get_children()[0].queue_free()
 	
 	logs_container.add_child(label)

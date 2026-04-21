@@ -14,11 +14,17 @@ size = Vector2(16, 16)
 [node name="Player" type="CharacterBody2D" unique_id=532083412]
 collision_mask = 24
 script = ExtResource("1_8afob")
+debug_velocity = true
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1040741919]
 offset = Vector2(0, -32)
 process_callback = 0
+
+[node name="JumpOnLandRayCast" type="RayCast2D" parent="." unique_id=1427439442]
+enabled = false
+target_position = Vector2(0, 24)
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1365819839]
 position = Vector2(0, -8)
@@ -37,8 +43,13 @@ script = ExtResource("3_gmlin")
 [node name="Air" type="Node" parent="StateMachine" unique_id=1981997201]
 script = ExtResource("4_lvxji")
 
+[node name="CoyoteTimer" type="Timer" parent="StateMachine/Air" unique_id=240500813]
+one_shot = true
+
 [node name="Walk" type="Node" parent="StateMachine" unique_id=117815317]
 script = ExtResource("6_75vfm")
 
 [node name="Run" type="Node" parent="StateMachine" unique_id=982010846]
 script = ExtResource("7_0owmy")
+
+[connection signal="timeout" from="StateMachine/Air/CoyoteTimer" to="StateMachine/Air" method="_on_coyote_timer_timeout"]
