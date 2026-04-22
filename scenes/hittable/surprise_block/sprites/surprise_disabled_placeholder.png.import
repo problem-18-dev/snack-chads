@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b637wc6iqf45s"
-path="res://.godot/imported/coin_placeholder.png-d834dd01f72e54034337618f8fddd9d6.ctex"
+uid="uid://di1dn68pjqkh1"
+path="res://.godot/imported/surprise_disabled_placeholder.png-7c2af1a4ed17f7a744f4389d1388f905.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/coin/sprites/coin_placeholder.png"
-dest_files=["res://.godot/imported/coin_placeholder.png-d834dd01f72e54034337618f8fddd9d6.ctex"]
+source_file="res://scenes/hittable/surprise_block/sprites/surprise_disabled_placeholder.png"
+dest_files=["res://.godot/imported/surprise_disabled_placeholder.png-7c2af1a4ed17f7a744f4389d1388f905.ctex"]
 
 [params]
 

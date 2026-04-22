@@ -9,22 +9,42 @@
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
-size = Vector2(16, 16)
+size = Vector2(14, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=532083412]
-collision_mask = 24
+collision_mask = 22
 script = ExtResource("1_8afob")
-debug_velocity = true
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1040741919]
 offset = Vector2(0, -32)
+zoom = Vector2(1.25, 1.25)
 process_callback = 0
+position_smoothing_enabled = true
 
-[node name="JumpOnLandRayCast" type="RayCast2D" parent="." unique_id=1427439442]
+[node name="Raycasts" type="Node2D" parent="." unique_id=670327260]
+
+[node name="LeftJumpBufferRayCast" type="RayCast2D" parent="Raycasts" unique_id=1427439442]
+position = Vector2(-6, 0)
 enabled = false
 target_position = Vector2(0, 24)
-collision_mask = 8
+collision_mask = 18
+
+[node name="RightJumpBufferRayCast" type="RayCast2D" parent="Raycasts" unique_id=773214412]
+position = Vector2(6, 0)
+enabled = false
+target_position = Vector2(0, 24)
+collision_mask = 18
+
+[node name="LeftUpperHitRaycast" type="RayCast2D" parent="Raycasts" unique_id=1761915610]
+position = Vector2(-6, -16)
+target_position = Vector2(0, -16)
+collision_mask = 2
+
+[node name="RightUpperHitRaycast" type="RayCast2D" parent="Raycasts" unique_id=590465138]
+position = Vector2(6, -16)
+target_position = Vector2(0, -16)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1365819839]
 position = Vector2(0, -8)

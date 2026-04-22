@@ -1,11 +1,21 @@
+@tool
 extends Control
 
+
+@export var enable := true
 
 @onready var logs_container: VBoxContainer = %LogsContainer
 
 
 func _ready() -> void:
-	Debug.setup(self)
+	if Engine.is_editor_hint():
+		hide()
+		return
+	
+	if OS.is_debug_build() and enable:
+		Debug.setup(self)
+		show()
+		return
 
 
 func log(text: String) -> void:
@@ -15,6 +25,7 @@ func log(text: String) -> void:
 func _add_log(text: String) -> void:
 	var label := Label.new()
 	label.text = text
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.theme_type_variation = "DebugLabel"
 	
 	var logs := logs_container.get_child_count()

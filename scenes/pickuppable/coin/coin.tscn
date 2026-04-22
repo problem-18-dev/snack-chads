@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cr8m2y6kd6po4"]
 
-[ext_resource type="Script" uid="uid://bmn77n0cd872q" path="res://scenes/coin/coin.gd" id="1_u0637"]
-[ext_resource type="Texture2D" uid="uid://b637wc6iqf45s" path="res://scenes/coin/sprites/coin_placeholder.png" id="1_yr0ns"]
+[ext_resource type="Script" uid="uid://bmn77n0cd872q" path="res://scenes/pickuppable/coin/coin.gd" id="1_u0637"]
+[ext_resource type="Texture2D" uid="uid://b637wc6iqf45s" path="res://scenes/pickuppable/coin/sprites/coin_placeholder.png" id="1_yr0ns"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr0ns"]
 radius = 8.0

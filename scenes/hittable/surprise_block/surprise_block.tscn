@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://tioa1x6hm6hk"]
+
+[ext_resource type="PackedScene" uid="uid://mh7d1ffwrwvr" path="res://scenes/hittable/hittable.tscn" id="1_hh50o"]
+[ext_resource type="Script" uid="uid://dxoywj2ktb8ka" path="res://scenes/hittable/surprise_block/surprise_block.gd" id="2_0luhf"]
+[ext_resource type="Texture2D" uid="uid://dfphf0j4472op" path="res://scenes/hittable/surprise_block/sprites/surprise_placeholder.png" id="2_64udx"]
+
+[node name="SurpriseBlock" unique_id=1497541472 instance=ExtResource("1_hh50o")]
+script = ExtResource("2_0luhf")
+hit_duration = 0.3
+
+[node name="Sprite2D" parent="." index="1" unique_id=1547619892]
+texture = ExtResource("2_64udx")

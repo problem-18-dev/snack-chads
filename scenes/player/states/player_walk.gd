@@ -5,9 +5,9 @@ func _physics_update(_delta: float) -> void:
 	_process_walk_movement()
 	player.move_and_slide()
 	
-	
 	if not player.is_on_floor():
 		finished.emit(PlayerState.AIR, { "coyote": player.can_coyote() })
+
 
 func _key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):

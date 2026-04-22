@@ -6,6 +6,7 @@
 default_font = SubResource("SystemFont_tsbh2")
 DebugLabel/base_type = &"Label"
 DebugLabel/colors/font_color = Color(1, 1, 1, 1)
+DebugLabel/constants/line_spacing = -1
 DebugLabel/font_sizes/font_size = 8
 PrimaryMarginContainer/base_type = &"MarginContainer"
 PrimaryMarginContainer/constants/margin_bottom = 8

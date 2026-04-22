@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b5s8uc2cr66mg" path="res://core/game/game.gd" id="1_risx7"]
 [ext_resource type="PackedScene" uid="uid://oixjpegbqcmd" path="res://scenes/debug/debug.tscn" id="1_slpoq"]
 [ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/world_boundary/world_boundary.tscn" id="2_dfm4s"]
+[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="3_risx7"]
 
 [sub_resource type="Gradient" id="Gradient_23swt"]
 offsets = PackedFloat32Array(0)
@@ -29,7 +30,7 @@ grow_vertical = 1
 
 [node name="Platform" type="StaticBody2D" parent="." unique_id=193451499]
 position = Vector2(0, 8)
-collision_layer = 8
+collision_layer = 16
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Platform" unique_id=723913350]
@@ -40,7 +41,22 @@ texture = SubResource("GradientTexture1D_dfm4s")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=679537060]
 shape = SubResource("RectangleShape2D_dfm4s")
 
+[node name="Blocks" type="Node2D" parent="." unique_id=860830459]
+
+[node name="SurpriseBlock" parent="Blocks" unique_id=1497541472 instance=ExtResource("3_risx7")]
+position = Vector2(8, -72)
+
+[node name="SurpriseBlock2" parent="Blocks" unique_id=1038912172 instance=ExtResource("3_risx7")]
+position = Vector2(24, -72)
+
+[node name="SurpriseBlock3" parent="Blocks" unique_id=1392344702 instance=ExtResource("3_risx7")]
+position = Vector2(120, -72)
+
+[node name="SurpriseBlock4" parent="Blocks" unique_id=1539464301 instance=ExtResource("3_risx7")]
+position = Vector2(64, -128)
+
 [node name="Player" parent="." unique_id=532083412 instance=ExtResource("1_23swt")]
 
 [node name="WorldBoundary" parent="." unique_id=229183395 instance=ExtResource("2_dfm4s")]
 position = Vector2(0, 88)
+collision_layer = 8

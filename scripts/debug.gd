@@ -1,12 +1,15 @@
 extends Node
 
 
-var debug_node: Node
+var _debug_node: Node
 
 
 func setup(node: Node) -> void:
-	debug_node = node
+	_debug_node = node
 
 
 func log(text: String) -> void:
-	debug_node.log(text)
+	if not OS.is_debug_build():
+		return
+	
+	_debug_node.log(text)
