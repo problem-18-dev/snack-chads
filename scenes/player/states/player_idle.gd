@@ -16,3 +16,7 @@ func _key_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("left") or event.is_action_pressed("right"):
 		finished.emit(PlayerState.WALK)
+		return
+	
+	if event.is_action_pressed("down"):
+		player.attempt_use_pipe()

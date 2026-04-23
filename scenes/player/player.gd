@@ -12,7 +12,7 @@ signal died
 @export var coyote_time := 0.1
 @export var coyote_minimum_speed := 125.0 / 2
 @export_subgroup("Jump")
-@export var jump_force := 450.0
+@export var jump_force := 350.0
 @export_subgroup("Walking")
 @export var walk_speed := 125.0
 @export var walk_accel := 0.2
@@ -20,11 +20,15 @@ signal died
 @export_subgroup("Running")
 @export var run_speed := 175.0
 @export var run_accel := 0.2
+@export_subgroup("Pipe usage")
+@export var pipe_maximum_speed := 10.0
 @export_group("Debug")
 @export_subgroup("Movement")
 @export var debug_velocity := false
 @export var debug_coyote := false
 @export var debug_state := false
+
+var _pipe: Node2D
 
 @onready var jump_buffer_ray_casts: Array[RayCast2D] = [
 	$Raycasts/LeftJumpBufferRayCast,
@@ -63,6 +67,19 @@ func can_coyote() -> bool:
 func set_jump_on_land(jump_buffer_enabled: bool) -> void:
 	for jump_buffer_ray_cast in jump_buffer_ray_casts:
 		jump_buffer_ray_cast.enabled = jump_buffer_enabled
+
+
+func set_pipe(pipe: Node2D) -> void:
+	_pipe = pipe
+
+
+func unset_pipe() -> void:
+	_pipe = null
+
+
+func attempt_use_pipe() -> void:
+	if _pipe and abs(velocity.x) < pipe_maximum_speed:
+		state_machine.transition_to_state(PlayerState.IMMOBILE, { "pipe": _pipe })
 
 
 func _debug_states() -> void:

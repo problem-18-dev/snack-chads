@@ -6,7 +6,8 @@
 
 [node name="SurpriseBlock" unique_id=1497541472 instance=ExtResource("1_hh50o")]
 script = ExtResource("2_0luhf")
-hit_duration = 0.3
+bump_offset = 4.0
+bump_duration = 0.2
 
 [node name="Sprite2D" parent="." index="1" unique_id=1547619892]
 texture = ExtResource("2_64udx")

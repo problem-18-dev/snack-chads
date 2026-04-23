@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://oixjpegbqcmd" path="res://scenes/debug/debug.tscn" id="1_slpoq"]
 [ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/world_boundary/world_boundary.tscn" id="2_dfm4s"]
 [ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="3_risx7"]
+[ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="4_00x87"]
+[ext_resource type="PackedScene" uid="uid://cnkmybobis5mu" path="res://scenes/pipe/pipe.tscn" id="5_xakte"]
 
 [sub_resource type="Gradient" id="Gradient_23swt"]
 offsets = PackedFloat32Array(0)
@@ -27,6 +29,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Player" parent="." unique_id=532083412 instance=ExtResource("1_23swt")]
 
 [node name="Platform" type="StaticBody2D" parent="." unique_id=193451499]
 position = Vector2(0, 8)
@@ -55,7 +59,13 @@ position = Vector2(120, -72)
 [node name="SurpriseBlock4" parent="Blocks" unique_id=1539464301 instance=ExtResource("3_risx7")]
 position = Vector2(64, -128)
 
-[node name="Player" parent="." unique_id=532083412 instance=ExtResource("1_23swt")]
+[node name="WallBlock" parent="Blocks" unique_id=343531627 instance=ExtResource("4_00x87")]
+position = Vector2(40, -72)
+
+[node name="Pipes" type="Node2D" parent="." unique_id=1042730492]
+
+[node name="Pipe" parent="Pipes" unique_id=776759869 instance=ExtResource("5_xakte")]
+position = Vector2(-104, 0)
 
 [node name="WorldBoundary" parent="." unique_id=229183395 instance=ExtResource("2_dfm4s")]
 position = Vector2(0, 88)

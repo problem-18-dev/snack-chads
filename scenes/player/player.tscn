@@ -7,11 +7,12 @@
 [ext_resource type="Script" uid="uid://22xqrsuw6gaa" path="res://scenes/player/states/player_air.gd" id="4_lvxji"]
 [ext_resource type="Script" uid="uid://bjcr78gqjqpbv" path="res://scenes/player/states/player_walk.gd" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
+[ext_resource type="Script" uid="uid://c02hlphhlcrkv" path="res://scenes/player/player_immobile.gd" id="8_qek5x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
 size = Vector2(14, 16)
 
-[node name="Player" type="CharacterBody2D" unique_id=532083412]
+[node name="Player" type="CharacterBody2D" unique_id=532083412 groups=["player"]]
 collision_mask = 22
 script = ExtResource("1_8afob")
 metadata/_edit_group_ = true
@@ -27,22 +28,22 @@ position_smoothing_enabled = true
 [node name="LeftJumpBufferRayCast" type="RayCast2D" parent="Raycasts" unique_id=1427439442]
 position = Vector2(-6, 0)
 enabled = false
-target_position = Vector2(0, 24)
+target_position = Vector2(0, 20)
 collision_mask = 18
 
 [node name="RightJumpBufferRayCast" type="RayCast2D" parent="Raycasts" unique_id=773214412]
 position = Vector2(6, 0)
 enabled = false
-target_position = Vector2(0, 24)
+target_position = Vector2(0, 20)
 collision_mask = 18
 
 [node name="LeftUpperHitRaycast" type="RayCast2D" parent="Raycasts" unique_id=1761915610]
-position = Vector2(-6, -16)
+position = Vector2(-3, -16)
 target_position = Vector2(0, -16)
 collision_mask = 2
 
 [node name="RightUpperHitRaycast" type="RayCast2D" parent="Raycasts" unique_id=590465138]
-position = Vector2(6, -16)
+position = Vector2(3, -16)
 target_position = Vector2(0, -16)
 collision_mask = 2
 
@@ -71,5 +72,8 @@ script = ExtResource("6_75vfm")
 
 [node name="Run" type="Node" parent="StateMachine" unique_id=982010846]
 script = ExtResource("7_0owmy")
+
+[node name="Immobile" type="Node" parent="StateMachine" unique_id=629860249]
+script = ExtResource("8_qek5x")
 
 [connection signal="timeout" from="StateMachine/Air/CoyoteTimer" to="StateMachine/Air" method="_on_coyote_timer_timeout"]

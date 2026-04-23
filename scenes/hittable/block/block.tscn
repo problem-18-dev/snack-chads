@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://biv8mqrsn6460"]
+
+[ext_resource type="PackedScene" uid="uid://mh7d1ffwrwvr" path="res://scenes/hittable/hittable.tscn" id="1_eg2je"]
+[ext_resource type="Script" uid="uid://cc7r8bhcbt4wp" path="res://scenes/hittable/block/block.gd" id="2_q0ar2"]
+
+[node name="Block" unique_id=1497541472 groups=["blocks"] instance=ExtResource("1_eg2je")]
+script = ExtResource("2_q0ar2")
+bump_offset = 8.0
+bump_duration = 10.0

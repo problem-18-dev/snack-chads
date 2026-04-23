@@ -121,29 +121,29 @@ func _check_jump_on_land() -> void:
 	var is_colliding := func is_colliding(ray_cast: RayCast2D): return ray_cast.is_colliding() 
 	var is_close_to_floor := player.jump_buffer_ray_casts.any(is_colliding)
 	var is_falling := player.velocity.y > 0
+	
 	if Input.is_action_just_pressed("jump") and is_close_to_floor and is_falling:
 		_set_jump_on_land(true)
-		return
 
 
 func _handle_collision(has_collided: bool) -> void:
 	if not has_collided:
 		return
-		
+	
 	for i in player.get_slide_collision_count():
 		var collision := player.get_slide_collision(i)
 		var normal := collision.get_normal()
 		
 		if normal.is_equal_approx(Vector2.DOWN):
-			var collider := collision.get_collider()
-			if collider is SurpriseBlock:
-				_check_hit_raycasts()
+			var collider: Hittable = collision.get_collider()
+			if collider is Block:
+				_check_block_hits()
 
 
-func _check_hit_raycasts() -> void:
+func _check_block_hits() -> void:
 	for hit_ray_cast in player.hit_raycasts:
 		if hit_ray_cast.is_colliding():
-			var collider := hit_ray_cast.get_collider()
+			var collider: Block = hit_ray_cast.get_collider()
 			collider.hit()
 
 

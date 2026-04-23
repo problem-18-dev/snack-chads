@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://exwb6tydvfno"]
+
+[ext_resource type="PackedScene" uid="uid://mh7d1ffwrwvr" path="res://scenes/hittable/hittable.tscn" id="1_vcmew"]
+[ext_resource type="Script" uid="uid://cufawr0owuuff" path="res://scenes/hittable/wall_block/wall_block.gd" id="2_5ea8l"]
+[ext_resource type="Texture2D" uid="uid://cbs0lr426y735" path="res://scenes/hittable/wall_block/sprites/block_placeholder.png" id="3_asa0s"]
+
+[node name="WallBlock" unique_id=1497541472 instance=ExtResource("1_vcmew")]
+script = ExtResource("2_5ea8l")
+bump_offset = 10.0
+bump_duration = 0.25
+
+[node name="Sprite2D" parent="." index="1" unique_id=1547619892]
+texture = ExtResource("3_asa0s")

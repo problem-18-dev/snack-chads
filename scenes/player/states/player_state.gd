@@ -6,6 +6,7 @@ const IDLE = "Idle"
 const AIR = "Air"
 const WALK = "Walk"
 const RUN = "Run"
+const IMMOBILE = "Immobile"
 
 
 var player: Player
