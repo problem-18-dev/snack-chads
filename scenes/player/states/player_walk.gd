@@ -18,8 +18,8 @@ func _key_input(event: InputEvent) -> void:
 		finished.emit(PlayerState.RUN)
 		return
 	
-	if event.is_action_pressed("down"):
-		player.attempt_use_pipe()
+	if event.is_action_pressed("down") and player.is_slow():
+		player.attempt_interaction()
 
 
 func _process_walk_movement() -> void:

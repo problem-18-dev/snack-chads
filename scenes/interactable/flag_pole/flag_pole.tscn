@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bilpg3ujw5ub6"]
+
+[ext_resource type="PackedScene" uid="uid://vfh3o1h2a6uu" path="res://scenes/interactable/interactable.tscn" id="1_utgpf"]
+[ext_resource type="Script" uid="uid://p0iukan5goc3" path="res://scenes/interactable/flag_pole/flag_pole.gd" id="2_amq1p"]
+[ext_resource type="Texture2D" uid="uid://dolasxsekmgk4" path="res://scenes/interactable/flag_pole/sprites/flagpole_placeholder.png" id="3_m1lie"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m1lie"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1lie"]
+size = Vector2(8, 128)
+
+[node name="FlagPole" unique_id=95559118 instance=ExtResource("1_utgpf")]
+z_index = -1
+script = ExtResource("2_amq1p")
+slide_duration = 1.0
+debug_enabled = true
+
+[node name="DetectionArea" parent="." index="0" unique_id=625485120]
+position = Vector2(0, -64)
+monitorable = false
+
+[node name="CollisionShape2D" parent="DetectionArea" index="0" unique_id=1855683179]
+position = Vector2(-8, 0)
+shape = SubResource("WorldBoundaryShape2D_m1lie")
+
+[node name="StaticBody2D" parent="." index="1" unique_id=1576996161]
+position = Vector2(0, -64)
+
+[node name="Sprite2D" parent="StaticBody2D" index="0" unique_id=2015709017]
+texture = ExtResource("3_m1lie")
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="1" unique_id=1210951323]
+shape = SubResource("RectangleShape2D_m1lie")
+
+[node name="SnapMarker2D" parent="." index="2" unique_id=302847599]
+position = Vector2(0, -120)
+
+[node name="BottomMarker2D" type="Marker2D" parent="." index="3" unique_id=1084802276]

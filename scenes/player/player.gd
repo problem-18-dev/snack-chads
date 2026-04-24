@@ -28,7 +28,7 @@ signal died
 @export var debug_coyote := false
 @export var debug_state := false
 
-var _pipe: Node2D
+var _interactable: Interactable
 
 @onready var jump_buffer_ray_casts: Array[RayCast2D] = [
 	$Raycasts/LeftJumpBufferRayCast,
@@ -51,6 +51,10 @@ func die() -> void:
 	reset()
 
 
+func is_slow() -> bool:
+	return abs(velocity.x) < pipe_maximum_speed
+
+
 func reset() -> void:
 	global_position = Vector2.ZERO
 
@@ -69,17 +73,20 @@ func set_jump_on_land(jump_buffer_enabled: bool) -> void:
 		jump_buffer_ray_cast.enabled = jump_buffer_enabled
 
 
-func set_pipe(pipe: Node2D) -> void:
-	_pipe = pipe
+func set_interactable(interactable: Interactable) -> void:
+	assert(interactable is Interactable, "Setting interactable on player but object isn't Interactable.")
+	_interactable = interactable
 
 
-func unset_pipe() -> void:
-	_pipe = null
+func unset_interactable() -> void:
+	if not _interactable:
+		return
+	_interactable = null
 
 
-func attempt_use_pipe() -> void:
-	if _pipe and abs(velocity.x) < pipe_maximum_speed:
-		state_machine.transition_to_state(PlayerState.IMMOBILE, { "pipe": _pipe })
+func attempt_interaction() -> void:
+	if _interactable:
+		state_machine.transition_to_state(PlayerState.IMMOBILE, { "interactable": _interactable })
 
 
 func _debug_states() -> void:

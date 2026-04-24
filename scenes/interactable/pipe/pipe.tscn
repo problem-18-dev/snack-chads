@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://d28vy8eu2ufqs"]
+
+[ext_resource type="Texture2D" uid="uid://bvp65oonxiopc" path="res://scenes/interactable/pipe/sprites/pipe_placeholder.png" id="1_3x1uc"]
+[ext_resource type="PackedScene" uid="uid://vfh3o1h2a6uu" path="res://scenes/interactable/interactable.tscn" id="1_jcf1n"]
+[ext_resource type="Script" uid="uid://gq2vjbwdhcj2" path="res://scenes/interactable/pipe/pipe.gd" id="1_rvrno"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mpfk"]
+size = Vector2(18, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydra8"]
+size = Vector2(32, 32)
+
+[node name="Pipe" unique_id=95559118 instance=ExtResource("1_jcf1n")]
+z_index = 1
+script = ExtResource("1_rvrno")
+pipe_direction = Vector2(0, 1)
+pipe_distance = 30.0
+pipe_speed = 1.0
+snap_animated = false
+debug_enabled = true
+
+[node name="CollisionShape2D" parent="DetectionArea" parent_id_path=PackedInt32Array(625485120) index="0" unique_id=1855683179]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_6mpfk")
+
+[node name="StaticBody2D" parent="." index="1" unique_id=1576996161]
+collision_layer = 16
+
+[node name="Sprite2D" parent="StaticBody2D" index="0" unique_id=2015709017]
+position = Vector2(0, -16)
+texture = ExtResource("1_3x1uc")
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="1" unique_id=1210951323]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_ydra8")
+
+[node name="SnapMarker2D" parent="." index="2" unique_id=302847599]
+position = Vector2(0, -32)

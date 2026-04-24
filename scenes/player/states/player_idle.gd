@@ -19,4 +19,4 @@ func _key_input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("down"):
-		player.attempt_use_pipe()
+		player.attempt_interaction()

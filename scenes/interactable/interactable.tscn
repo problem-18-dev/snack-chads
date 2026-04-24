@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://vfh3o1h2a6uu"]
+
+[ext_resource type="Script" uid="uid://dfe2cgk1lgvwe" path="res://scenes/interactable/interactable.gd" id="1_g88tj"]
+
+[node name="Interactable" type="Node2D" unique_id=95559118]
+script = ExtResource("1_g88tj")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=625485120]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1855683179]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1576996161]
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=2015709017]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1210951323]
+
+[node name="SnapMarker2D" type="Marker2D" parent="." unique_id=302847599]
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

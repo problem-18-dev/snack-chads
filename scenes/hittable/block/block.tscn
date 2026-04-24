@@ -5,5 +5,5 @@
 
 [node name="Block" unique_id=1497541472 groups=["blocks"] instance=ExtResource("1_eg2je")]
 script = ExtResource("2_q0ar2")
-bump_offset = 8.0
-bump_duration = 10.0
+bump_offset = 4.0
+bump_duration = 0.2
