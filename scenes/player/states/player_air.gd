@@ -23,11 +23,14 @@ func _exit() -> void:
 
 
 func _physics_update(delta: float) -> void:
-	var has_collided := player.move_and_slide()
-	_process_air_movement()
 	_apply_gravity(delta)
-	_handle_landing()
-	_handle_collision(has_collided)
+	_process_air_movement()
+	
+	player.move_and_slide()
+	var should_handle_landing := _handle_collision()
+	
+	if should_handle_landing:
+		_handle_landing()
 
 
 func _key_input(event: InputEvent) -> void:
@@ -36,9 +39,6 @@ func _key_input(event: InputEvent) -> void:
 
 
 func _apply_gravity(delta: float) -> void:
-	if _coyote:
-		return
-	
 	player.velocity += player.get_gravity() * delta
 
 
@@ -47,14 +47,13 @@ func _process_air_movement() -> void:
 		return
 	
 	var direction := player.get_direction()
-	
 	if is_zero_approx(direction):
 		player.velocity.x = lerpf(player.velocity.x, 0, player.air_movement_weight)
 		return
 	
-	var walking := Input.is_action_pressed("left") or Input.is_action_pressed("right")
+	var moving := Input.is_action_pressed("left") or Input.is_action_pressed("right")
 	var running := Input.is_action_pressed("interact")
-	if walking:
+	if moving:
 		if running:
 			var running_air_speed := player.run_speed * direction
 			player.velocity.x = lerpf(player.velocity.x, running_air_speed, player.air_movement_weight)
@@ -62,6 +61,37 @@ func _process_air_movement() -> void:
 		
 		var walking_air_speed := player.walk_speed * direction
 		player.velocity.x = lerpf(player.velocity.x, walking_air_speed, player.air_movement_weight)
+
+
+## Handles collision, returns true if player should check landing
+func _handle_collision() -> bool:
+	for i in player.get_slide_collision_count():
+		var collision := player.get_slide_collision(i)
+		var collider := collision.get_collider()
+		
+		if collider == null:
+			continue
+		
+		if collider.is_in_group("enemies"):
+			var normal := collision.get_normal()
+			var is_on_head := Vector2.UP.dot(normal) > 0.1
+
+			if is_on_head:
+				collider.hurt()
+				_bounce()
+				return false
+
+		if collider.is_in_group("blocks"):
+			_check_block_hits()
+	
+	return true
+
+
+func _check_block_hits() -> void:
+	for hit_ray_cast in player.hit_raycasts:
+		if hit_ray_cast.is_colliding():
+			var collider: Block = hit_ray_cast.get_collider()
+			collider.hit()
 
 
 func _handle_landing() -> void:
@@ -97,6 +127,14 @@ func _jump() -> void:
 	_set_jump_on_land(false)
 
 
+func _bounce() -> void:
+	if Input.is_action_pressed("jump"):
+		player.velocity.y = -player.bounce_force * player.bounce_force_multiplier
+		return
+	
+	player.velocity.y = -player.bounce_force
+
+
 func _enable_coyote() -> void:
 		_coyote = true
 		coyote_timer.start(player.coyote_time)
@@ -124,27 +162,6 @@ func _check_jump_on_land() -> void:
 	
 	if Input.is_action_just_pressed("jump") and is_close_to_floor and is_falling:
 		_set_jump_on_land(true)
-
-
-func _handle_collision(has_collided: bool) -> void:
-	if not has_collided:
-		return
-	
-	for i in player.get_slide_collision_count():
-		var collision := player.get_slide_collision(i)
-		var normal := collision.get_normal()
-		
-		if normal.is_equal_approx(Vector2.DOWN):
-			var collider: Hittable = collision.get_collider()
-			if collider is Block:
-				_check_block_hits()
-
-
-func _check_block_hits() -> void:
-	for hit_ray_cast in player.hit_raycasts:
-		if hit_ray_cast.is_colliding():
-			var collider: Block = hit_ray_cast.get_collider()
-			collider.hit()
 
 
 func _on_coyote_timer_timeout() -> void:

@@ -20,7 +20,10 @@ signal died
 @export_subgroup("Running")
 @export var run_speed := 175.0
 @export var run_accel := 0.2
-@export_subgroup("Pipe usage")
+@export_group("Collisions")
+@export var bounce_force := 150.0
+@export var bounce_force_multiplier := 2.0
+@export_group("Interactions")
 @export var pipe_maximum_speed := 10.0
 @export_group("Debug")
 @export_subgroup("Movement")

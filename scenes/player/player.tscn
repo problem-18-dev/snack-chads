@@ -13,7 +13,7 @@
 size = Vector2(14, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=532083412 groups=["player"]]
-collision_mask = 22
+collision_mask = 54
 script = ExtResource("1_8afob")
 metadata/_edit_group_ = true
 
@@ -28,13 +28,13 @@ position_smoothing_enabled = true
 [node name="LeftJumpBufferRayCast" type="RayCast2D" parent="Raycasts" unique_id=1427439442]
 position = Vector2(-6, 0)
 enabled = false
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 16)
 collision_mask = 18
 
 [node name="RightJumpBufferRayCast" type="RayCast2D" parent="Raycasts" unique_id=773214412]
 position = Vector2(6, 0)
 enabled = false
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 16)
 collision_mask = 18
 
 [node name="LeftUpperHitRaycast" type="RayCast2D" parent="Raycasts" unique_id=1761915610]

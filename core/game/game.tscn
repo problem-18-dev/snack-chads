@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="3_risx7"]
 [ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="4_00x87"]
 [ext_resource type="PackedScene" uid="uid://d28vy8eu2ufqs" path="res://scenes/interactable/pipe/pipe.tscn" id="5_xakte"]
-[ext_resource type="PackedScene" uid="uid://bilpg3ujw5ub6" path="res://scenes/interactable/flag_pole/flag_pole.tscn" id="7_xmhhf"]
+[ext_resource type="PackedScene" uid="uid://h6ptketcx3dm" path="res://scenes/enemy/phone_zombie/phone_zombie.tscn" id="7_xmhhf"]
 
 [sub_resource type="Gradient" id="Gradient_23swt"]
 offsets = PackedFloat32Array(0)
@@ -68,8 +68,11 @@ position = Vector2(40, -72)
 [node name="Pipe" parent="Pipes" unique_id=776759869 instance=ExtResource("5_xakte")]
 position = Vector2(-104, 0)
 
-[node name="FlagPole" parent="." unique_id=95559118 instance=ExtResource("7_xmhhf")]
-position = Vector2(184, 0)
+[node name="Enemies" type="Node2D" parent="." unique_id=70222816]
+
+[node name="PhoneZombie" parent="Enemies" unique_id=792489795 instance=ExtResource("7_xmhhf")]
+position = Vector2(-32, 0)
+collision_mask = 57
 
 [node name="WorldBoundary" parent="." unique_id=229183395 instance=ExtResource("2_dfm4s")]
 position = Vector2(0, 88)

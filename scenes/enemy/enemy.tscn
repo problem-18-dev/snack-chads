@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://djvpxvuwprd66"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=792489795 groups=["enemies"]]
+collision_layer = 32
+collision_mask = 56
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=996180208]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1783304354]
