@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dxoywj2ktb8ka" path="res://scenes/hittable/surprise_block/surprise_block.gd" id="2_0luhf"]
 [ext_resource type="Texture2D" uid="uid://dfphf0j4472op" path="res://scenes/hittable/surprise_block/sprites/surprise_placeholder.png" id="2_64udx"]
 
-[node name="SurpriseBlock" unique_id=1497541472 instance=ExtResource("1_hh50o")]
+[node name="SurpriseBlock" unique_id=1497541472 groups=["blocks"] instance=ExtResource("1_hh50o")]
 script = ExtResource("2_0luhf")
 bump_offset = 4.0
 bump_duration = 0.2

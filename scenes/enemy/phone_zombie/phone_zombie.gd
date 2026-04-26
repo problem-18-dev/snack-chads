@@ -1,19 +1,12 @@
 extends CharacterBody2D
 
 
-enum Direction { Left, Right }
-
-const DIRECTIONS: Dictionary[Direction, int] = {
-	Direction.Left: -1,
-	Direction.Right: 1,
-}
-
 @export_group("Movement")
 @export var speed := 20.0
 @export_group("Debug")
 @export var debug_enabled := false
 
-var _direction := DIRECTIONS[Direction.Left]
+var _direction := -1
 
 
 func _physics_process(delta: float) -> void:
@@ -31,7 +24,8 @@ func hurt() -> void:
 
 
 func _apply_gravity(delta: float) -> void:
-	velocity.y += get_gravity().y * delta
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
 
 
 func _process_movement() -> void:
@@ -50,7 +44,7 @@ func _handle_collision(has_collided: bool) -> void:
 				return
 			
 			var normal := collision.get_normal()
-			if normal.is_equal_approx(Vector2.LEFT):
-				_direction = DIRECTIONS[Direction.Left]
-			elif normal.is_equal_approx(Vector2.RIGHT):
-				_direction = DIRECTIONS[Direction.Right]
+			
+			# If not floor
+			if not normal.is_equal_approx(Vector2.UP):
+				_direction *= -1

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d251v5fi15bp4"]
 
 [ext_resource type="Script" uid="uid://c6bm1rpeem5yr" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://byol15lysr7sm" path="res://scenes/player/player_camera.gd" id="2_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://svuuufslcxip" path="res://core/state_machine/state_machine.tscn" id="2_dovo2"]
 [ext_resource type="Texture2D" uid="uid://cf6ad8m1aymix" path="res://scenes/player/sprites/player_placeholder.png" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://bjph4ifm2gg4m" path="res://scenes/player/states/player_idle.gd" id="3_gmlin"]
@@ -15,13 +16,19 @@ size = Vector2(14, 16)
 [node name="Player" type="CharacterBody2D" unique_id=532083412 groups=["player"]]
 collision_mask = 54
 script = ExtResource("1_8afob")
+debug_movement_limit = true
 metadata/_edit_group_ = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1040741919]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1040741919]
 offset = Vector2(0, -32)
-zoom = Vector2(1.25, 1.25)
+zoom = Vector2(1.5, 1.5)
 process_callback = 0
-position_smoothing_enabled = true
+limit_top = -176
+limit_bottom = 64
+position_smoothing_speed = 7.5
+drag_horizontal_enabled = true
+drag_right_margin = 0.0
+script = ExtResource("2_5gtgg")
 
 [node name="Raycasts" type="Node2D" parent="." unique_id=670327260]
 

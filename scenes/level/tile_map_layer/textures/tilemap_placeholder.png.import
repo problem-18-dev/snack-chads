@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkh66edvcnbhw"
-path="res://.godot/imported/pipe_placeholder.png-0f20edb37ff54fcff8c24a3a2241e655.ctex"
+uid="uid://bkmg76qjk5hve"
+path="res://.godot/imported/tilemap_placeholder.png-538e08548b26f7bfee04271042ca9c8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/interactable/pipe/sprites/pipe_placeholder.png"
-dest_files=["res://.godot/imported/pipe_placeholder.png-0f20edb37ff54fcff8c24a3a2241e655.ctex"]
+source_file="res://scenes/level/tile_map_layer/textures/tilemap_placeholder.png"
+dest_files=["res://.godot/imported/tilemap_placeholder.png-538e08548b26f7bfee04271042ca9c8f.ctex"]
 
 [params]
 

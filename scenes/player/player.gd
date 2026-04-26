@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 signal died
 
+const DEFAULT_LEFT_BOUNDARY := -192
+
 @export_group("Movement")
 @export_subgroup("Air")
 @export var air_movement_speed := 100.0
@@ -12,7 +14,7 @@ signal died
 @export var coyote_time := 0.1
 @export var coyote_minimum_speed := 125.0 / 2
 @export_subgroup("Jump")
-@export var jump_force := 350.0
+@export var jump_force := 400.0
 @export_subgroup("Walking")
 @export var walk_speed := 125.0
 @export var walk_accel := 0.2
@@ -29,6 +31,8 @@ signal died
 @export_subgroup("Movement")
 @export var debug_velocity := false
 @export var debug_coyote := false
+@export var debug_movement_limit := false
+@export_subgroup("State machine")
 @export var debug_state := false
 
 var _interactable: Interactable
@@ -39,6 +43,7 @@ var _interactable: Interactable
 	]
 @onready var hit_raycasts: Array[RayCast2D] = [$Raycasts/LeftUpperHitRaycast, $Raycasts/RightUpperHitRaycast]
 @onready var state_machine: StateMachine = $StateMachine
+@onready var player_camera: PlayerCamera = $PlayerCamera
 
 
 func _ready() -> void:
@@ -46,7 +51,13 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	_limit_movement()
 	_debug_velocity()
+
+
+func setup(spawn_position: Vector2) -> void:
+	global_position = spawn_position
+	player_camera.setup(DEFAULT_LEFT_BOUNDARY)
 
 
 func die() -> void:
@@ -90,6 +101,14 @@ func unset_interactable() -> void:
 func attempt_interaction() -> void:
 	if _interactable:
 		state_machine.transition_to_state(PlayerState.IMMOBILE, { "interactable": _interactable })
+
+
+func _limit_movement() -> void:
+	if global_position.x < DEFAULT_LEFT_BOUNDARY:
+		global_position.x = DEFAULT_LEFT_BOUNDARY
+		
+		if debug_movement_limit:
+			Debug.log("Boundary hit")
 
 
 func _debug_states() -> void:
