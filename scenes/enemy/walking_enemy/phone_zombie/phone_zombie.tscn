@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://csj5opj8ti4ps"]
+
+[ext_resource type="PackedScene" uid="uid://dgljijvd3g7qr" path="res://scenes/enemy/walking_enemy/walking_enemy.tscn" id="1_7itwu"]
+[ext_resource type="Texture2D" uid="uid://bd4il3mm22bf8" path="res://scenes/enemy/walking_enemy/phone_zombie/sprites/enemy_placeholder.png" id="2_1bucu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mh51a"]
+size = Vector2(16, 16)
+
+[node name="PhoneZombie" unique_id=792489795 instance=ExtResource("1_7itwu")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=996180208]
+texture = ExtResource("2_1bucu")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1783304354]
+shape = SubResource("RectangleShape2D_mh51a")

@@ -11,11 +11,12 @@ size = Vector2(18, 20)
 size = Vector2(32, 128)
 
 [node name="Pipe" unique_id=95559118 instance=ExtResource("1_jcf1n")]
-z_index = 1
 script = ExtResource("1_rvrno")
-pipe_direction = Vector2(0, 1)
-pipe_distance = 30.0
-pipe_speed = 1.0
+enabled = false
+destination = NodePath("")
+direction = Vector2(0, 1)
+distance = 30.0
+speed = 1.0
 snap_animated = false
 debug_enabled = true
 

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://qqnq6ua6bjfp"]
+
+[ext_resource type="PackedScene" uid="uid://dgljijvd3g7qr" path="res://scenes/enemy/walking_enemy/walking_enemy.tscn" id="1_k4coe"]
+[ext_resource type="Texture2D" uid="uid://bid8l5i72ah7t" path="res://scenes/enemy/walking_enemy/dismounted_bike/sprites/bike_placeholder.png" id="2_4o3jn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4o3jn"]
+radius = 6.0
+
+[node name="DismountedBike" unique_id=792489795 instance=ExtResource("1_k4coe")]
+speed = 40.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=996180208]
+texture = ExtResource("2_4o3jn")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1783304354]
+position = Vector2(0, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4o3jn")

@@ -4,27 +4,26 @@ extends CharacterBody2D
 
 signal died
 
-const DEFAULT_LEFT_BOUNDARY := -192
-
 @export_group("Movement")
 @export_subgroup("Air")
-@export var air_movement_speed := 100.0
 @export var air_movement_weight := 0.05
 @export_subgroup("Coyote")
 @export var coyote_time := 0.1
 @export var coyote_minimum_speed := 125.0 / 2
 @export_subgroup("Jump")
-@export var jump_force := 400.0
+@export var jump_force := 375.0
+@export var jump_running_force := 400.0
+@export_range(1, 2, 0.01) var jump_release_divider := 1.5
 @export_subgroup("Walking")
 @export var walk_speed := 125.0
 @export var walk_accel := 0.2
-@export var walk_deccel := 0.13
+@export var walk_deccel := 0.15
 @export_subgroup("Running")
 @export var run_speed := 175.0
 @export var run_accel := 0.2
 @export_group("Collisions")
 @export var bounce_force := 150.0
-@export var bounce_force_multiplier := 2.0
+@export var bounce_force_multiplier := 3.0
 @export_group("Interactions")
 @export var pipe_maximum_speed := 10.0
 @export_group("Debug")
@@ -36,6 +35,7 @@ const DEFAULT_LEFT_BOUNDARY := -192
 @export var debug_state := false
 
 var _interactable: Interactable
+var _limit_left: int
 
 @onready var jump_buffer_ray_casts: Array[RayCast2D] = [
 	$Raycasts/LeftJumpBufferRayCast,
@@ -55,9 +55,10 @@ func _physics_process(_delta: float) -> void:
 	_debug_velocity()
 
 
-func setup(spawn_position: Vector2) -> void:
+func setup(spawn_position: Vector2, limit_left: int) -> void:
 	global_position = spawn_position
-	player_camera.setup(DEFAULT_LEFT_BOUNDARY)
+	_limit_left = limit_left
+	player_camera.setup(limit_left)
 
 
 func die() -> void:
@@ -104,8 +105,9 @@ func attempt_interaction() -> void:
 
 
 func _limit_movement() -> void:
-	if global_position.x < DEFAULT_LEFT_BOUNDARY:
-		global_position.x = DEFAULT_LEFT_BOUNDARY
+	if global_position.x < _limit_left:
+		global_position.x = _limit_left
+		velocity.x = 0
 		
 		if debug_movement_limit:
 			Debug.log("Boundary hit")

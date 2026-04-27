@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bekxxr844rl7o"
-path="res://.godot/imported/tilemap_placeholder.png-538e08548b26f7bfee04271042ca9c8f.ctex"
+uid="uid://bd4il3mm22bf8"
+path="res://.godot/imported/enemy_placeholder.png-03027ebfaee2fe6fa7fefb57b519bb76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/level/tile_map_layer/textures/tilemap_placeholder.png"
-dest_files=["res://.godot/imported/tilemap_placeholder.png-538e08548b26f7bfee04271042ca9c8f.ctex"]
+source_file="res://scenes/enemy/walking_enemy/phone_zombie/sprites/enemy_placeholder.png"
+dest_files=["res://.godot/imported/enemy_placeholder.png-03027ebfaee2fe6fa7fefb57b519bb76.ctex"]
 
 [params]
 

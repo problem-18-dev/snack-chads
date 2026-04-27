@@ -2,12 +2,12 @@ class_name Level
 extends Node
 
 
-@export_group("Properties")
-@export var left_boundary := 192
 @export_group("Player")
 @export var player_packed: PackedScene
 
-@onready var spawn_marker: Marker2D = $SpawnMarker
+@onready var spawn_marker: Marker2D = $Markers/SpawnMarker
+@onready var limit_marker: Marker2D = $Markers/LimitMarker
+@onready var world_tile_map_layer: TileMapLayer = $WorldTileMapLayer
 
 
 
@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func _spawn_player() -> void:
 	var player: Player = player_packed.instantiate()
-	var spawn_position := spawn_marker.global_position
+	var spawn_position := spawn_marker.position
 	add_child(player)
-	player.setup(spawn_position)
+	var left_limit := roundi(limit_marker.position.x)
+	player.setup(spawn_position, left_limit)

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dgljijvd3g7qr"]
+
+[ext_resource type="PackedScene" uid="uid://djvpxvuwprd66" path="res://scenes/enemy/enemy.tscn" id="1_bin0i"]
+[ext_resource type="Script" uid="uid://j7gpa6mb2q2r" path="res://scenes/enemy/walking_enemy/walking_enemy.gd" id="2_anspe"]
+
+[node name="WalkingEnemy" unique_id=792489795 instance=ExtResource("1_bin0i")]
+script = ExtResource("2_anspe")
+speed = 20.0

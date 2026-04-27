@@ -15,7 +15,7 @@ func _key_input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("jump"):
-		finished.emit(PlayerState.AIR, { "jump": true })
+		finished.emit(PlayerState.AIR, { "jump": true, "is_running": true })
 
 
 func _process_run_movement() -> void:

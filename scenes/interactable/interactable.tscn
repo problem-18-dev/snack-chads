@@ -7,6 +7,7 @@ script = ExtResource("1_g88tj")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=625485120]
 collision_layer = 0
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1855683179]
 

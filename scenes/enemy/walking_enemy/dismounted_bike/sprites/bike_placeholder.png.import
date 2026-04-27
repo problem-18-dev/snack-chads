@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd4il3mm22bf8"
-path="res://.godot/imported/enemy_placeholder.png-f2e8f72475a121252ced5ac84b904c2b.ctex"
+uid="uid://bid8l5i72ah7t"
+path="res://.godot/imported/bike_placeholder.png-4ef027624f97f7b32fb4807d327a48c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemy/phone_zombie/sprites/enemy_placeholder.png"
-dest_files=["res://.godot/imported/enemy_placeholder.png-f2e8f72475a121252ced5ac84b904c2b.ctex"]
+source_file="res://scenes/enemy/walking_enemy/dismounted_bike/sprites/bike_placeholder.png"
+dest_files=["res://.godot/imported/bike_placeholder.png-4ef027624f97f7b32fb4807d327a48c2.ctex"]
 
 [params]
 

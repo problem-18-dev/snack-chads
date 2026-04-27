@@ -11,7 +11,8 @@ func _enter(data := {}) -> void:
 	player.set_jump_on_land(true)
 	
 	if data.has("jump"):
-		_jump()
+		var is_running := data.has("is_running")
+		_jump(is_running)
 	
 	if data.has("coyote") and data.coyote:
 		_enable_coyote()
@@ -36,6 +37,9 @@ func _physics_update(delta: float) -> void:
 func _key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and _coyote:
 		_jump()
+	
+	if event.is_action_released("jump") and player.velocity.y < 0:
+		_jump_release()
 
 
 func _apply_gravity(delta: float) -> void:
@@ -110,19 +114,19 @@ func _handle_landing() -> void:
 	var moving := Input.is_action_pressed("left") or Input.is_action_pressed("right")
 	var running := Input.is_action_pressed("interact")
 	
-	if moving:
-		if running:
-			finished.emit(PlayerState.RUN)
-			return
-		
-		finished.emit(PlayerState.WALK)
+	if moving and running:
+		finished.emit(PlayerState.RUN)
 		return
 		
-	finished.emit(PlayerState.IDLE)
+	finished.emit(PlayerState.WALK)
 
 
-func _jump() -> void:
-	player.velocity.y = -player.jump_force
+func _jump(is_running := false) -> void:
+	if is_running and player.velocity.x > player.walk_speed:
+		player.velocity.y = -player.jump_running_force
+	else:
+		player.velocity.y = -player.jump_force
+		
 	_disable_coyote()
 	_set_jump_on_land(false)
 
@@ -133,6 +137,10 @@ func _bounce() -> void:
 		return
 	
 	player.velocity.y = -player.bounce_force
+
+
+func _jump_release() -> void:
+	player.velocity.y /= player.jump_release_divider
 
 
 func _enable_coyote() -> void:

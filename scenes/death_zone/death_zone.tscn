@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://d1ejujm206u82"]
 
-[ext_resource type="Script" uid="uid://c6die6u2bs4kn" path="res://scenes/world_boundary/world_boundary.gd" id="1_oevys"]
+[ext_resource type="Script" uid="uid://c6die6u2bs4kn" path="res://scenes/death_zone/death_zone.gd" id="1_rsjs6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_23swt"]
 
-[node name="WorldBoundary" type="Area2D" unique_id=1117372907]
+[node name="DeathZone" type="Area2D" unique_id=1117372907]
 collision_layer = 16
-script = ExtResource("1_oevys")
+script = ExtResource("1_rsjs6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=994977640]
 shape = SubResource("WorldBoundaryShape2D_23swt")
