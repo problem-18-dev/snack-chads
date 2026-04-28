@@ -13,3 +13,6 @@ texture = ExtResource("2_1bucu")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1783304354]
 shape = SubResource("RectangleShape2D_mh51a")
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="2" unique_id=1947978349]
+rect = Rect2(-16, -16, 32, 32)

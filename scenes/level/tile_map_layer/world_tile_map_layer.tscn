@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://hdisw1n8q63w"]
 
 [ext_resource type="Texture2D" uid="uid://bekxxr844rl7o" path="res://scenes/level/tile_map_layer/textures/tilemap_placeholder.png" id="1_i1mrs"]
-[ext_resource type="PackedScene" uid="uid://csj5opj8ti4ps" path="res://scenes/enemy/walking_enemy/phone_zombie/phone_zombie.tscn" id="2_ebogh"]
-[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="3_0k0s3"]
-[ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="4_pio3d"]
-[ext_resource type="PackedScene" uid="uid://hg21feacdnjc" path="res://scenes/enemy/walking_enemy/biker/biker.tscn" id="5_pio3d"]
+[ext_resource type="PackedScene" uid="uid://hg21feacdnjc" path="res://scenes/enemy/walking_enemy/biker/biker.tscn" id="2_ml5tt"]
+[ext_resource type="PackedScene" uid="uid://csj5opj8ti4ps" path="res://scenes/enemy/walking_enemy/phone_zombie/phone_zombie.tscn" id="3_0k0s3"]
+[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="4_pio3d"]
+[ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="5_o6m22"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7xxq1"]
 resource_name = "Outside World"
@@ -88,15 +88,15 @@ texture = ExtResource("1_i1mrs")
 2:2/0/terrains_peering_bit/top_left_corner = 0
 2:2/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ml5tt"]
-resource_name = "Blocks"
-scenes/1/scene = ExtResource("4_pio3d")
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_pio3d"]
+resource_name = "Enemies"
+scenes/1/scene = ExtResource("2_ml5tt")
 scenes/2/scene = ExtResource("3_0k0s3")
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_0k0s3"]
-resource_name = "Enemies"
-scenes/2/scene = ExtResource("2_ebogh")
-scenes/3/scene = ExtResource("5_pio3d")
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_o6m22"]
+resource_name = "Blocks"
+scenes/1/scene = ExtResource("4_pio3d")
+scenes/2/scene = ExtResource("5_o6m22")
 
 [sub_resource type="TileSet" id="TileSet_ebogh"]
 physics_layer_0/collision_layer = 16
@@ -104,9 +104,14 @@ physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "outside_world"
 terrain_set_0/terrain_0/color = Color(4.813075e-07, 0.46610945, 0.21374732, 1)
+custom_data_layer_0/name = "enemy"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "block"
+custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_7xxq1")
-sources/1 = SubResource("TileSetScenesCollectionSource_ml5tt")
-sources/2 = SubResource("TileSetScenesCollectionSource_0k0s3")
+sources/1 = SubResource("TileSetScenesCollectionSource_pio3d")
+sources/2 = SubResource("TileSetScenesCollectionSource_o6m22")
+tile_proxies/coords_level = [[1, Vector2i(0, 0)], [3, Vector2i(0, 0)], [2, Vector2i(0, 0)], [3, Vector2i(2, 0)], [4, Vector2i(0, 0)], [6, Vector2i(0, 0)], [5, Vector2i(0, 0)], [6, Vector2i(1, 0)]]
 
 [node name="WorldTileMapLayer" type="TileMapLayer" unique_id=1077262160]
 z_index = 2

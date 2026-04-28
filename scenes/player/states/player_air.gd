@@ -76,17 +76,16 @@ func _handle_collision() -> bool:
 		if collider == null:
 			continue
 		
-		if collider.is_in_group("enemies"):
-			var normal := collision.get_normal()
-			var is_on_head := Vector2.UP.dot(normal) > 0.1
-
-			if is_on_head:
-				collider.hurt()
-				_bounce()
-				return false
-
+		# Blocks
 		if collider.is_in_group("blocks"):
 			_check_block_hits()
+			continue
+		
+		# Enemies
+		if collider.is_in_group("enemies"):
+			var normal := collision.get_normal()
+			_check_enemy_hits(collider, normal)
+			return false
 	
 	return true
 
@@ -96,6 +95,21 @@ func _check_block_hits() -> void:
 		if hit_ray_cast.is_colliding():
 			var collider: Block = hit_ray_cast.get_collider()
 			collider.hit()
+
+
+func _check_enemy_hits(collider: Enemy, normal: Vector2) -> void:
+	var is_on_head := Vector2.UP.dot(normal) > 0.1
+	if not is_on_head:
+		player.hurt()
+		return
+	
+	if collider.is_in_group("pushables"):
+		player.push_enemy(collider)
+	else:
+		collider.hurt()
+	
+	_bounce()
+
 
 
 func _handle_landing() -> void:

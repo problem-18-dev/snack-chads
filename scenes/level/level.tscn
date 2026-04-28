@@ -37,14 +37,12 @@ grow_vertical = 1
 [node name="Interactables" type="Node2D" parent="." unique_id=1383092811]
 z_index = 1
 
+[node name="FlagPole" parent="Interactables" unique_id=95559118 instance=ExtResource("10_pe1ox")]
+z_index = -1
+
 [node name="Markers" type="Node2D" parent="." unique_id=742689600]
 
 [node name="SpawnMarker" type="Marker2D" parent="Markers" unique_id=1120709553]
-
-[node name="LimitMarker" type="Marker2D" parent="Markers" unique_id=511394648]
-
-[node name="FlagPole" parent="." unique_id=95559118 instance=ExtResource("10_pe1ox")]
-z_index = -1
 
 [node name="WorldBoundary" parent="." unique_id=1117372907 instance=ExtResource("7_b7m21")]
 position = Vector2(0, 112)

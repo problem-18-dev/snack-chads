@@ -15,11 +15,12 @@ size = Vector2(12, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=532083412 groups=["player"]]
 collision_mask = 62
+slide_on_ceiling = false
 script = ExtResource("1_8afob")
 air_movement_weight = 0.07
 walk_accel = 0.3
 walk_deccel = 0.18
-run_accel = 0.15
+debug_collisions = true
 metadata/_edit_group_ = true
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1040741919]

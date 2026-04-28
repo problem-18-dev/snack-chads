@@ -7,15 +7,18 @@ extends Enemy
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-
 var _direction := -1
 
 
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	_process_movement()
-	var has_collided := move_and_slide()
-	_handle_collision(has_collided)
+	move_and_slide()
+	_handle_collision()
+
+
+func setup(_spawn_position: Vector2) -> void:
+	pass
 
 
 func hurt() -> void:
@@ -23,6 +26,14 @@ func hurt() -> void:
 		Debug.log("Walking enemy hurt!")
 	
 	queue_free()
+
+
+func _stop() -> void:
+	_direction = 0
+
+
+func _is_stopped() -> bool:
+	return _direction == 0
 
 
 func _apply_gravity(delta: float) -> void:
@@ -37,13 +48,8 @@ func _process_movement() -> void:
 		sprite.flip_h = velocity.x < 0
 
 
-func _handle_collision(has_collided: bool) -> void:
-	if not has_collided:
-		return
-		
-	var collisions := get_slide_collision_count()
-	
-	for i in collisions:
+func _handle_collision() -> void:
+	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
 		
