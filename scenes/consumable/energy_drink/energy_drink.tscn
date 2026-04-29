@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bx5j354eqrx4u"]
+
+[ext_resource type="PackedScene" uid="uid://b7b8rhth523b4" path="res://scenes/consumable/consumable.tscn" id="1_wjssg"]
+[ext_resource type="Texture2D" uid="uid://cd83wqbmivisf" path="res://scenes/consumable/energy_drink/sprites/energy_placeholder.png" id="2_3sgph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3sgph"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke65k"]
+size = Vector2(18, 18)
+
+[node name="EnergyDrink" unique_id=1649983785 instance=ExtResource("1_wjssg")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1551331641]
+shape = SubResource("RectangleShape2D_3sgph")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1019753903]
+texture = ExtResource("2_3sgph")
+
+[node name="CollisionShape2D" parent="DetectionArea" parent_id_path=PackedInt32Array(1984197104) index="0" unique_id=934345793]
+shape = SubResource("RectangleShape2D_ke65k")
+debug_color = Color(4.813075e-06, 0.63058245, 0.47431058, 0.41960785)

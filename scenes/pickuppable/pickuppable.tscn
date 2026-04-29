@@ -6,3 +6,5 @@
 script = ExtResource("1_oylgv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=672722965]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2012142718]

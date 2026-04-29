@@ -1,19 +1,7 @@
-[gd_scene format=3 uid="uid://cr8m2y6kd6po4"]
+[gd_scene format=3 uid="uid://bnlemcsa2avmg"]
 
+[ext_resource type="PackedScene" uid="uid://bvciw3dcyxwkh" path="res://scenes/pickuppable/pickuppable.tscn" id="1_q0ly3"]
 [ext_resource type="Script" uid="uid://bmn77n0cd872q" path="res://scenes/pickuppable/coin/coin.gd" id="1_u0637"]
-[ext_resource type="Texture2D" uid="uid://b637wc6iqf45s" path="res://scenes/pickuppable/coin/sprites/coin_placeholder.png" id="1_yr0ns"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yr0ns"]
-radius = 8.0
-
-[node name="Coin" type="Area2D" unique_id=342927246]
-collision_layer = 4
+[node name="Coin" unique_id=413452588 instance=ExtResource("1_q0ly3")]
 script = ExtResource("1_u0637")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1117729310]
-texture = ExtResource("1_yr0ns")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=644360219]
-shape = SubResource("CircleShape2D_yr0ns")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -31,9 +31,12 @@ signal died
 @export var debug_velocity := false
 @export var debug_coyote := false
 @export var debug_movement_limit := false
-@export var debug_collisions := false
+@export_subgroup("Power Ups")
+@export var debug_power_ups := false
 @export_subgroup("State machine")
 @export var debug_state := false
+
+var is_grown := false
 
 var _interactable: Interactable
 
@@ -45,6 +48,7 @@ var _interactable: Interactable
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_camera: PlayerCamera = $PlayerCamera
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
@@ -53,7 +57,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	_limit_movement()
-	_process_sprite()
+	_flip_sprite()
 	_debug_velocity()
 
 
@@ -63,13 +67,46 @@ func setup(spawn_position: Vector2, limit_left: int, limit_right: int) -> void:
 
 
 func hurt() -> void:
-	if debug_collisions:
-		Debug.log("Player hurt!")
+	if is_grown:
+		shrink()
+		return
+	
+	if debug_power_ups:
+		Debug.log("Player died!")
+	
+	die()
 
 
 func die() -> void:
 	died.emit()
 	reset()
+
+
+func grow() -> void:
+	if is_grown:
+		return
+	
+	is_grown = true
+	animation_player.play("grow")
+	
+	if debug_power_ups:
+		Debug.log("Player grows!")
+
+
+func shrink() -> void:
+	is_grown = false
+	animation_player.play("shrink")
+	
+	if debug_power_ups:
+		Debug.log("Player shrinks!")
+
+
+func consume(type: String) -> void:
+	match type:
+		"grow":
+			grow()
+		_:
+			push_error("Consumable type not found", type)
 
 
 func is_slow() -> bool:
@@ -87,6 +124,10 @@ func get_direction() -> float:
 
 func can_coyote() -> bool:
 	return abs(velocity.x) >= coyote_minimum_speed
+
+
+func can_hit() -> bool:
+	return is_grown
 
 
 func set_jump_on_land(jump_buffer_enabled: bool) -> void:
@@ -107,7 +148,7 @@ func unset_interactable() -> void:
 
 func attempt_interaction() -> void:
 	if _interactable:
-		state_machine.transition_to_state(PlayerState.IMMOBILE, { "interactable": _interactable })
+		state_machine.transition_to_state(PlayerState.IMMOBILE, {"interactable": _interactable})
 
 
 func push_enemy(enemy: Enemy) -> void:
@@ -133,7 +174,7 @@ func _limit_movement() -> void:
 		Debug.log("Boundary hit")
 
 
-func _process_sprite() -> void:
+func _flip_sprite() -> void:
 	var direction := get_direction()
 	if is_zero_approx(direction):
 		return

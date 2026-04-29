@@ -12,7 +12,7 @@ func _physics_update(_delta: float) -> void:
 
 func _key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		finished.emit(PlayerState.AIR, { "jump": true })
+		finished.emit(PlayerState.AIR, {"jump": true})
 		return
 	
 	if event.is_action_pressed("left") or event.is_action_pressed("right"):

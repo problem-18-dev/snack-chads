@@ -4,10 +4,26 @@
 [ext_resource type="Script" uid="uid://dxoywj2ktb8ka" path="res://scenes/hittable/surprise_block/surprise_block.gd" id="2_0luhf"]
 [ext_resource type="Texture2D" uid="uid://dfphf0j4472op" path="res://scenes/hittable/surprise_block/sprites/surprise_placeholder.png" id="2_64udx"]
 
+[sub_resource type="Animation" id="Animation_0luhf"]
+resource_name = "pop"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4tlb"]
+_data = {
+&"pop": SubResource("Animation_0luhf")
+}
+
 [node name="SurpriseBlock" unique_id=1497541472 groups=["blocks"] instance=ExtResource("1_hh50o")]
 script = ExtResource("2_0luhf")
+content_packed = null
+duration = 0.5
 bump_offset = 4.0
 bump_duration = 0.2
 
-[node name="Sprite2D" parent="." index="1" unique_id=1547619892]
+[node name="ContentDestinationMarker" type="Marker2D" parent="." index="0" unique_id=1907705047]
+position = Vector2(0, -16)
+
+[node name="Sprite2D" parent="." index="2" unique_id=1547619892]
 texture = ExtResource("2_64udx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=134524426]
+libraries/ = SubResource("AnimationLibrary_l4tlb")

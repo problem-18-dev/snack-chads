@@ -94,7 +94,11 @@ func _check_block_hits() -> void:
 	for hit_ray_cast in player.hit_raycasts:
 		if hit_ray_cast.is_colliding():
 			var collider: Block = hit_ray_cast.get_collider()
-			collider.hit()
+			if player.can_hit():
+				collider.hit()
+				return
+			
+			collider.bump()
 
 
 func _check_enemy_hits(collider: Enemy, normal: Vector2) -> void:

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b7b8rhth523b4"]
+
+[ext_resource type="Script" uid="uid://bbpalilbxkyci" path="res://scenes/consumable/consumable.gd" id="1_2yvhi"]
+
+[node name="Consumable" type="CharacterBody2D" unique_id=1649983785]
+z_index = -1
+collision_layer = 64
+collision_mask = 26
+script = ExtResource("1_2yvhi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1551331641]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1019753903]
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1984197104]
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=934345793]
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

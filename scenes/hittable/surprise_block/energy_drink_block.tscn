@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dfcuf2bc0w733"]
+
+[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="1_qmlec"]
+[ext_resource type="PackedScene" uid="uid://bx5j354eqrx4u" path="res://scenes/consumable/energy_drink/energy_drink.tscn" id="2_3isdd"]
+
+[node name="EnergyDrinkBlock" unique_id=1497541472 instance=ExtResource("1_qmlec")]
+content_packed = ExtResource("2_3isdd")
+duration = 0.5
