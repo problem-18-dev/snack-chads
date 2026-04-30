@@ -3,7 +3,7 @@ extends Interactable
 
 @export_group("Destination")
 @export var enabled := false
-@export var destination: PackedScene
+@export_file("*.tscn") var destination: String 
 @export_group("Animation")
 @export var direction := Vector2.DOWN
 @export var distance := 30.0
@@ -39,7 +39,7 @@ func _prepare() -> void:
 
 func _transfer() -> void:
 	assert(destination, "Pipe enabled, but no destination set.")
-	get_tree().change_scene_to_packed(destination)
+	get_tree().change_scene_to_file(destination)
 
 
 func _on_detection_area_body_entered(body: Player) -> void:

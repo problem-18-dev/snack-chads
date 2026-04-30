@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dkh66edvcnbhw" path="res://scenes/interactable/pipe/sprites/pipe_placeholder.png" id="1_3x1uc"]
 [ext_resource type="PackedScene" uid="uid://vfh3o1h2a6uu" path="res://scenes/interactable/interactable.tscn" id="1_jcf1n"]
-[ext_resource type="Script" uid="uid://gq2vjbwdhcj2" path="res://scenes/interactable/pipe/pipe.gd" id="1_rvrno"]
+[ext_resource type="Script" uid="uid://gq2vjbwdhcj2" path="res://scenes/interactable/pipe/interactable_pipe.gd" id="2_ia0d4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6mpfk"]
 size = Vector2(18, 20)
@@ -10,15 +10,14 @@ size = Vector2(18, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydra8"]
 size = Vector2(32, 128)
 
-[node name="Pipe" unique_id=95559118 instance=ExtResource("1_jcf1n")]
-script = ExtResource("1_rvrno")
+[node name="InteractablePipe" unique_id=95559118 instance=ExtResource("1_jcf1n")]
+script = ExtResource("2_ia0d4")
 enabled = false
-destination = NodePath("")
+destination = null
 direction = Vector2(0, 1)
 distance = 30.0
 speed = 1.0
 snap_animated = false
-debug_enabled = true
 
 [node name="DetectionArea" parent="." index="0" unique_id=625485120]
 position = Vector2(0, -48)

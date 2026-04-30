@@ -61,8 +61,15 @@ func _physics_process(_delta: float) -> void:
 	_debug_velocity()
 
 
-func setup(spawn_position: Vector2, limit_left: int, limit_right: int) -> void:
+func start() -> void:
+	state_machine.transition_to_state(PlayerState.AIR)
+
+
+func spawn(spawn_position: Vector2) -> void:
 	global_position = spawn_position
+
+
+func setup(limit_left: int, limit_right: int) -> void:
 	player_camera.setup(limit_left, limit_right)
 
 

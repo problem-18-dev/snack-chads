@@ -22,7 +22,6 @@ func _physics_process(delta: float) -> void:
 func start() -> void:
 	_direction = 1
 	detection_area.monitoring = true
-	
 
 
 func _handle_collision() -> void:

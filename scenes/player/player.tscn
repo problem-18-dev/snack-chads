@@ -375,7 +375,7 @@ position = Vector2(0, -8)
 texture = ExtResource("2_p47bc")
 
 [node name="StateMachine" parent="." unique_id=1355614857 node_paths=PackedStringArray("initial_state") instance=ExtResource("2_dovo2")]
-initial_state = NodePath("Idle")
+initial_state = NodePath("Immobile")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=30973086]
 script = ExtResource("3_gmlin")

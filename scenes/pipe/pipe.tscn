@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cnkmybobis5mu"]
+
+[ext_resource type="Texture2D" uid="uid://dkh66edvcnbhw" path="res://scenes/interactable/pipe/sprites/pipe_placeholder.png" id="1_3x1uc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvrno"]
+size = Vector2(32, 128)
+
+[node name="Pipe" type="StaticBody2D" unique_id=1327778163]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1189819007]
+position = Vector2(0, -16)
+texture = ExtResource("1_3x1uc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1282866113]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_rvrno")

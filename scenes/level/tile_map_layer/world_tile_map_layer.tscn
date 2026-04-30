@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="4_pio3d"]
 [ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="5_o6m22"]
 [ext_resource type="PackedScene" uid="uid://dfcuf2bc0w733" path="res://scenes/hittable/surprise_block/energy_drink_block.tscn" id="6_o6m22"]
+[ext_resource type="PackedScene" uid="uid://bnlemcsa2avmg" path="res://scenes/pickuppable/coin/coin.tscn" id="7_6p6fq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7xxq1"]
 resource_name = "Outside World"
@@ -100,6 +101,10 @@ scenes/1/scene = ExtResource("4_pio3d")
 scenes/2/scene = ExtResource("5_o6m22")
 scenes/3/scene = ExtResource("6_o6m22")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6p6fq"]
+resource_name = "Coins"
+scenes/1/scene = ExtResource("7_6p6fq")
+
 [sub_resource type="TileSet" id="TileSet_ebogh"]
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
@@ -109,6 +114,7 @@ terrain_set_0/terrain_0/color = Color(4.813075e-07, 0.46610945, 0.21374732, 1)
 sources/0 = SubResource("TileSetAtlasSource_7xxq1")
 sources/1 = SubResource("TileSetScenesCollectionSource_pio3d")
 sources/2 = SubResource("TileSetScenesCollectionSource_o6m22")
+sources/3 = SubResource("TileSetScenesCollectionSource_6p6fq")
 tile_proxies/coords_level = [[1, Vector2i(0, 0)], [3, Vector2i(0, 0)], [2, Vector2i(0, 0)], [3, Vector2i(2, 0)], [4, Vector2i(0, 0)], [6, Vector2i(0, 0)], [5, Vector2i(0, 0)], [6, Vector2i(1, 0)]]
 
 [node name="WorldTileMapLayer" type="TileMapLayer" unique_id=1077262160]

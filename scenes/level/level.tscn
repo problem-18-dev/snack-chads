@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://d251v5fi15bp4" path="res://scenes/player/player.tscn" id="2_xv074"]
 [ext_resource type="PackedScene" uid="uid://hdisw1n8q63w" path="res://scenes/level/tile_map_layer/world_tile_map_layer.tscn" id="3_xv074"]
 [ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/death_zone/death_zone.tscn" id="7_b7m21"]
-[ext_resource type="PackedScene" uid="uid://bilpg3ujw5ub6" path="res://scenes/interactable/flag_pole/flag_pole.tscn" id="10_pe1ox"]
 
 [node name="Level" type="Node" unique_id=1333482150]
 script = ExtResource("1_vpf64")
@@ -37,8 +36,8 @@ grow_vertical = 1
 [node name="Interactables" type="Node2D" parent="." unique_id=1383092811]
 z_index = 1
 
-[node name="FlagPole" parent="Interactables" unique_id=95559118 instance=ExtResource("10_pe1ox")]
-z_index = -1
+[node name="Objects" type="Node2D" parent="." unique_id=391740209]
+z_index = 1
 
 [node name="Markers" type="Node2D" parent="." unique_id=742689600]
 

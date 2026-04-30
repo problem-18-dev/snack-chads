@@ -1,0 +1,33 @@
+[gd_scene format=4 uid="uid://bby1axrlqr5k2"]
+
+[ext_resource type="PackedScene" uid="uid://bgo80kcmv612m" path="res://scenes/level/level.tscn" id="1_a4hnp"]
+[ext_resource type="PackedScene" uid="uid://d28vy8eu2ufqs" path="res://scenes/interactable/pipe/interactable_pipe.tscn" id="2_wrgva"]
+[ext_resource type="PackedScene" uid="uid://djmc3icr5nb0j" path="res://scenes/pipe/pipe_exit/pipe_exit.tscn" id="4_40m3h"]
+
+[node name="LevelOneRoomOne" unique_id=1333482150 node_paths=PackedStringArray("pipe_exit") instance=ExtResource("1_a4hnp")]
+pipe_exit = NodePath("Objects/PipeExit")
+
+[node name="Background" parent="." index="0" unique_id=350663284]
+color = Color(0.6745098, 0.8, 0.89411765, 1)
+
+[node name="WorldTileMapLayer" parent="." index="2" unique_id=1077262160]
+tile_map_data = PackedByteArray("AAD9/wAAAAAAAAAAAAD+/wAAAAABAAAAAAD//wAAAAABAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAD+/wEAAAABAAEAAAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAEAAAACAAEAAAABAAEAAAADAAEAAAABAAEAAAADAAIAAAABAAIAAAACAAIAAAABAAIAAAABAAIAAAABAAIAAAAAAAIAAAABAAIAAAD//wIAAAABAAIAAAD+/wIAAAABAAIAAAD9/wIAAAAAAAIAAAD9/wEAAAAAAAEAAAAEAAEAAAABAAEAAAAEAAIAAAABAAIAAAAFAAIAAAABAAIAAAARAAIAAAACAAIAAAARAAEAAAACAAEAAAARAAAAAAACAAAAAAAQAAIAAAABAAIAAAAQAAEAAAABAAEAAAAQAAAAAAABAAAAAAAPAAIAAAABAAIAAAAPAAEAAAABAAEAAAAPAAAAAAABAAAAAAAOAAIAAAABAAIAAAAOAAEAAAABAAEAAAAOAAAAAAABAAAAAAANAAIAAAABAAIAAAANAAEAAAABAAEAAAANAAAAAAABAAAAAAAMAAIAAAABAAIAAAAMAAEAAAABAAEAAAAMAAAAAAABAAAAAAALAAIAAAABAAIAAAALAAEAAAABAAEAAAALAAAAAAABAAAAAAAKAAIAAAABAAIAAAAKAAEAAAABAAEAAAAKAAAAAAABAAAAAAAJAAIAAAABAAIAAAAJAAEAAAABAAEAAAAJAAAAAAABAAAAAAAIAAIAAAABAAIAAAAIAAEAAAABAAEAAAAIAAAAAAABAAAAAAAHAAIAAAABAAIAAAAHAAEAAAABAAEAAAAHAAAAAAABAAAAAAAGAAIAAAABAAIAAAAGAAEAAAABAAEAAAAGAAAAAAABAAAAAAAFAAEAAAABAAEAAAAFAAAAAAABAAAAAAAEAAAAAAABAAAAAAABAP//AwAAAAAAAQADAP//AwAAAAAAAQAFAP//AwAAAAAAAQAHAP//AwAAAAAAAQAJAP//AwAAAAAAAQALAP//AwAAAAAAAQANAP//AwAAAAAAAQAQAP3/AwAAAAAAAQA=")
+
+[node name="InteractablePipe" parent="Interactables" parent_id_path=PackedInt32Array(1383092811) index="0" unique_id=95559118 instance=ExtResource("2_wrgva")]
+position = Vector2(264, 48)
+enabled = true
+destination = "uid://dab63ts13sv8m"
+
+[node name="PipeExit" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="0" unique_id=1327778163 instance=ExtResource("4_40m3h")]
+position = Vector2(-104, -16)
+rotation = 1.5707964
+horizontal = true
+
+[connection signal="body_entered" from="WorldTileMapLayer/Coin" to="WorldTileMapLayer/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@41599" to="WorldTileMapLayer/@Area2D@41599" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@41613" to="WorldTileMapLayer/@Area2D@41613" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@41618" to="WorldTileMapLayer/@Area2D@41618" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@41623" to="WorldTileMapLayer/@Area2D@41623" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@41628" to="WorldTileMapLayer/@Area2D@41628" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@41633" to="WorldTileMapLayer/@Area2D@41633" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@42470" to="WorldTileMapLayer/@Area2D@42470" method="_on_body_entered"]

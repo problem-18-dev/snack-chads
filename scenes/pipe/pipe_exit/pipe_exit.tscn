@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://djmc3icr5nb0j"]
+
+[ext_resource type="PackedScene" uid="uid://cnkmybobis5mu" path="res://scenes/pipe/pipe.tscn" id="1_y6dsl"]
+[ext_resource type="Script" uid="uid://ds7a011c10in2" path="res://scenes/pipe/pipe_exit/pipe_exit.gd" id="2_4s1ww"]
+
+[node name="PipeExit" unique_id=1327778163 instance=ExtResource("1_y6dsl")]
+script = ExtResource("2_4s1ww")
+
+[node name="StartMarker" type="Marker2D" parent="." index="2" unique_id=860085417]
+position = Vector2(0, -48)
+
+[node name="DestinationMarker" type="Marker2D" parent="." index="3" unique_id=343471526]
+position = Vector2(0, -80)

@@ -48,6 +48,7 @@ func _pop_content() -> void:
 
 func _prepare_content() -> void:
 	if not content_packed:
+		content_destination_marker.hide()
 		return
 	
 	var consumable: Consumable = content_packed.instantiate()
