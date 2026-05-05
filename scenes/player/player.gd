@@ -67,6 +67,8 @@ func start() -> void:
 
 func spawn(spawn_position: Vector2) -> void:
 	global_position = spawn_position
+	player_camera.align()
+	player_camera.reset_smoothing()
 
 
 func setup(limit_left: int, limit_right: int) -> void:
@@ -154,8 +156,10 @@ func unset_interactable() -> void:
 
 
 func attempt_interaction() -> void:
-	if _interactable:
-		state_machine.transition_to_state(PlayerState.IMMOBILE, {"interactable": _interactable})
+	if not _interactable:
+		return
+	
+	state_machine.transition_to_state(PlayerState.IMMOBILE, { "interactable": _interactable })
 
 
 func push_enemy(enemy: Enemy) -> void:

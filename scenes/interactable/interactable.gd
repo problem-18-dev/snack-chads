@@ -5,7 +5,7 @@ extends Node2D
 @export var snap_animated := true
 @export var snap_duration := 0.1
 @export_group("Debug")
-@export var debug_enabled := false
+@export var debug_enabled := true
 
 var _player: Player
 var _snap_tween: Tween

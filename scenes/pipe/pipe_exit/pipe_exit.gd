@@ -9,9 +9,8 @@ enum Direction { Right, Top, Bottom, Left }
 @export var horizontal := false
 @export_group("Animation")
 @export var speed := 1.0
-@export var direction := Direction.Top
 @export_group("Debug")
-@export var debug_enabled := false
+@export var debug_enabled := true
 
 @onready var start_marker: Marker2D = $StartMarker
 @onready var destination_marker: Marker2D = $DestinationMarker
@@ -21,9 +20,12 @@ func _ready() -> void:
 	_adjust_markers()
 
 
-func start(player: Player) -> void:
+func start(player: Player, is_return_point := false) -> void:
 	if debug_enabled:
 		Debug.log("Player exited pipe")
+	
+	if is_return_point:
+		GameState.set_return_point(GameState.ReturnPoint.Start)
 	
 	player.spawn(start_marker.global_position)
 	var tween := create_tween()

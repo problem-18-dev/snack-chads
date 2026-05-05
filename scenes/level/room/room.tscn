@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://boqxoo06wqx3p"]
+
+[ext_resource type="PackedScene" uid="uid://oixjpegbqcmd" path="res://scenes/debug/debug.tscn" id="1_na3h5"]
+[ext_resource type="Script" uid="uid://dy1wx8prx3gsa" path="res://scenes/level/room/room.gd" id="1_rcg68"]
+[ext_resource type="PackedScene" uid="uid://hdisw1n8q63w" path="res://scenes/level/tile_map_layer/world_tile_map_layer.tscn" id="2_7x0sh"]
+[ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/death_zone/death_zone.tscn" id="3_7x0sh"]
+[ext_resource type="Texture2D" uid="uid://bekxxr844rl7o" path="res://scenes/level/tile_map_layer/textures/tilemap_placeholder.png" id="3_ujuao"]
+[ext_resource type="PackedScene" uid="uid://hg21feacdnjc" path="res://scenes/enemy/walking_enemy/biker/biker.tscn" id="4_rcg68"]
+[ext_resource type="PackedScene" uid="uid://csj5opj8ti4ps" path="res://scenes/enemy/walking_enemy/phone_zombie/phone_zombie.tscn" id="5_6goto"]
+[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="6_e2qx5"]
+[ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="7_x3ryn"]
+[ext_resource type="PackedScene" uid="uid://dfcuf2bc0w733" path="res://scenes/hittable/surprise_block/energy_drink_block.tscn" id="8_7ptbo"]
+[ext_resource type="PackedScene" uid="uid://bnlemcsa2avmg" path="res://scenes/pickuppable/coin/coin.tscn" id="9_4l6qi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgwon"]
+resource_name = "Outside World"
+texture = ExtResource("3_ujuao")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+15:0/0 = 0
+15:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/bottom_right_corner = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+0:1/0/terrains_peering_bit/top_right_corner = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/bottom_left_corner = 0
+2:1/0/terrains_peering_bit/left_side = 0
+2:1/0/terrains_peering_bit/top_left_corner = 0
+2:1/0/terrains_peering_bit/top_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:2/0/terrains_peering_bit/top_right_corner = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_left_corner = 0
+1:2/0/terrains_peering_bit/top_side = 0
+1:2/0/terrains_peering_bit/top_right_corner = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_left_corner = 0
+2:2/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wl1m1"]
+resource_name = "Enemies"
+scenes/1/scene = ExtResource("4_rcg68")
+scenes/2/scene = ExtResource("5_6goto")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_eab4n"]
+resource_name = "Blocks"
+scenes/1/scene = ExtResource("6_e2qx5")
+scenes/2/scene = ExtResource("7_x3ryn")
+scenes/3/scene = ExtResource("8_7ptbo")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lab1s"]
+resource_name = "Coins"
+scenes/1/scene = ExtResource("9_4l6qi")
+
+[sub_resource type="TileSet" id="TileSet_2f11h"]
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "outside_world"
+terrain_set_0/terrain_0/color = Color(4.813075e-07, 0.46610945, 0.21374732, 1)
+sources/0 = SubResource("TileSetAtlasSource_xgwon")
+sources/1 = SubResource("TileSetScenesCollectionSource_wl1m1")
+sources/2 = SubResource("TileSetScenesCollectionSource_eab4n")
+sources/3 = SubResource("TileSetScenesCollectionSource_lab1s")
+tile_proxies/coords_level = [[1, Vector2i(0, 0)], [3, Vector2i(0, 0)], [2, Vector2i(0, 0)], [3, Vector2i(2, 0)], [4, Vector2i(0, 0)], [6, Vector2i(0, 0)], [5, Vector2i(0, 0)], [6, Vector2i(1, 0)]]
+
+[node name="Room" type="Node2D" unique_id=806301198]
+script = ExtResource("1_rcg68")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1262373997]
+
+[node name="Debug" parent="HUD" unique_id=1012360878 instance=ExtResource("1_na3h5")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Background" type="ColorRect" parent="." unique_id=484793716]
+z_index = -1
+custom_minimum_size = Vector2(384, 320)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 384.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.043137256, 0.06666667, 1)
+
+[node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("2_7x0sh")]
+tile_set = SubResource("TileSet_2f11h")
+
+[node name="Interactables" type="Node2D" parent="." unique_id=1783490348]
+z_index = 1
+
+[node name="Objects" type="Node2D" parent="." unique_id=1696250162]
+z_index = 1
+
+[node name="WorldBoundary" parent="." unique_id=1117372907 instance=ExtResource("3_7x0sh")]
+position = Vector2(0, 112)
+collision_layer = 8

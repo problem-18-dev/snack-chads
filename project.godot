@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 [autoload]
 
 Debug="*uid://7mngwk0lxy83"
+GameState="*uid://dnm0gwvgjny4b"
 
 [debug]
 

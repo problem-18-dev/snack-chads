@@ -3,10 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://bgo80kcmv612m" path="res://scenes/level/level.tscn" id="1_j6hfs"]
 [ext_resource type="PackedScene" uid="uid://d28vy8eu2ufqs" path="res://scenes/interactable/pipe/interactable_pipe.tscn" id="2_gyvid"]
 [ext_resource type="PackedScene" uid="uid://cnkmybobis5mu" path="res://scenes/pipe/pipe.tscn" id="4_3nj76"]
+[ext_resource type="PackedScene" uid="uid://djmc3icr5nb0j" path="res://scenes/pipe/pipe_exit/pipe_exit.tscn" id="4_78axx"]
 
-[node name="LevelOne" unique_id=1333482150 instance=ExtResource("1_j6hfs")]
+[node name="LevelOne" unique_id=1333482150 node_paths=PackedStringArray("start_pipe") instance=ExtResource("1_j6hfs")]
+start_pipe = NodePath("Objects/PipeExit")
 
 [node name="Background" parent="." index="0" unique_id=350663284]
+offset_left = -416.0
+offset_top = -276.0
+offset_right = 3656.0
+offset_bottom = 64.0
 color = Color(0.6745098, 0.8, 0.89411765, 1)
 
 [node name="WorldTileMapLayer" parent="." index="2" unique_id=1077262160]
@@ -15,7 +21,7 @@ tile_map_data = PackedByteArray("AAA6AAMAAAABAAIAAAA6AAIAAAABAAEAAAA6AAEAAAABAAE
 [node name="InteractablePipe" parent="Interactables" parent_id_path=PackedInt32Array(1383092811) index="0" unique_id=95559118 instance=ExtResource("2_gyvid")]
 position = Vector2(688, 16)
 enabled = true
-destination = "uid://bby1axrlqr5k2"
+destination = "uid://dbgyvamx02b4y"
 
 [node name="Pipe" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="0" unique_id=1327778163 instance=ExtResource("4_3nj76")]
 position = Vector2(400, 48)
@@ -23,11 +29,14 @@ position = Vector2(400, 48)
 [node name="Pipe2" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="1" unique_id=1957168328 instance=ExtResource("4_3nj76")]
 position = Vector2(560, 32)
 
-[node name="Pipe4" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="2" unique_id=66926300 instance=ExtResource("4_3nj76")]
-position = Vector2(864, 16)
-
-[node name="Pipe5" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="3" unique_id=275205005 instance=ExtResource("4_3nj76")]
+[node name="Pipe5" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="2" unique_id=275205005 instance=ExtResource("4_3nj76")]
 position = Vector2(2608, 48)
 
-[node name="Pipe6" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="4" unique_id=660196606 instance=ExtResource("4_3nj76")]
+[node name="Pipe6" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="3" unique_id=660196606 instance=ExtResource("4_3nj76")]
 position = Vector2(2864, 48)
+
+[node name="PipeExit" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="4" unique_id=1155824070 instance=ExtResource("4_78axx")]
+position = Vector2(864, 16)
+
+[node name="SpawnMarker" parent="Markers" parent_id_path=PackedInt32Array(742689600) index="0" unique_id=1120709553]
+position = Vector2(688, -64)

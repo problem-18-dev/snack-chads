@@ -29,8 +29,8 @@ func interact() -> void:
 	var tween := create_tween().set_ease(Tween.EASE_OUT)
 	var pipe_movement := _get_marker_position() + direction * distance
 	tween.tween_property(_player, "global_position", pipe_movement, speed)
-	if enabled:
-		tween.tween_callback(_transfer)
+	await tween.finished
+	_transfer()
 
 
 func _prepare() -> void:
@@ -39,6 +39,8 @@ func _prepare() -> void:
 
 func _transfer() -> void:
 	assert(destination, "Pipe enabled, but no destination set.")
+	GameState.save_player_state(_player)
+	GameState.set_return_point(GameState.ReturnPoint.Pipe)
 	get_tree().change_scene_to_file(destination)
 
 
