@@ -2,7 +2,11 @@ class_name Player
 extends CharacterBody2D
 
 
+enum PlayerMode { Normal, Large, Star, Fire }
+
 signal died
+signal consumed
+signal started
 
 @export_group("Movement")
 @export_subgroup("Air")
@@ -31,12 +35,14 @@ signal died
 @export var debug_velocity := false
 @export var debug_coyote := false
 @export var debug_movement_limit := false
-@export_subgroup("Power Ups")
-@export var debug_power_ups := false
+@export_subgroup("Player Mode")
+@export var debug_player_mode := false
 @export_subgroup("State machine")
 @export var debug_state := false
 
-var is_grown := false
+var player_mode := PlayerMode.Normal
+var is_invulnerable := false
+var can_move := true
 
 var _interactable: Interactable
 
@@ -75,15 +81,14 @@ func setup(limit_left: int, limit_right: int) -> void:
 	player_camera.setup(limit_left, limit_right)
 
 
-func hurt() -> void:
-	if is_grown:
-		shrink()
-		return
-	
-	if debug_power_ups:
-		Debug.log("Player died!")
-	
-	die()
+func take_damage() -> void:
+	match player_mode:
+		PlayerMode.Fire:
+			set_player_mode(PlayerMode.Large)
+		PlayerMode.Large:
+			set_player_mode(PlayerMode.Normal)
+		PlayerMode.Normal:
+			die()
 
 
 func die() -> void:
@@ -91,35 +96,51 @@ func die() -> void:
 	reset()
 
 
-func grow() -> void:
-	if is_grown:
-		return
+func consume(consumed_mode: PlayerMode) -> void:
+	consumed.emit()
+	can_move = false
+	var original_velocity := velocity
+	velocity = Vector2.ZERO
 	
-	is_grown = true
+	match consumed_mode:
+		PlayerMode.Large:
+			animation_player.play("grow")
+		PlayerMode.Fire:
+			animation_player.play("fire")
+		_:
+			push_error("Consumed mode not handled: ", consumed_mode)
+	
+	player_mode = consumed_mode
+	await animation_player.animation_finished
+	
+	velocity = original_velocity
+	can_move = true
+	started.emit()
+
+
+func grow() -> void:
 	animation_player.play("grow")
 	
-	if debug_power_ups:
-		Debug.log("Player grows!")
+	if debug_player_mode:
+		Debug.log("Player grows large")
 
 
-func shrink() -> void:
-	is_grown = false
-	animation_player.play("shrink")
-	
-	if debug_power_ups:
-		Debug.log("Player shrinks!")
+func enable_fire() -> void:
+	if debug_player_mode:
+		Debug.log("Player is in fire mode!")
 
 
-func consume(type: String) -> void:
-	match type:
-		"grow":
-			grow()
-		_:
-			push_error("Consumable type not found", type)
+func enable_star() -> void:
+	if debug_player_mode:
+		Debug.log("Player is in star mode!")
 
 
 func is_slow() -> bool:
 	return abs(velocity.x) < pipe_maximum_speed
+
+
+func is_grown() -> bool:
+	return player_mode != PlayerMode.Normal
 
 
 func reset() -> void:
@@ -135,8 +156,25 @@ func can_coyote() -> bool:
 	return abs(velocity.x) >= coyote_minimum_speed
 
 
-func can_hit() -> bool:
-	return is_grown
+func can_destroy_blocks() -> bool:
+	return is_grown()
+
+
+func set_player_mode(new_player_mode: PlayerMode) -> void:
+	match new_player_mode:
+		PlayerMode.Star:
+			enable_star()
+		PlayerMode.Fire:
+			enable_fire()
+		PlayerMode.Large:
+			grow()
+		PlayerMode.Normal:
+			animation_player.play("shrink")
+	
+	player_mode = new_player_mode
+	
+	if debug_player_mode:
+		Debug.log("Player mode: %s" % new_player_mode)
 
 
 func set_jump_on_land(jump_buffer_enabled: bool) -> void:

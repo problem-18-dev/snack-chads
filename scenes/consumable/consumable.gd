@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 @export var speed := 40.0
-@export var type := "grow"
+@export var type := Player.PlayerMode.Large
 
 var _direction := 0
 

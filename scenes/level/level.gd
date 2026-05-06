@@ -14,15 +14,22 @@ func _ready() -> void:
 	_spawn_player()
 
 
-func _spawn_player() -> void:
+func _prepare_player() -> Player:
 	var player: Player = PLAYER_PACKED.instantiate()
 	add_child(player)
+	player.consumed.connect(_on_player_consumed)
+	player.started.connect(_on_player_started)
 
 	var level_size := world.get_used_rect()
 	var tile_size := world.tile_set.tile_size
 	var limit_left := level_size.position.x * tile_size.x
 	var limit_right := (level_size.size.x * tile_size.x) - 48
 	player.setup(limit_left, limit_right)
+	return player
+
+
+func _spawn_player() -> void:
+	var player := _prepare_player()
 	
 	var spawn_in_pipe := GameState.get_return_point() == GameState.ReturnPoint.Pipe
 	if spawn_in_pipe and start_pipe:
@@ -34,3 +41,11 @@ func _spawn_player() -> void:
 	var spawn_position := spawn_marker.position
 	player.spawn(spawn_position)
 	player.start()
+
+
+func _on_player_consumed() -> void:
+	get_tree().call_group("enemies", "pause")
+
+
+func _on_player_started() -> void:
+	get_tree().call_group("enemies", "resume")

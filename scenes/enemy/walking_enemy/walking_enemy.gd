@@ -5,9 +5,11 @@ extends Enemy
 @export_group("Movement")
 @export var speed := 20.0
 
-@onready var sprite: Sprite2D = $Sprite2D
-
+var _current_speed := speed
 var _direction := -1
+
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
 func _physics_process(delta: float) -> void:
@@ -19,6 +21,16 @@ func _physics_process(delta: float) -> void:
 
 func setup(_spawn_position: Vector2) -> void:
 	pass
+
+
+func pause() -> void:
+	_current_speed = 0
+	set_collision_layer_value(5, false)
+
+
+func resume() -> void:
+	_current_speed = speed
+	set_collision_layer_value(5, true)
 
 
 func hurt() -> void:
@@ -42,7 +54,7 @@ func _apply_gravity(delta: float) -> void:
 
 
 func _process_movement() -> void:
-	velocity.x = _direction * speed
+	velocity.x = _direction * _current_speed
 	
 	if not is_zero_approx(velocity.x):
 		sprite.flip_h = velocity.x < 0

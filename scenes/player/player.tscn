@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://c02hlphhlcrkv" path="res://scenes/player/player_immobile.gd" id="8_qek5x"]
 [ext_resource type="Texture2D" uid="uid://bcgh7et008afb" path="res://scenes/player/sprites/player_big_placeholder.png" id="10_h17s1"]
+[ext_resource type="Texture2D" uid="uid://dl65l2vqitb0b" path="res://scenes/player/sprites/player_fire_placeholder.png" id="10_je7p5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
 size = Vector2(8, 16)
@@ -113,8 +114,8 @@ tracks/7/keys = {
 "values": [Vector2(0, -8)]
 }
 
-[sub_resource type="Animation" id="Animation_5gtgg"]
-resource_name = "grow"
+[sub_resource type="Animation" id="Animation_fm80t"]
+resource_name = "fire"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -122,10 +123,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_h17s1")]
+"values": [ExtResource("10_je7p5")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -134,7 +135,7 @@ tracks/1/path = NodePath("CollisionShape2D:shape:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(8, 32)]
@@ -146,7 +147,7 @@ tracks/2/path = NodePath("Raycasts/RightJumpBufferRayCast:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(6, 0)]
@@ -158,7 +159,7 @@ tracks/3/path = NodePath("Raycasts/LeftJumpBufferRayCast:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-6, 0)]
@@ -170,7 +171,7 @@ tracks/4/path = NodePath("Raycasts/LeftUpperHitRaycast:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-3, -32)]
@@ -182,7 +183,7 @@ tracks/5/path = NodePath("Raycasts/RightUpperHitRaycast:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(3, -32)]
@@ -194,7 +195,7 @@ tracks/6/path = NodePath("Sprite2D:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -16)]
@@ -206,7 +207,106 @@ tracks/7/path = NodePath("CollisionShape2D:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_5gtgg"]
+resource_name = "grow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_h17s1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Raycasts/RightJumpBufferRayCast:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Raycasts/LeftJumpBufferRayCast:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Raycasts/LeftUpperHitRaycast:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -32)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Raycasts/RightUpperHitRaycast:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -32)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CollisionShape2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -16)]
@@ -314,6 +414,7 @@ tracks/7/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h17s1"]
 _data = {
 &"RESET": SubResource("Animation_je7p5"),
+&"fire": SubResource("Animation_fm80t"),
 &"grow": SubResource("Animation_5gtgg"),
 &"shrink": SubResource("Animation_h17s1")
 }
@@ -327,7 +428,7 @@ jump_release_divider = 2.0
 walk_accel = 0.3
 walk_deccel = 0.18
 bounce_force_multiplier = 2.25
-debug_power_ups = true
+debug_player_mode = true
 metadata/_edit_group_ = true
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1040741919]

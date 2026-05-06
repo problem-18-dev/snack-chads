@@ -35,6 +35,8 @@ func _physics_update(delta: float) -> void:
 
 
 func _key_input(event: InputEvent) -> void:
+	super(event)
+	
 	if event.is_action_pressed("jump") and _coyote:
 		_jump()
 	
@@ -43,6 +45,8 @@ func _key_input(event: InputEvent) -> void:
 
 
 func _apply_gravity(delta: float) -> void:
+	if not player.can_move:
+		return
 	player.velocity += player.get_gravity() * delta
 
 
@@ -94,7 +98,7 @@ func _check_block_hits() -> void:
 	for hit_ray_cast in player.hit_raycasts:
 		if hit_ray_cast.is_colliding():
 			var collider: Block = hit_ray_cast.get_collider()
-			if player.can_hit():
+			if player.can_destroy_blocks():
 				collider.hit()
 				return
 			
@@ -104,7 +108,7 @@ func _check_block_hits() -> void:
 func _check_enemy_hits(collider: Enemy, normal: Vector2) -> void:
 	var is_on_head := Vector2.UP.dot(normal) > 0.1
 	if not is_on_head:
-		player.hurt()
+		player.take_damage()
 		return
 	
 	if collider.is_in_group("pushables"):

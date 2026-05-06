@@ -11,6 +11,8 @@ func _physics_update(_delta: float) -> void:
 
 
 func _key_input(event: InputEvent) -> void:
+	super(event)
+	
 	if event.is_action_released("interact"):
 		finished.emit(PlayerState.WALK)
 		return
@@ -34,4 +36,4 @@ func _handle_collision() -> void:
 				player.push_enemy(collider)
 				continue
 			
-			player.hurt()
+			player.take_damage()

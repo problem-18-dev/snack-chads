@@ -16,3 +16,8 @@ func _ready() -> void:
 	assert(owner is Player, "Player state must be used with a player.")
 	await owner.ready
 	player = owner
+
+
+func _key_input(_event: InputEvent) -> void:
+	if not player.can_move:
+		return

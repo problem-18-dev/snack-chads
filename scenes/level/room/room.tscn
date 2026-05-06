@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://csj5opj8ti4ps" path="res://scenes/enemy/walking_enemy/phone_zombie/phone_zombie.tscn" id="5_6goto"]
 [ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="6_e2qx5"]
 [ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="7_x3ryn"]
-[ext_resource type="PackedScene" uid="uid://dfcuf2bc0w733" path="res://scenes/hittable/surprise_block/energy_drink_block.tscn" id="8_7ptbo"]
+[ext_resource type="PackedScene" uid="uid://dfcuf2bc0w733" path="res://scenes/hittable/surprise_block/energy_drink_block/energy_drink_block.tscn" id="8_7ptbo"]
 [ext_resource type="PackedScene" uid="uid://bnlemcsa2avmg" path="res://scenes/pickuppable/coin/coin.tscn" id="9_4l6qi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgwon"]
