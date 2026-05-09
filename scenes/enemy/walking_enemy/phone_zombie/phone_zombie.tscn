@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mh51a"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mh51a"]
+radius = 12.0
+
 [node name="PhoneZombie" unique_id=792489795 instance=ExtResource("1_7itwu")]
 
 [node name="Sprite2D" parent="." index="0" unique_id=996180208]
@@ -16,3 +19,8 @@ shape = SubResource("RectangleShape2D_mh51a")
 
 [node name="VisibleOnScreenEnabler2D" parent="." index="2" unique_id=1947978349]
 rect = Rect2(-16, -16, 32, 32)
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(100812387) index="0" unique_id=1802961022]
+shape = SubResource("CircleShape2D_mh51a")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -2,13 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b1bnhvryadtop" path="res://scenes/level/level.gd" id="1_vpf64"]
 [ext_resource type="PackedScene" uid="uid://oixjpegbqcmd" path="res://scenes/debug/debug.tscn" id="1_wcngd"]
-[ext_resource type="PackedScene" uid="uid://d251v5fi15bp4" path="res://scenes/player/player.tscn" id="2_xv074"]
 [ext_resource type="PackedScene" uid="uid://hdisw1n8q63w" path="res://scenes/level/tile_map_layer/world_tile_map_layer.tscn" id="3_xv074"]
 [ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/death_zone/death_zone.tscn" id="7_b7m21"]
 
 [node name="Level" type="Node2D" unique_id=48944664]
 script = ExtResource("1_vpf64")
-player_packed = ExtResource("2_xv074")
 
 [node name="Background" type="ColorRect" parent="." unique_id=350663284]
 z_index = -1
@@ -38,6 +36,8 @@ z_index = 1
 
 [node name="Objects" type="Node2D" parent="." unique_id=391740209]
 z_index = 1
+
+[node name="Projectiles" type="Node2D" parent="." unique_id=464281269]
 
 [node name="Markers" type="Node2D" parent="." unique_id=742689600]
 

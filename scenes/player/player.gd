@@ -5,8 +5,11 @@ extends CharacterBody2D
 enum PlayerMode { Normal, Large, Star, Fire }
 
 signal died
+signal fired
 signal consumed
 signal started
+
+const PROJECTILE = preload("uid://dvmwy36oldp5")
 
 @export_group("Movement")
 @export_subgroup("Air")
@@ -45,6 +48,7 @@ var is_invulnerable := false
 var can_move := true
 
 var _interactable: Interactable
+var _can_shoot := false
 
 @onready var jump_buffer_ray_casts: Array[RayCast2D] = [
 	$Raycasts/LeftJumpBufferRayCast,
@@ -55,6 +59,8 @@ var _interactable: Interactable
 @onready var player_camera: PlayerCamera = $PlayerCamera
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var shoot_marker: Marker2D = $ShootMarker
+@onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
 
 
 func _ready() -> void:
@@ -104,9 +110,9 @@ func consume(consumed_mode: PlayerMode) -> void:
 	
 	match consumed_mode:
 		PlayerMode.Large:
-			animation_player.play("grow")
+			grow()
 		PlayerMode.Fire:
-			animation_player.play("fire")
+			enable_fire()
 		_:
 			push_error("Consumed mode not handled: ", consumed_mode)
 	
@@ -126,6 +132,9 @@ func grow() -> void:
 
 
 func enable_fire() -> void:
+	animation_player.play("fire")
+	_can_shoot = true
+	
 	if debug_player_mode:
 		Debug.log("Player is in fire mode!")
 
@@ -144,10 +153,26 @@ func is_grown() -> bool:
 
 
 func reset() -> void:
-	global_position = Vector2.ZERO
+	spawn(Vector2.ZERO)
+
+
+func shoot() -> void:
+	if player_mode != PlayerMode.Fire or not _can_shoot:
+		return
+	
+	var projectile: Projectile = PROJECTILE.instantiate()
+	var direction := -1 if sprite.flip_h else 1
+	projectile.spawn(shoot_marker.global_position, direction)
+	get_tree().root.add_child(projectile)
+	
+	_can_shoot = false
+	shoot_cooldown_timer.start()
 
 
 func get_direction() -> float:
+	if not can_move:
+		return 0
+	
 	var direction := Input.get_axis("left", "right")
 	return direction
 
@@ -212,7 +237,7 @@ func _limit_movement() -> void:
 	current_position = clamp(current_position, limit_left, limit_right)
 	
 	if is_equal_approx(current_position, limit_left):
-		global_position.x = limit_left
+		global_position.x = limit_left 
 		velocity.x = 0
 	
 	if is_equal_approx(current_position, limit_right):
@@ -252,3 +277,11 @@ func _on_state_finished_debug(state: String, data := {}) -> void:
 		return
 	
 	Debug.log("Player state changed to %s" % state)
+
+
+func _on_shoot_cooldown_timer_timeout() -> void:
+	if player_mode != PlayerMode.Fire:
+		_can_shoot = false
+		return
+	
+	_can_shoot = true

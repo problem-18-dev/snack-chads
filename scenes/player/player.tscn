@@ -411,12 +411,112 @@ tracks/7/keys = {
 "values": [Vector2(0, -8)]
 }
 
+[sub_resource type="Animation" id="Animation_gx1jg"]
+resource_name = "star"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_je7p5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Raycasts/RightJumpBufferRayCast:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Raycasts/LeftJumpBufferRayCast:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Raycasts/LeftUpperHitRaycast:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -32)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Raycasts/RightUpperHitRaycast:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -32)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CollisionShape2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h17s1"]
 _data = {
 &"RESET": SubResource("Animation_je7p5"),
 &"fire": SubResource("Animation_fm80t"),
 &"grow": SubResource("Animation_5gtgg"),
-&"shrink": SubResource("Animation_h17s1")
+&"shrink": SubResource("Animation_h17s1"),
+&"star": SubResource("Animation_gx1jg")
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=532083412 groups=["player"]]
@@ -475,6 +575,13 @@ shape = SubResource("RectangleShape2D_gmlin")
 position = Vector2(0, -8)
 texture = ExtResource("2_p47bc")
 
+[node name="ShootMarker" type="Marker2D" parent="." unique_id=1198042160]
+position = Vector2(5, -22)
+
+[node name="ShootCooldownTimer" type="Timer" parent="." unique_id=1380033556]
+wait_time = 0.35
+one_shot = true
+
 [node name="StateMachine" parent="." unique_id=1355614857 node_paths=PackedStringArray("initial_state") instance=ExtResource("2_dovo2")]
 initial_state = NodePath("Immobile")
 
@@ -500,4 +607,5 @@ script = ExtResource("8_qek5x")
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_h17s1")
 
+[connection signal="timeout" from="ShootCooldownTimer" to="." method="_on_shoot_cooldown_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Air/CoyoteTimer" to="StateMachine/Air" method="_on_coyote_timer_timeout"]

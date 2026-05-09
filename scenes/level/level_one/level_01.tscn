@@ -39,4 +39,4 @@ position = Vector2(2864, 48)
 position = Vector2(864, 16)
 
 [node name="SpawnMarker" parent="Markers" parent_id_path=PackedInt32Array(742689600) index="0" unique_id=1120709553]
-position = Vector2(688, -64)
+position = Vector2(200, 0)

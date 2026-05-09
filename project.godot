@@ -85,6 +85,7 @@ interact={
 2d_physics/layer_5="world"
 2d_physics/layer_6="enemy"
 2d_physics/layer_7="consumable"
+2d_physics/layer_8="projectile"
 
 [physics]
 

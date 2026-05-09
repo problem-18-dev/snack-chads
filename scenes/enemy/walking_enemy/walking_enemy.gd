@@ -10,6 +10,7 @@ var _direction := -1
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var area_2d: Area2D = $Area2D
 
 
 func _physics_process(delta: float) -> void:
@@ -73,3 +74,9 @@ func _handle_collision() -> void:
 		# If not floor
 		if not normal.is_equal_approx(Vector2.UP):
 			_direction *= -1
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("projectiles"):
+		body.queue_free()
+		hurt()

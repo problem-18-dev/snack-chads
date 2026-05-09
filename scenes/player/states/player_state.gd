@@ -18,6 +18,9 @@ func _ready() -> void:
 	player = owner
 
 
-func _key_input(_event: InputEvent) -> void:
+func _key_input(event: InputEvent) -> void:
 	if not player.can_move:
 		return
+	
+	if event.is_action_pressed("interact"):
+		player.shoot()

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dvmwy36oldp5"]
+
+[ext_resource type="Script" uid="uid://2djnoqtkf48m" path="res://scenes/projectile/projectile.gd" id="1_2dulq"]
+[ext_resource type="Texture2D" uid="uid://dco546trmbqt5" path="res://scenes/projectile/sprites/fireball_placeholder.png" id="1_t8015"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2dulq"]
+radius = 4.0
+
+[node name="Projectile" type="CharacterBody2D" unique_id=1742503208 groups=["projectiles"]]
+collision_layer = 128
+collision_mask = 18
+slide_on_ceiling = false
+floor_constant_speed = true
+script = ExtResource("1_2dulq")
+speed = 100.0
+bounce_force = 190.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1418129258]
+shape = SubResource("CircleShape2D_2dulq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=723001019]
+texture = ExtResource("1_t8015")
