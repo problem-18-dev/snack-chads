@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rdu0"]
 size = Vector2(15, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xneyv"]
+size = Vector2(32, 18)
+
 [node name="DismountedBike" unique_id=792489795 groups=["pushables"] instance=ExtResource("1_k4coe")]
 script = ExtResource("2_2rdu0")
 speed = 120.0
@@ -18,3 +21,7 @@ texture = ExtResource("2_4o3jn")
 position = Vector2(-2.1855694e-08, 0.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_2rdu0")
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(100812387) index="0" unique_id=1802961022]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_xneyv")

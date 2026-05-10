@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://n32s3mhjrakk"]
+
+[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="1_u4vu4"]
+[ext_resource type="PackedScene" uid="uid://dmi2e4jxpsxi8" path="res://scenes/consumable/star/star.tscn" id="2_gii67"]
+
+[node name="StarBlock" unique_id=1497541472 instance=ExtResource("1_u4vu4")]
+content_packed = ExtResource("2_gii67")

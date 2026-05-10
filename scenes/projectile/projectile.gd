@@ -24,11 +24,15 @@ func spawn(spawn_position: Vector2, direction := 1.0) -> void:
 	_direction = direction
 
 
+func _destroy() -> void:
+	queue_free()
+
+
 func _handle_collision() -> void:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var normal := collision.get_normal()
 		
 		if normal.is_equal_approx(Vector2.LEFT) or normal.is_equal_approx(Vector2.RIGHT):
-			_direction *= -1
+			_destroy()
 			return

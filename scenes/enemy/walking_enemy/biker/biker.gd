@@ -12,4 +12,4 @@ func hurt() -> void:
 func _spawn_unmounted_bike() -> void:
 	var bike: WalkingEnemy = DISMOUNTED_BIKE.instantiate()
 	bike.setup(global_position)
-	get_parent().add_child(bike)
+	get_parent().call_deferred("add_child", bike)

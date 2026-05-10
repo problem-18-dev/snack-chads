@@ -22,5 +22,3 @@ rect = Rect2(-16, -16, 32, 32)
 
 [node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(100812387) index="0" unique_id=1802961022]
 shape = SubResource("CircleShape2D_mh51a")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

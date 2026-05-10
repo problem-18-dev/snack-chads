@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dmi2e4jxpsxi8"]
+
+[ext_resource type="PackedScene" uid="uid://b7b8rhth523b4" path="res://scenes/consumable/consumable.tscn" id="1_2x7bm"]
+[ext_resource type="Texture2D" uid="uid://b0y5pjk2v3x0l" path="res://scenes/consumable/star/sprites/star_placeholder.png" id="2_mrb85"]
+[ext_resource type="Script" uid="uid://8n0vojop4hik" path="res://scenes/consumable/star/star.gd" id="2_npo2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npo2h"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x7bm"]
+size = Vector2(18, 18)
+
+[node name="Star" unique_id=1649983785 instance=ExtResource("1_2x7bm")]
+script = ExtResource("2_npo2h")
+bounce_force = 350.0
+type = 2
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1551331641]
+shape = SubResource("RectangleShape2D_npo2h")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1019753903]
+texture = ExtResource("2_mrb85")
+
+[node name="CollisionShape2D" parent="DetectionArea" parent_id_path=PackedInt32Array(1984197104) index="0" unique_id=934345793]
+shape = SubResource("RectangleShape2D_2x7bm")

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://svuuufslcxip" path="res://core/state_machine/state_machine.tscn" id="2_dovo2"]
 [ext_resource type="Texture2D" uid="uid://cf6ad8m1aymix" path="res://scenes/player/sprites/player_placeholder.png" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://bjph4ifm2gg4m" path="res://scenes/player/states/player_idle.gd" id="3_gmlin"]
+[ext_resource type="Texture2D" uid="uid://b0y5pjk2v3x0l" path="res://scenes/consumable/star/sprites/star_placeholder.png" id="4_fm80t"]
 [ext_resource type="Script" uid="uid://22xqrsuw6gaa" path="res://scenes/player/states/player_air.gd" id="4_lvxji"]
 [ext_resource type="Script" uid="uid://bjcr78gqjqpbv" path="res://scenes/player/states/player_walk.gd" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
@@ -575,11 +576,43 @@ shape = SubResource("RectangleShape2D_gmlin")
 position = Vector2(0, -8)
 texture = ExtResource("2_p47bc")
 
+[node name="Stars" type="Node2D" parent="." unique_id=1924898710]
+position = Vector2(0, -8)
+
+[node name="Star" type="Sprite2D" parent="Stars" unique_id=543261907]
+position = Vector2(0, 8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_fm80t")
+
+[node name="Star2" type="Sprite2D" parent="Stars" unique_id=1008000102]
+position = Vector2(-7, 2)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_fm80t")
+
+[node name="Star3" type="Sprite2D" parent="Stars" unique_id=1822407089]
+position = Vector2(-4, -6)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_fm80t")
+
+[node name="Star4" type="Sprite2D" parent="Stars" unique_id=975578931]
+position = Vector2(4, -6)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_fm80t")
+
+[node name="Star5" type="Sprite2D" parent="Stars" unique_id=1889720570]
+position = Vector2(7, 2)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_fm80t")
+
 [node name="ShootMarker" type="Marker2D" parent="." unique_id=1198042160]
 position = Vector2(5, -22)
 
 [node name="ShootCooldownTimer" type="Timer" parent="." unique_id=1380033556]
 wait_time = 0.35
+one_shot = true
+
+[node name="StarTimer" type="Timer" parent="." unique_id=997760771]
+wait_time = 5.0
 one_shot = true
 
 [node name="StateMachine" parent="." unique_id=1355614857 node_paths=PackedStringArray("initial_state") instance=ExtResource("2_dovo2")]
@@ -608,4 +641,5 @@ callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_h17s1")
 
 [connection signal="timeout" from="ShootCooldownTimer" to="." method="_on_shoot_cooldown_timer_timeout"]
+[connection signal="timeout" from="StarTimer" to="." method="_on_star_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Air/CoyoteTimer" to="StateMachine/Air" method="_on_coyote_timer_timeout"]

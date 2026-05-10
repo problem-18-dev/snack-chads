@@ -87,6 +87,10 @@ func _handle_collision() -> bool:
 		
 		# Enemies
 		if collider.is_in_group("enemies"):
+			if player.is_invulnerable:
+				collider.hurt()
+				return false
+			
 			var normal := collision.get_normal()
 			_check_enemy_hits(collider, normal)
 			return false

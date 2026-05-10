@@ -11,10 +11,7 @@ var _direction := 0
 
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y += get_gravity().y * delta
-	
-	velocity.x = _direction * speed
+	_handle_movement(delta)
 	move_and_slide()
 	_handle_collision()
 
@@ -22,6 +19,13 @@ func _physics_process(delta: float) -> void:
 func start() -> void:
 	_direction = 1
 	detection_area.monitoring = true
+
+
+func _handle_movement(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
+	
+	velocity.x = _direction * speed
 
 
 func _handle_collision() -> void:

@@ -33,6 +33,8 @@ const PROJECTILE = preload("uid://dvmwy36oldp5")
 @export var bounce_force_multiplier := 3.0
 @export_group("Interactions")
 @export var pipe_maximum_speed := 10.0
+@export_group("Power Ups")
+@export var star_rotation_speed := 90.0
 @export_group("Debug")
 @export_subgroup("Movement")
 @export var debug_velocity := false
@@ -61,10 +63,17 @@ var _can_shoot := false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var shoot_marker: Marker2D = $ShootMarker
 @onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
+@onready var stars: Node2D = $Stars
+@onready var star_timer: Timer = $StarTimer
 
 
 func _ready() -> void:
 	_debug_states()
+	_prepare()
+
+
+func _process(delta: float) -> void:
+	stars.rotate(TAU * delta)
 
 
 func _physics_process(_delta: float) -> void:
@@ -87,14 +96,14 @@ func setup(limit_left: int, limit_right: int) -> void:
 	player_camera.setup(limit_left, limit_right)
 
 
-func take_damage() -> void:
-	match player_mode:
-		PlayerMode.Fire:
-			set_player_mode(PlayerMode.Large)
-		PlayerMode.Large:
-			set_player_mode(PlayerMode.Normal)
-		PlayerMode.Normal:
-			die()
+#func take_damage() -> void:
+	#match player_mode:
+		#PlayerMode.Fire:
+			#set_player_mode(PlayerMode.Large)
+		#PlayerMode.Large:
+			#set_player_mode(PlayerMode.Normal)
+		#PlayerMode.Normal:
+			#die()
 
 
 func die() -> void:
@@ -103,10 +112,15 @@ func die() -> void:
 
 
 func consume(consumed_mode: PlayerMode) -> void:
+	if consumed_mode == PlayerMode.Star:
+		enable_star()
+		return
+	
 	consumed.emit()
 	can_move = false
 	var original_velocity := velocity
 	velocity = Vector2.ZERO
+	star_timer.paused = true
 	
 	match consumed_mode:
 		PlayerMode.Large:
@@ -119,6 +133,7 @@ func consume(consumed_mode: PlayerMode) -> void:
 	player_mode = consumed_mode
 	await animation_player.animation_finished
 	
+	star_timer.paused = false
 	velocity = original_velocity
 	can_move = true
 	started.emit()
@@ -142,6 +157,10 @@ func enable_fire() -> void:
 func enable_star() -> void:
 	if debug_player_mode:
 		Debug.log("Player is in star mode!")
+	
+	is_invulnerable = true
+	star_timer.start()
+	stars.show()
 
 
 func is_slow() -> bool:
@@ -185,23 +204,6 @@ func can_destroy_blocks() -> bool:
 	return is_grown()
 
 
-func set_player_mode(new_player_mode: PlayerMode) -> void:
-	match new_player_mode:
-		PlayerMode.Star:
-			enable_star()
-		PlayerMode.Fire:
-			enable_fire()
-		PlayerMode.Large:
-			grow()
-		PlayerMode.Normal:
-			animation_player.play("shrink")
-	
-	player_mode = new_player_mode
-	
-	if debug_player_mode:
-		Debug.log("Player mode: %s" % new_player_mode)
-
-
 func set_jump_on_land(jump_buffer_enabled: bool) -> void:
 	for jump_buffer_ray_cast in jump_buffer_ray_casts:
 		jump_buffer_ray_cast.enabled = jump_buffer_enabled
@@ -228,6 +230,10 @@ func attempt_interaction() -> void:
 func push_enemy(enemy: Enemy) -> void:
 	var push_direction := -1 if sprite.flip_h else 1
 	enemy.push(push_direction)
+
+
+func _prepare() -> void:
+	stars.hide()
 
 
 func _limit_movement() -> void:
@@ -285,3 +291,8 @@ func _on_shoot_cooldown_timer_timeout() -> void:
 		return
 	
 	_can_shoot = true
+
+
+func _on_star_timer_timeout() -> void:
+	is_invulnerable = false
+	stars.hide()

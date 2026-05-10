@@ -31,6 +31,10 @@ func _handle_collision() -> void:
 		var collider := collision.get_collider()
 		
 		if collider.is_in_group("enemies"):
+			if player.is_invulnerable:
+				collider.hurt()
+				continue
+			
 			if collider.is_in_group("pushables") and collider.can_be_pushed():
 				player.push_enemy(collider)
 				continue
