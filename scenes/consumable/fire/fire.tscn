@@ -10,7 +10,7 @@ size = Vector2(16, 16)
 size = Vector2(18, 18)
 
 [node name="Fire" unique_id=1649983785 instance=ExtResource("1_qntck")]
-type = 3
+type = 1
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1551331641]
 shape = SubResource("RectangleShape2D_o5xin")

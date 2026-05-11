@@ -2,8 +2,11 @@ class_name Consumable
 extends CharacterBody2D
 
 
+enum Type { EnergyDrink, Fire, Star }
+
+@export_group("Properties")
 @export var speed := 40.0
-@export var type := Player.PlayerMode.Large
+@export var type := Type.EnergyDrink
 
 var _direction := 0
 

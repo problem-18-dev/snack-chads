@@ -13,6 +13,7 @@ size = Vector2(18, 18)
 [node name="Star" unique_id=1649983785 instance=ExtResource("1_2x7bm")]
 script = ExtResource("2_npo2h")
 bounce_force = 350.0
+speed = 50.0
 type = 2
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1551331641]

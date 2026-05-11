@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 
-enum PlayerMode { Normal, Large, Star, Fire }
+enum PlayerMode { Normal, Large, Fire }
 
 signal died
 signal fired
@@ -33,13 +33,20 @@ const PROJECTILE = preload("uid://dvmwy36oldp5")
 @export var bounce_force_multiplier := 3.0
 @export_group("Interactions")
 @export var pipe_maximum_speed := 10.0
-@export_group("Power Ups")
+@export_group("Player Mode")
 @export var star_rotation_speed := 90.0
+@export var consume_duration := 0.5
+@export var hurt_duration := 1.5
+@export_group("Death")
+@export var death_duration := 1.5
+@export var death_jump_force := 250.0
 @export_group("Debug")
 @export_subgroup("Movement")
 @export var debug_velocity := false
 @export var debug_coyote := false
 @export var debug_movement_limit := false
+@export_subgroup("Points")
+@export var debug_points := false
 @export_subgroup("Player Mode")
 @export var debug_player_mode := false
 @export_subgroup("State machine")
@@ -47,7 +54,6 @@ const PROJECTILE = preload("uid://dvmwy36oldp5")
 
 var player_mode := PlayerMode.Normal
 var is_invulnerable := false
-var can_move := true
 
 var _interactable: Interactable
 var _can_shoot := false
@@ -57,14 +63,17 @@ var _can_shoot := false
 	$Raycasts/RightJumpBufferRayCast
 	]
 @onready var hit_raycasts: Array[RayCast2D] = [$Raycasts/LeftUpperHitRaycast, $Raycasts/RightUpperHitRaycast]
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_camera: PlayerCamera = $PlayerCamera
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var shoot_marker: Marker2D = $ShootMarker
-@onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
 @onready var stars: Node2D = $Stars
-@onready var star_timer: Timer = $StarTimer
+@onready var invincible_area: Area2D = $InvincibleArea
+@onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
+@onready var invincibility_timer: Timer = $InvincibilityTimer
+@onready var player_mode_timer: Timer = $PlayerModeTimer
 
 
 func _ready() -> void:
@@ -96,51 +105,75 @@ func setup(limit_left: int, limit_right: int) -> void:
 	player_camera.setup(limit_left, limit_right)
 
 
-#func take_damage() -> void:
-	#match player_mode:
-		#PlayerMode.Fire:
-			#set_player_mode(PlayerMode.Large)
-		#PlayerMode.Large:
-			#set_player_mode(PlayerMode.Normal)
-		#PlayerMode.Normal:
-			#die()
+func take_damage() -> void:
+	if player_mode == PlayerMode.Normal:
+		die()
+		return
+	
+	_flicker(hurt_duration)
+	downgrade_player_mode()
 
 
 func die() -> void:
 	died.emit()
-	reset()
+	state_machine.transition_to_state(PlayerState.IMMOBILE, { "death": true })
 
 
-func consume(consumed_mode: PlayerMode) -> void:
-	if consumed_mode == PlayerMode.Star:
-		enable_star()
-		return
-	
-	consumed.emit()
-	can_move = false
-	var original_velocity := velocity
-	velocity = Vector2.ZERO
-	star_timer.paused = true
-	
-	match consumed_mode:
-		PlayerMode.Large:
-			grow()
-		PlayerMode.Fire:
-			enable_fire()
+func consume(consumable: Consumable.Type) -> void:
+	match consumable:
+		Consumable.Type.Star:
+			enable_star()
+		Consumable.Type.EnergyDrink:
+			upgrade_player_mode(PlayerMode.Large)
+		Consumable.Type.Fire:
+			upgrade_player_mode(PlayerMode.Fire)
 		_:
-			push_error("Consumed mode not handled: ", consumed_mode)
+			push_error("Consumable not handled: ", consumable)
+
+
+func upgrade_player_mode(new_player_mode: PlayerMode) -> void:
+	consumed.emit()
 	
-	player_mode = consumed_mode
-	await animation_player.animation_finished
+	# Save state, pause player
+	var previous_state := state_machine.get_current_state()
+	_pause()
+	player_mode_timer.start(consume_duration)
 	
-	star_timer.paused = false
-	velocity = original_velocity
-	can_move = true
+	if new_player_mode > player_mode:
+		if new_player_mode == PlayerMode.Large:
+			grow_large()
+		
+		if new_player_mode == PlayerMode.Fire:
+			enable_fire()
+		
+		player_mode = new_player_mode
+	elif new_player_mode <= player_mode:
+		# Bonus points
+		pass
+	
+	await player_mode_timer.timeout
+	_unpause(previous_state)
 	started.emit()
 
 
-func grow() -> void:
-	animation_player.play("grow")
+func downgrade_player_mode() -> void:
+	var previous_state := state_machine.get_current_state()
+	_pause()
+	player_mode_timer.start(hurt_duration)
+	
+	player_mode = (player_mode - 1) as PlayerMode
+	match player_mode:
+		PlayerMode.Large:
+			grow_large()
+		PlayerMode.Normal:
+			animation_player.play("shrink")
+	
+	await player_mode_timer.timeout
+	_unpause(previous_state)
+
+
+func grow_large() -> void:
+	animation_player.play("large")
 	
 	if debug_player_mode:
 		Debug.log("Player grows large")
@@ -159,7 +192,8 @@ func enable_star() -> void:
 		Debug.log("Player is in star mode!")
 	
 	is_invulnerable = true
-	star_timer.start()
+	invincible_area.monitoring = true
+	invincibility_timer.start()
 	stars.show()
 
 
@@ -189,9 +223,6 @@ func shoot() -> void:
 
 
 func get_direction() -> float:
-	if not can_move:
-		return 0
-	
 	var direction := Input.get_axis("left", "right")
 	return direction
 
@@ -232,8 +263,28 @@ func push_enemy(enemy: Enemy) -> void:
 	enemy.push(push_direction)
 
 
+func _pause() -> void:
+	state_machine.transition_to_state(PlayerState.IMMOBILE)
+	invincibility_timer.paused = true
+
+
+func _unpause(resume_state: PlayerState) -> void:
+	invincibility_timer.paused = false
+	state_machine.force_state(resume_state)
+
+
 func _prepare() -> void:
 	stars.hide()
+	invincible_area.monitoring = false
+
+
+func _flicker(duration: float) -> void:
+	var tween := create_tween().set_loops(0)
+	tween.tween_property(sprite, "visible", false, 0.1)
+	tween.tween_property(sprite, "visible", true, 0.1)
+	await get_tree().create_timer(duration).timeout
+	tween.kill()
+	sprite.show()
 
 
 func _limit_movement() -> void:
@@ -293,6 +344,11 @@ func _on_shoot_cooldown_timer_timeout() -> void:
 	_can_shoot = true
 
 
-func _on_star_timer_timeout() -> void:
+func _on_invincibility_timer_timeout() -> void:
 	is_invulnerable = false
+	invincible_area.monitoring = false
 	stars.hide()
+
+
+func _on_invincible_area_body_entered(body: WalkingEnemy) -> void:
+	body.hurt()

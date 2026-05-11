@@ -18,11 +18,6 @@ func _enter(data := {}) -> void:
 		_enable_coyote()
 
 
-func _exit() -> void:
-	_disable_coyote()
-	player.set_jump_on_land(false)
-
-
 func _physics_update(delta: float) -> void:
 	_apply_gravity(delta)
 	_process_air_movement()
@@ -45,8 +40,6 @@ func _key_input(event: InputEvent) -> void:
 
 
 func _apply_gravity(delta: float) -> void:
-	if not player.can_move:
-		return
 	player.velocity += player.get_gravity() * delta
 
 
@@ -88,7 +81,6 @@ func _handle_collision() -> bool:
 		# Enemies
 		if collider.is_in_group("enemies"):
 			if player.is_invulnerable:
-				collider.hurt()
 				return false
 			
 			var normal := collision.get_normal()

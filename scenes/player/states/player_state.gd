@@ -19,8 +19,5 @@ func _ready() -> void:
 
 
 func _key_input(event: InputEvent) -> void:
-	if not player.can_move:
-		return
-	
 	if event.is_action_pressed("interact"):
 		player.shoot()
