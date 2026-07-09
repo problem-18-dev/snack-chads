@@ -12,7 +12,7 @@ const MAX_HEIGHT := 120.0
 func interact() -> void:
 	super()
 	
-	if debug_enabled:
+	if debug_enabled: 
 		Debug.log("Player interacted with flag pole")
 	
 	var player_position := to_local(_player.global_position)

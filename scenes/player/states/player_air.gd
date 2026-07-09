@@ -8,6 +8,7 @@ var _should_jump_on_land := false
 
 
 func _enter(data := {}) -> void:
+	player.particles.emitting = false
 	player.set_jump_on_land(true)
 	
 	if data.has("jump"):
@@ -46,6 +47,11 @@ func _apply_gravity(delta: float) -> void:
 func _process_air_movement() -> void:
 	if _coyote:
 		return
+	
+	if player.velocity.y > 0:
+		player.sprite.play("air_down")
+	else:
+		player.sprite.play("air_up")
 	
 	var direction := player.get_direction()
 	if is_zero_approx(direction):

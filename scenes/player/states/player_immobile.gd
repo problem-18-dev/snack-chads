@@ -7,9 +7,10 @@ var _is_dead := false
 
 
 func _enter(data := {}) -> void:
+	player.particles.emitting = false
+	
 	if data.has("interactable"):
-		var interactable = data.interactable
-		interactable.interact()
+		_interact(data.interactable)
 		return
 	
 	if data.has("death"):
@@ -24,8 +25,14 @@ func _physics_update(delta: float) -> void:
 	player.move_and_slide()
 
 
+func _interact(interactable: Interactable) -> void:
+	player.sprite.play("idle")
+	interactable.interact()
+
+
 func _die() -> void:
 	_is_dead = true
+	player.sprite.play("death")
 	player.velocity = Vector2(0, -DEATH_JUMP_FORCE)
 	player.collision_shape.set_deferred("disabled", true)
 	player.invincible_area.monitoring = false

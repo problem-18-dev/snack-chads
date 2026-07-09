@@ -1,6 +1,10 @@
 extends PlayerState
 
 
+func _enter(_data := {}) -> void:
+	player.particles.emitting = true
+
+
 func _physics_update(_delta: float) -> void:
 	_process_walk_movement()
 	player.move_and_slide()
@@ -16,7 +20,7 @@ func _key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		finished.emit(PlayerState.AIR, { "jump": true })
 		return
-	
+
 	if event.is_action_pressed("interact"):
 		finished.emit(PlayerState.RUN)
 		return
@@ -29,6 +33,8 @@ func _process_walk_movement() -> void:
 	var direction := player.get_direction()
 	
 	if is_zero_approx(direction):
+		player.sprite.play("idle")
+		player.particles.emitting = false
 		player.velocity.x = lerpf(player.velocity.x, 0, player.walk_deccel)
 		
 		if is_zero_approx(player.velocity.x):
@@ -36,6 +42,8 @@ func _process_walk_movement() -> void:
 		
 		return
 	
+	player.sprite.play("walk")
+	player.particles.emitting = true
 	player.velocity.x = lerpf(player.velocity.x, player.walk_speed * direction, player.walk_accel)
 
 

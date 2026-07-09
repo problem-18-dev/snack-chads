@@ -1,6 +1,11 @@
 extends PlayerState
 
 
+func _enter(_data := {}) -> void:
+	player.sprite.play("run")
+	player.particles.emitting = true
+
+
 func _physics_update(_delta: float) -> void:
 	_process_run_movement()
 	player.move_and_slide()

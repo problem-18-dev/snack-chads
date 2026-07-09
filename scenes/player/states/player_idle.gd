@@ -3,6 +3,8 @@ extends PlayerState
 
 func _enter(_data := {}) -> void:
 	player.velocity = Vector2.ZERO
+	player.sprite.play("idle")
+	player.particles.emitting = false
 
 
 func _physics_update(_delta: float) -> void:

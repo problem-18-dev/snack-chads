@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bgo80kcmv612m" path="res://scenes/level/level.tscn" id="1_j6hfs"]
 [ext_resource type="PackedScene" uid="uid://d28vy8eu2ufqs" path="res://scenes/interactable/pipe/interactable_pipe.tscn" id="2_gyvid"]
+[ext_resource type="PackedScene" uid="uid://bilpg3ujw5ub6" path="res://scenes/interactable/flag_pole/flag_pole.tscn" id="3_78axx"]
 [ext_resource type="PackedScene" uid="uid://cnkmybobis5mu" path="res://scenes/pipe/pipe.tscn" id="4_3nj76"]
 [ext_resource type="PackedScene" uid="uid://djmc3icr5nb0j" path="res://scenes/pipe/pipe_exit/pipe_exit.tscn" id="4_78axx"]
 
@@ -22,6 +23,9 @@ tile_map_data = PackedByteArray("AAA6AAMAAAABAAIAAAA6AAIAAAABAAEAAAA6AAEAAAABAAE
 position = Vector2(688, 16)
 enabled = true
 destination = "uid://dbgyvamx02b4y"
+
+[node name="FlagPole" parent="Interactables" parent_id_path=PackedInt32Array(1383092811) index="1" unique_id=1984965871 instance=ExtResource("3_78axx")]
+position = Vector2(3130, 0)
 
 [node name="Pipe" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="0" unique_id=1327778163 instance=ExtResource("4_3nj76")]
 position = Vector2(400, 48)

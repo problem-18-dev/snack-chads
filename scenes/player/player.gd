@@ -9,7 +9,13 @@ signal fired
 signal consumed
 signal started
 
-const PROJECTILE = preload("uid://dvmwy36oldp5")
+const PROJECTILE: PackedScene = preload("uid://dvmwy36oldp5")
+const INVINCIBILITY_SHADER: Shader = preload("uid://u1wm04bxa3qy")
+const PLAYER_RESOURCES := {
+	PlayerMode.Normal: preload("uid://bkxnhau8jvgdv"),
+	PlayerMode.Large: preload("uid://bqgwcyojoi3a1"),
+	PlayerMode.Fire: preload("uid://dcsb3nuldr7a7"),
+}
 
 @export_group("Movement")
 @export_subgroup("Air")
@@ -66,23 +72,19 @@ var _can_shoot := false
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_camera: PlayerCamera = $PlayerCamera
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var shoot_marker: Marker2D = $ShootMarker
-@onready var stars: Node2D = $Stars
 @onready var invincible_area: Area2D = $InvincibleArea
 @onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var player_mode_timer: Timer = $PlayerModeTimer
+@onready var particles: CPUParticles2D = $AnimatedSprite2D/CPUParticles2D
 
 
 func _ready() -> void:
 	_debug_states()
 	_prepare()
-
-
-func _process(delta: float) -> void:
-	stars.rotate(TAU * delta)
 
 
 func _physics_process(_delta: float) -> void:
@@ -137,9 +139,9 @@ func upgrade_player_mode(new_player_mode: PlayerMode) -> void:
 	# Save state, pause player
 	var previous_state := state_machine.get_current_state()
 	_pause()
-	player_mode_timer.start(consume_duration)
 	
 	if new_player_mode > player_mode:
+		player_mode_timer.start(consume_duration)
 		if new_player_mode == PlayerMode.Large:
 			grow_large()
 		
@@ -147,11 +149,11 @@ func upgrade_player_mode(new_player_mode: PlayerMode) -> void:
 			enable_fire()
 		
 		player_mode = new_player_mode
+		await player_mode_timer.timeout
 	elif new_player_mode <= player_mode:
 		# Bonus points
 		pass
 	
-	await player_mode_timer.timeout
 	_unpause(previous_state)
 	started.emit()
 
@@ -166,6 +168,7 @@ func downgrade_player_mode() -> void:
 		PlayerMode.Large:
 			grow_large()
 		PlayerMode.Normal:
+			sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Normal].sprite_frames
 			animation_player.play("shrink")
 	
 	await player_mode_timer.timeout
@@ -173,6 +176,7 @@ func downgrade_player_mode() -> void:
 
 
 func grow_large() -> void:
+	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Large].sprite_frames
 	animation_player.play("large")
 	
 	if debug_player_mode:
@@ -180,6 +184,7 @@ func grow_large() -> void:
 
 
 func enable_fire() -> void:
+	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Fire].sprite_frames
 	animation_player.play("fire")
 	_can_shoot = true
 	
@@ -194,7 +199,7 @@ func enable_star() -> void:
 	is_invulnerable = true
 	invincible_area.monitoring = true
 	invincibility_timer.start()
-	stars.show()
+	sprite.material.shader = INVINCIBILITY_SHADER
 
 
 func is_slow() -> bool:
@@ -215,7 +220,7 @@ func shoot() -> void:
 	
 	var projectile: Projectile = PROJECTILE.instantiate()
 	var direction := -1 if sprite.flip_h else 1
-	projectile.spawn(shoot_marker.global_position, direction)
+	projectile.spawn(shoot_marker.global_position, direction, velocity.x)
 	get_tree().root.add_child(projectile)
 	
 	_can_shoot = false
@@ -274,7 +279,7 @@ func _unpause(resume_state: PlayerState) -> void:
 
 
 func _prepare() -> void:
-	stars.hide()
+	sprite.material.shader = null
 	invincible_area.monitoring = false
 
 
@@ -310,7 +315,8 @@ func _flip_sprite() -> void:
 	if is_zero_approx(direction):
 		return
 	
-	sprite.flip_h = direction < 0
+	var should_flip := direction < 0
+	sprite.flip_h = should_flip
 
 
 func _debug_states() -> void:
@@ -347,7 +353,7 @@ func _on_shoot_cooldown_timer_timeout() -> void:
 func _on_invincibility_timer_timeout() -> void:
 	is_invulnerable = false
 	invincible_area.monitoring = false
-	stars.hide()
+	sprite.material.shader = null
 
 
 func _on_invincible_area_body_entered(body: WalkingEnemy) -> void:
