@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dgljijvd3g7qr" path="res://scenes/enemy/walking_enemy/walking_enemy.tscn" id="1_1f3w6"]
 [ext_resource type="Script" uid="uid://d2mttn2p42coa" path="res://scenes/enemy/walking_enemy/biker/biker.gd" id="2_hcgm2"]
-[ext_resource type="Texture2D" uid="uid://cfgyy2j3c7qog" path="res://scenes/enemy/walking_enemy/biker/sprites/biker_placeholder.png" id="3_icmyw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icmyw"]
 radius = 8.0
@@ -13,10 +12,8 @@ height = 34.0
 
 [node name="Biker" unique_id=792489795 instance=ExtResource("1_1f3w6")]
 script = ExtResource("2_hcgm2")
-
-[node name="Sprite2D" parent="." index="0" unique_id=996180208]
-position = Vector2(0, -8)
-texture = ExtResource("3_icmyw")
+death_bump_force = -150.0
+death_rotation_speed = 8.0
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1783304354]
 position = Vector2(0, -8)

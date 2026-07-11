@@ -4,20 +4,32 @@ extends Enemy
 
 @export_group("Movement")
 @export var speed := 20.0
+@export_group("Death")
+@export var death_bump_force := -150.0
+@export var death_rotation_speed := 8.0
 
 var _current_speed := speed
 var _direction := -1
+var _is_dead := false
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var area_2d: Area2D = $Area2D
+
+
+func _process(delta: float) -> void:
+	if not _is_dead:
+		return
+	
+	sprite.rotation += death_rotation_speed * delta
 
 
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	_process_movement()
 	move_and_slide()
-	_handle_collision()
+	if not _is_dead:
+		_handle_collision()
 
 
 func setup(_spawn_position: Vector2) -> void:
@@ -38,6 +50,18 @@ func hurt() -> void:
 	if debug_enabled:
 		Debug.log("Walking enemy hurt!")
 	
+	_is_dead = true
+	sprite.play("death")
+	remove_from_group("enemies")
+	set_collision_layer_value(5, false) # Enemies
+	set_collision_mask_value(1, false) # Hittables
+	set_collision_mask_value(4, false) # World
+	set_collision_mask_value(5, false) # Other enemies
+	area_2d.monitoring = false
+	velocity.y = death_bump_force
+
+
+func die() -> void:
 	queue_free()
 
 

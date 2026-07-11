@@ -40,7 +40,6 @@ func get_current_state() -> State:
 func transition_to_state(state: String, data := {}) -> void:
 	var new_state := get_node(state)
 	assert(new_state, "New state is invalid")
-	print(new_state)
 	
 	_state._exit()
 	_state = new_state

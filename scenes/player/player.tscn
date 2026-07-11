@@ -786,6 +786,7 @@ debug_player_mode = true
 metadata/_edit_group_ = true
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1040741919]
+physics_interpolation_mode = 1
 offset = Vector2(0, -32)
 zoom = Vector2(1.5, 1.5)
 process_callback = 0

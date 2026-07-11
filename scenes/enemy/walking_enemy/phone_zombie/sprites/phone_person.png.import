@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd4il3mm22bf8"
-path="res://.godot/imported/enemy_placeholder.png-03027ebfaee2fe6fa7fefb57b519bb76.ctex"
+uid="uid://bn75rh6nnm7ws"
+path="res://.godot/imported/phone_person.png-42588c45b3a311f0ccf331cd97ba5ae8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/enemy/walking_enemy/phone_zombie/sprites/enemy_placeholder.png"
-dest_files=["res://.godot/imported/enemy_placeholder.png-03027ebfaee2fe6fa7fefb57b519bb76.ctex"]
+source_file="res://scenes/enemy/walking_enemy/phone_zombie/sprites/phone_person.png"
+dest_files=["res://.godot/imported/phone_person.png-42588c45b3a311f0ccf331cd97ba5ae8.ctex"]
 
 [params]
 
