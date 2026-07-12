@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cnjos4r4qjk0v"]
+
+[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="1_ocqvg"]
+[ext_resource type="PackedScene" uid="uid://df0u0ja3vncjm" path="res://scenes/consumable/backpack/backpack.tscn" id="2_06hd3"]
+
+[node name="BackpackBlock" unique_id=1497541472 instance=ExtResource("1_ocqvg")]
+content_packed = ExtResource("2_06hd3")

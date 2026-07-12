@@ -2,8 +2,6 @@ class_name SurpriseBlock
 extends Block
 
 
-const DISABLED_TEXTURE: Texture2D = preload("uid://di1dn68pjqkh1")
-
 @export var content_packed: PackedScene
 @export var duration := 0.5
 
@@ -28,7 +26,7 @@ func hit() -> void:
 	
 	_disabled = true
 	
-	sprite.texture = DISABLED_TEXTURE
+	sprite.play("disabled")
 	bump()
 	_pop_content()
 

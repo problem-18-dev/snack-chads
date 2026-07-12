@@ -1,7 +1,12 @@
 extends Block
 
+@onready var particles: CPUParticles2D = $CPUParticles2D
+
 
 func hit() -> void:
+	sprite.hide()
+	particles.emitting = true
+	await particles.finished
 	_destroy()
 
 

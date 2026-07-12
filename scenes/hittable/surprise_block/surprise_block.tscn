@@ -2,7 +2,69 @@
 
 [ext_resource type="PackedScene" uid="uid://mh7d1ffwrwvr" path="res://scenes/hittable/hittable.tscn" id="1_hh50o"]
 [ext_resource type="Script" uid="uid://dxoywj2ktb8ka" path="res://scenes/hittable/surprise_block/surprise_block.gd" id="2_0luhf"]
-[ext_resource type="Texture2D" uid="uid://dfphf0j4472op" path="res://scenes/hittable/surprise_block/sprites/surprise_placeholder.png" id="2_64udx"]
+[ext_resource type="Texture2D" uid="uid://dfphf0j4472op" path="res://scenes/hittable/surprise_block/sprites/surprise_block.png" id="2_64udx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxmoe"]
+atlas = ExtResource("2_64udx")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0luhf"]
+atlas = ExtResource("2_64udx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4tlb"]
+atlas = ExtResource("2_64udx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik6q8"]
+atlas = ExtResource("2_64udx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdtgr"]
+atlas = ExtResource("2_64udx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whnjl"]
+atlas = ExtResource("2_64udx")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhnlh"]
+atlas = ExtResource("2_64udx")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fxmoe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxmoe")
+}],
+"loop": false,
+"name": &"disabled",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 20.0,
+"texture": SubResource("AtlasTexture_0luhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4tlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik6q8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdtgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whnjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhnlh")
+}],
+"loop": true,
+"name": &"shine",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_0luhf"]
 resource_name = "pop"
@@ -22,8 +84,10 @@ bump_duration = 0.2
 [node name="ContentDestinationMarker" type="Marker2D" parent="." index="0" unique_id=1907705047]
 position = Vector2(0, -16)
 
-[node name="Sprite2D" parent="." index="2" unique_id=1547619892]
-texture = ExtResource("2_64udx")
+[node name="AnimatedSprite2D" parent="." index="2" unique_id=1845711166]
+sprite_frames = SubResource("SpriteFrames_fxmoe")
+animation = &"shine"
+autoplay = "shine"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=134524426]
 libraries/ = SubResource("AnimationLibrary_l4tlb")

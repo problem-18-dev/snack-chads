@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://hx7jpfjfira5"]
-
-[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="1_kntxa"]
-[ext_resource type="PackedScene" uid="uid://bcxcgnmj5tclr" path="res://scenes/consumable/fire/fire.tscn" id="2_mxbqp"]
-
-[node name="FireBlock" unique_id=1497541472 instance=ExtResource("1_kntxa")]
-content_packed = ExtResource("2_mxbqp")

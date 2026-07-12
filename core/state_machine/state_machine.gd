@@ -1,7 +1,6 @@
 class_name StateMachine
 extends Node
 
-
 @export var initial_state: State
 
 @onready var _state := initial_state
@@ -9,11 +8,11 @@ extends Node
 
 func _ready() -> void:
 	await owner.ready
-	
+
 	for child: State in get_children():
 		assert(child is State, "State machine has non-state children.")
 		child.finished.connect(transition_to_state)
-	
+
 	_state._enter()
 
 
@@ -37,10 +36,10 @@ func get_current_state() -> State:
 	return _state
 
 
-func transition_to_state(state: String, data := {}) -> void:
+func transition_to_state(state: String, data := { }) -> void:
 	var new_state := get_node(state)
 	assert(new_state, "New state is invalid")
-	
+
 	_state._exit()
 	_state = new_state
 	_state._enter(data)

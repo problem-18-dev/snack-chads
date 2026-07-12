@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dnye8dofdqhw5"]
+
+[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="1_0b85f"]
+[ext_resource type="PackedScene" uid="uid://d3mxfbjuu0jq" path="res://scenes/consumable/lolly_pop/lolly_pop.tscn" id="2_058px"]
+
+[node name="LollyPopBlock" unique_id=1497541472 instance=ExtResource("1_0b85f")]
+content_packed = ExtResource("2_058px")

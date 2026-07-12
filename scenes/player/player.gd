@@ -1,13 +1,12 @@
 class_name Player
 extends CharacterBody2D
 
-
-enum PlayerMode { Normal, Large, Fire }
-
 signal died
 signal fired
 signal consumed
 signal started
+
+enum PlayerMode { Normal, Large, Fire }
 
 const PROJECTILE: PackedScene = preload("uid://dvmwy36oldp5")
 const INVINCIBILITY_SHADER: Shader = preload("uid://u1wm04bxa3qy")
@@ -60,14 +59,13 @@ const PLAYER_RESOURCES := {
 
 var player_mode := PlayerMode.Normal
 var is_invulnerable := false
-
 var _interactable: Interactable
 var _can_shoot := false
 
 @onready var jump_buffer_ray_casts: Array[RayCast2D] = [
 	$Raycasts/LeftJumpBufferRayCast,
-	$Raycasts/RightJumpBufferRayCast
-	]
+	$Raycasts/RightJumpBufferRayCast,
+]
 @onready var hit_raycasts: Array[RayCast2D] = [$Raycasts/LeftUpperHitRaycast, $Raycasts/RightUpperHitRaycast]
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var state_machine: StateMachine = $StateMachine
@@ -79,7 +77,8 @@ var _can_shoot := false
 @onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var player_mode_timer: Timer = $PlayerModeTimer
-@onready var particles: CPUParticles2D = $AnimatedSprite2D/CPUParticles2D
+@onready var ground_particles: CPUParticles2D = $AnimatedSprite2D/GroundParticles
+@onready var star_particles: CPUParticles2D = $AnimatedSprite2D/StarParticles
 
 
 func _ready() -> void:
@@ -111,9 +110,9 @@ func take_damage() -> void:
 	if player_mode == PlayerMode.Normal:
 		die()
 		return
-	
+
 	_flicker(hurt_duration)
-	downgrade_player_mode()
+	_downgrade_player_mode()
 
 
 func die() -> void:
@@ -123,62 +122,20 @@ func die() -> void:
 
 func consume(consumable: Consumable.Type) -> void:
 	match consumable:
-		Consumable.Type.Star:
-			enable_star()
-		Consumable.Type.EnergyDrink:
-			upgrade_player_mode(PlayerMode.Large)
-		Consumable.Type.Fire:
-			upgrade_player_mode(PlayerMode.Fire)
+		Consumable.Type.ENERGY_DRINK:
+			_enable_star()
+		Consumable.Type.BACKPACK:
+			_upgrade_player_mode(PlayerMode.Large)
+		Consumable.Type.LOLLY_POP:
+			_upgrade_player_mode(PlayerMode.Fire)
 		_:
 			push_error("Consumable not handled: ", consumable)
-
-
-func upgrade_player_mode(new_player_mode: PlayerMode) -> void:
-	consumed.emit()
-	
-	# Save state, pause player
-	var previous_state := state_machine.get_current_state()
-	_pause()
-	
-	if new_player_mode > player_mode:
-		player_mode_timer.start(consume_duration)
-		if new_player_mode == PlayerMode.Large:
-			grow_large()
-		
-		if new_player_mode == PlayerMode.Fire:
-			enable_fire()
-		
-		player_mode = new_player_mode
-		await player_mode_timer.timeout
-	elif new_player_mode <= player_mode:
-		# Bonus points
-		pass
-	
-	_unpause(previous_state)
-	started.emit()
-
-
-func downgrade_player_mode() -> void:
-	var previous_state := state_machine.get_current_state()
-	_pause()
-	player_mode_timer.start(hurt_duration)
-	
-	player_mode = (player_mode - 1) as PlayerMode
-	match player_mode:
-		PlayerMode.Large:
-			grow_large()
-		PlayerMode.Normal:
-			sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Normal].sprite_frames
-			animation_player.play("shrink")
-	
-	await player_mode_timer.timeout
-	_unpause(previous_state)
 
 
 func grow_large() -> void:
 	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Large].sprite_frames
 	animation_player.play("large")
-	
+
 	if debug_player_mode:
 		Debug.log("Player grows large")
 
@@ -187,19 +144,9 @@ func enable_fire() -> void:
 	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Fire].sprite_frames
 	animation_player.play("fire")
 	_can_shoot = true
-	
+
 	if debug_player_mode:
 		Debug.log("Player is in fire mode!")
-
-
-func enable_star() -> void:
-	if debug_player_mode:
-		Debug.log("Player is in star mode!")
-	
-	is_invulnerable = true
-	invincible_area.monitoring = true
-	invincibility_timer.start()
-	sprite.material.shader = INVINCIBILITY_SHADER
 
 
 func is_slow() -> bool:
@@ -217,12 +164,12 @@ func reset() -> void:
 func shoot() -> void:
 	if player_mode != PlayerMode.Fire or not _can_shoot:
 		return
-	
+
 	var projectile: Projectile = PROJECTILE.instantiate()
 	var direction := -1 if sprite.flip_h else 1
 	projectile.spawn(shoot_marker.global_position, direction, velocity.x)
 	get_tree().root.add_child(projectile)
-	
+
 	_can_shoot = false
 	shoot_cooldown_timer.start()
 
@@ -259,13 +206,66 @@ func unset_interactable() -> void:
 func attempt_interaction() -> void:
 	if not _interactable:
 		return
-	
+
 	state_machine.transition_to_state(PlayerState.IMMOBILE, { "interactable": _interactable })
 
 
 func push_enemy(enemy: Enemy) -> void:
 	var push_direction := -1 if sprite.flip_h else 1
 	enemy.push(push_direction)
+
+
+func _upgrade_player_mode(new_player_mode: PlayerMode) -> void:
+	consumed.emit()
+
+	# Save state, pause player
+	var previous_state := state_machine.get_current_state()
+	_pause()
+
+	if new_player_mode > player_mode:
+		player_mode_timer.start(consume_duration)
+		if new_player_mode == PlayerMode.Large:
+			grow_large()
+
+		if new_player_mode == PlayerMode.Fire:
+			enable_fire()
+
+		player_mode = new_player_mode
+		await player_mode_timer.timeout
+	elif new_player_mode <= player_mode:
+		# Bonus points
+		pass
+
+	_unpause(previous_state)
+	started.emit()
+
+
+func _downgrade_player_mode() -> void:
+	var previous_state := state_machine.get_current_state()
+	_pause()
+	player_mode_timer.start(hurt_duration)
+
+	player_mode = (player_mode - 1) as PlayerMode
+	match player_mode:
+		PlayerMode.Large:
+			grow_large()
+		PlayerMode.Normal:
+			sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Normal].sprite_frames
+			animation_player.play("shrink")
+
+	await player_mode_timer.timeout
+	_unpause(previous_state)
+
+
+func _enable_star() -> void:
+	if debug_player_mode:
+		Debug.log("Player is in star mode!")
+
+	is_invulnerable = true
+	invincible_area.monitoring = true
+	invincibility_timer.start()
+	sprite.material.shader = INVINCIBILITY_SHADER
+	star_particles.emitting = true
 
 
 func _pause() -> void:
@@ -281,6 +281,7 @@ func _unpause(resume_state: PlayerState) -> void:
 func _prepare() -> void:
 	sprite.material.shader = null
 	invincible_area.monitoring = false
+	sprite.sprite_frames = PLAYER_RESOURCES[player_mode].sprite_frames
 
 
 func _flicker(duration: float) -> void:
@@ -297,15 +298,15 @@ func _limit_movement() -> void:
 	var limit_right := player_camera.limit_right
 	var current_position := global_position.x
 	current_position = clamp(current_position, limit_left, limit_right)
-	
+
 	if is_equal_approx(current_position, limit_left):
-		global_position.x = limit_left 
+		global_position.x = limit_left
 		velocity.x = 0
-	
+
 	if is_equal_approx(current_position, limit_right):
 		global_position.x = limit_right
 		velocity.x = 0
-	
+
 	if debug_movement_limit:
 		Debug.log("Boundary hit")
 
@@ -314,7 +315,7 @@ func _flip_sprite() -> void:
 	var direction := get_direction()
 	if is_zero_approx(direction):
 		return
-	
+
 	var should_flip := direction < 0
 	sprite.flip_h = should_flip
 
@@ -322,7 +323,7 @@ func _flip_sprite() -> void:
 func _debug_states() -> void:
 	if not debug_state:
 		return
-	
+
 	for state: State in find_children("*", "State"):
 		state.finished.connect(_on_state_finished_debug)
 
@@ -330,15 +331,15 @@ func _debug_states() -> void:
 func _debug_velocity() -> void:
 	if not debug_velocity:
 		return
-	
+
 	Debug.log("Player velocity: %s" % velocity.round())
 
 
-func _on_state_finished_debug(state: String, data := {}) -> void:
+func _on_state_finished_debug(state: String, data := { }) -> void:
 	if data.size() > 0:
 		Debug.log("Player state changed to %s with %s" % [state, data])
 		return
-	
+
 	Debug.log("Player state changed to %s" % state)
 
 
@@ -346,7 +347,7 @@ func _on_shoot_cooldown_timer_timeout() -> void:
 	if player_mode != PlayerMode.Fire:
 		_can_shoot = false
 		return
-	
+
 	_can_shoot = true
 
 
@@ -354,6 +355,7 @@ func _on_invincibility_timer_timeout() -> void:
 	is_invulnerable = false
 	invincible_area.monitoring = false
 	sprite.material.shader = null
+	star_particles.emitting = false
 
 
 func _on_invincible_area_body_entered(body: WalkingEnemy) -> void:

@@ -1,12 +1,11 @@
 class_name Consumable
 extends CharacterBody2D
 
-
-enum Type { EnergyDrink, Fire, Star }
+enum Type { ENERGY_DRINK, BACKPACK, LOLLY_POP }
 
 @export_group("Properties")
 @export var speed := 40.0
-@export var type := Type.EnergyDrink
+@export var type := Type.BACKPACK
 
 var _direction := 0
 
@@ -27,7 +26,7 @@ func start() -> void:
 func _handle_movement(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
-	
+
 	velocity.x = _direction * speed
 
 
@@ -35,10 +34,10 @@ func _handle_collision() -> void:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
-		
+
 		if collider == null:
 			continue
-		
+
 		var normal := collision.get_normal()
 
 		# If not floor

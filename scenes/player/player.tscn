@@ -4,13 +4,9 @@
 [ext_resource type="Script" uid="uid://byol15lysr7sm" path="res://scenes/player/player_camera.gd" id="2_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://svuuufslcxip" path="res://core/state_machine/state_machine.tscn" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://u1wm04bxa3qy" path="res://scenes/player/shaders/player_invincibility.gdshader" id="3_fcs02"]
-[ext_resource type="Texture2D" uid="uid://c6tistn2s5ay3" path="res://scenes/player/sprites/player_air_up.png" id="3_fm80t"]
 [ext_resource type="Script" uid="uid://bjph4ifm2gg4m" path="res://scenes/player/states/player_idle.gd" id="3_gmlin"]
-[ext_resource type="Texture2D" uid="uid://bc578eoop5hm0" path="res://scenes/player/sprites/player_air_down.png" id="3_gx1jg"]
-[ext_resource type="Texture2D" uid="uid://fnvagru4v0g2" path="res://scenes/player/sprites/player_idle.png" id="3_h17s1"]
-[ext_resource type="Texture2D" uid="uid://dm5olp1duueum" path="res://scenes/player/sprites/player_walk.png" id="4_je7p5"]
+[ext_resource type="Texture2D" uid="uid://dmqpduv8ajuw6" path="res://scenes/player/sprites/star_particle.png" id="4_h17s1"]
 [ext_resource type="Script" uid="uid://22xqrsuw6gaa" path="res://scenes/player/states/player_air.gd" id="4_lvxji"]
-[ext_resource type="Texture2D" uid="uid://cvu8msgnsck85" path="res://scenes/player/sprites/player_death.png" id="5_ugbui"]
 [ext_resource type="Script" uid="uid://bjcr78gqjqpbv" path="res://scenes/player/states/player_walk.gd" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://c02hlphhlcrkv" path="res://scenes/player/states/player_immobile.gd" id="8_qek5x"]
@@ -21,177 +17,8 @@ size = Vector2(8, 16)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_myrg7"]
 shader = ExtResource("3_fcs02")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_007i1"]
-atlas = ExtResource("3_gx1jg")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6cv16"]
-atlas = ExtResource("3_gx1jg")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ioxgp"]
-atlas = ExtResource("3_fm80t")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cnsyf"]
-atlas = ExtResource("3_fm80t")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j4nxn"]
-atlas = ExtResource("5_ugbui")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_28m0y"]
-atlas = ExtResource("5_ugbui")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_je7p5"]
-atlas = ExtResource("3_h17s1")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fm80t"]
-atlas = ExtResource("3_h17s1")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uf5tr"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lgqa7"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ydkj"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3j4b4"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yj68g"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gx1jg"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fcs02"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvlxm"]
-atlas = ExtResource("4_je7p5")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gx1jg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_007i1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6cv16")
-}],
-"loop": true,
-"name": &"air_down",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ioxgp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cnsyf")
-}],
-"loop": true,
-"name": &"air_up",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j4nxn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_28m0y")
-}],
-"loop": true,
-"name": &"death",
-"speed": 2.5
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_je7p5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fm80t")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uf5tr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lgqa7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ydkj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3j4b4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yj68g")
-}],
-"loop": true,
-"name": &"run",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gx1jg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ugbui")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fcs02")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_myrg7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvlxm")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 15.0
-}]
-
-[sub_resource type="GDScript" id="GDScript_ugbui"]
-script/source = "extends CPUParticles2D
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h17s1"]
+shader = ExtResource("3_fcs02")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fm80t"]
 size = Vector2(24, 16)
@@ -381,7 +208,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("AnimatedSprite2D/CPUParticles2D:position")
+tracks/15/path = NodePath("AnimatedSprite2D/GroundParticles:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -505,7 +332,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AnimatedSprite2D/CPUParticles2D:position")
+tracks/9/path = NodePath("AnimatedSprite2D/GroundParticles:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -629,7 +456,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AnimatedSprite2D/CPUParticles2D:position")
+tracks/9/path = NodePath("AnimatedSprite2D/GroundParticles:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -753,7 +580,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AnimatedSprite2D/CPUParticles2D:position")
+tracks/9/path = NodePath("AnimatedSprite2D/GroundParticles:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -829,11 +656,9 @@ shape = SubResource("RectangleShape2D_gmlin")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1228927741]
 material = SubResource("ShaderMaterial_myrg7")
 position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_gx1jg")
-animation = &"air_down"
-autoplay = "idle"
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="AnimatedSprite2D" unique_id=85458839]
+[node name="GroundParticles" type="CPUParticles2D" parent="AnimatedSprite2D" unique_id=85458839]
+z_index = -1
 position = Vector2(-2, 7)
 scale = Vector2(2, 2)
 lifetime = 0.25
@@ -845,7 +670,20 @@ angular_velocity_min = 10.0
 angular_velocity_max = 45.0
 scale_amount_max = 1.5
 color = Color(0.87058824, 0.6392157, 0.54509807, 1)
-script = SubResource("GDScript_ugbui")
+
+[node name="StarParticles" type="CPUParticles2D" parent="AnimatedSprite2D" unique_id=320743878]
+z_index = -1
+material = SubResource("ShaderMaterial_h17s1")
+emitting = false
+amount = 16
+texture = ExtResource("4_h17s1")
+lifetime = 0.5
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(4, 4)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.05
+scale_amount_max = 0.15
 
 [node name="InvincibleArea" type="Area2D" parent="." unique_id=869657757]
 collision_layer = 0
@@ -865,7 +703,7 @@ wait_time = 0.35
 one_shot = true
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=997760771]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="PlayerModeTimer" type="Timer" parent="." unique_id=731814570]

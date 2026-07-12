@@ -13,4 +13,4 @@ script = ExtResource("1_agun1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=238242685]
 shape = SubResource("RectangleShape2D_eq5ta")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1547619892]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1845711166]

@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://bekxxr844rl7o" path="res://scenes/level/tile_map_layer/textures/tilemap_placeholder.png" id="1_i1mrs"]
 [ext_resource type="PackedScene" uid="uid://hg21feacdnjc" path="res://scenes/enemy/walking_enemy/biker/biker.tscn" id="2_ml5tt"]
-[ext_resource type="PackedScene" uid="uid://csj5opj8ti4ps" path="res://scenes/enemy/walking_enemy/phone_zombie/phone_zombie.tscn" id="3_0k0s3"]
+[ext_resource type="PackedScene" uid="uid://csj5opj8ti4ps" path="res://scenes/enemy/walking_enemy/phone_person/phone_person.tscn" id="3_0k0s3"]
 [ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="4_pio3d"]
 [ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="5_o6m22"]
-[ext_resource type="PackedScene" uid="uid://n32s3mhjrakk" path="res://scenes/hittable/surprise_block/star_block/star_block.tscn" id="6_l3q8x"]
 [ext_resource type="PackedScene" uid="uid://dfcuf2bc0w733" path="res://scenes/hittable/surprise_block/energy_drink_block/energy_drink_block.tscn" id="6_o6m22"]
 [ext_resource type="PackedScene" uid="uid://bnlemcsa2avmg" path="res://scenes/pickuppable/coin/coin.tscn" id="7_6p6fq"]
-[ext_resource type="PackedScene" uid="uid://hx7jpfjfira5" path="res://scenes/hittable/surprise_block/fire_block/fire_block.tscn" id="7_fcknj"]
+[ext_resource type="PackedScene" uid="uid://cnjos4r4qjk0v" path="res://scenes/hittable/surprise_block/backpack_block/backpack_block.tscn" id="7_fcknj"]
+[ext_resource type="PackedScene" uid="uid://dnye8dofdqhw5" path="res://scenes/hittable/surprise_block/lolly_pop_block/lolly_pop_block.tscn" id="8_l3q8x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7xxq1"]
 resource_name = "Outside World"
@@ -101,9 +101,9 @@ scenes/2/scene = ExtResource("3_0k0s3")
 resource_name = "Blocks"
 scenes/1/scene = ExtResource("4_pio3d")
 scenes/2/scene = ExtResource("5_o6m22")
-scenes/3/scene = ExtResource("6_l3q8x")
 scenes/4/scene = ExtResource("6_o6m22")
-scenes/5/scene = ExtResource("7_fcknj")
+scenes/6/scene = ExtResource("7_fcknj")
+scenes/8/scene = ExtResource("8_l3q8x")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6p6fq"]
 resource_name = "Coins"

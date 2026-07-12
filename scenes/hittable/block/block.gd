@@ -6,7 +6,7 @@ extends Hittable
 @export var bump_offset := 4.0
 @export var bump_duration := 0.2
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func bump() -> void:

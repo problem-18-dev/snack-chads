@@ -1,7 +1,6 @@
 class_name Projectile
 extends CharacterBody2D
 
-
 @export_group("Properties")
 @export var speed := 120.0
 @export var bounce_force := 45.0
@@ -20,9 +19,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		velocity.y = -bounce_force
-	
+
 	velocity.x = (speed + _extra_velocity) * _direction
-	_extra_velocity -= delta 
+	_extra_velocity = maxf(0, _extra_velocity - delta)
 	velocity.y += get_gravity().y * delta
 	move_and_slide()
 	_handle_collision()
@@ -45,8 +44,13 @@ func _destroy() -> void:
 func _handle_collision() -> void:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
-		var normal := collision.get_normal()
-		
-		if normal.is_equal_approx(Vector2.LEFT) or normal.is_equal_approx(Vector2.RIGHT):
+		var collider := collision.get_collider()
+
+		if collider.is_in_group("enemies") or collider.is_in_group("pushables"):
+			collider.hurt()
 			_destroy()
 			return
+
+		var normal := collision.get_normal()
+		if normal.is_equal_approx(Vector2.LEFT) or normal.is_equal_approx(Vector2.RIGHT):
+			_destroy()

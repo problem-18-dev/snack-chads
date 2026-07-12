@@ -1,26 +1,24 @@
 class_name WalkingEnemy
 extends Enemy
 
-
 @export_group("Movement")
 @export var speed := 20.0
 @export_group("Death")
 @export var death_bump_force := -150.0
 @export var death_rotation_speed := 8.0
 
-var _current_speed := speed
 var _direction := -1
 var _is_dead := false
 
+@onready var _current_speed := speed
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var area_2d: Area2D = $Area2D
 
 
 func _process(delta: float) -> void:
 	if not _is_dead:
 		return
-	
+
 	sprite.rotation += death_rotation_speed * delta
 
 
@@ -28,8 +26,7 @@ func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	_process_movement()
 	move_and_slide()
-	if not _is_dead:
-		_handle_collision()
+	_handle_collision()
 
 
 func setup(_spawn_position: Vector2) -> void:
@@ -37,35 +34,43 @@ func setup(_spawn_position: Vector2) -> void:
 
 
 func pause() -> void:
+	if _is_dead:
+		return
+
 	_current_speed = 0
-	set_collision_layer_value(5, false)
+	set_collision_layer_value(6, false)
 
 
 func resume() -> void:
+	if _is_dead:
+		return
+
 	_current_speed = speed
-	set_collision_layer_value(5, true)
+	set_collision_layer_value(6, true)
 
 
 func hurt() -> void:
 	if debug_enabled:
 		Debug.log("Walking enemy hurt!")
-	
-	_is_dead = true
-	sprite.play("death")
-	remove_from_group("enemies")
-	set_collision_layer_value(5, false) # Enemies
-	set_collision_mask_value(1, false) # Hittables
-	set_collision_mask_value(4, false) # World
-	set_collision_mask_value(5, false) # Other enemies
-	area_2d.monitoring = false
-	velocity.y = death_bump_force
+
+	if _is_dead:
+		return
+
+	die()
 
 
 func die() -> void:
-	queue_free()
+	_is_dead = true
+	remove_from_group("enemies")
+	set_collision_layer_value(6, false) # Enemies
+	set_collision_mask_value(2, false) # Hittables
+	set_collision_mask_value(5, false) # World
+	set_collision_mask_value(6, false) # Other enemies
+	velocity.y = death_bump_force
+	sprite.play("death")
 
 
-func _stop() -> void:
+func stop() -> void:
 	_direction = 0
 
 
@@ -79,28 +84,29 @@ func _apply_gravity(delta: float) -> void:
 
 
 func _process_movement() -> void:
+	if _is_dead:
+		velocity.x = 0
+		return
+
 	velocity.x = _direction * _current_speed
-	
+
 	if not is_zero_approx(velocity.x):
 		sprite.flip_h = velocity.x < 0
 
 
 func _handle_collision() -> void:
+	if _is_dead:
+		return
+
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
-		
+
 		if collider == null:
 			continue
-		
+
 		var normal := collision.get_normal()
 
 		# If not floor
 		if not normal.is_equal_approx(Vector2.UP):
 			_direction *= -1
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("projectiles"):
-		body.queue_free()
-		hurt()

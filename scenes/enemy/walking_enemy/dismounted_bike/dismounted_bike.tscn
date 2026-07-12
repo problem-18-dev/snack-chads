@@ -2,26 +2,74 @@
 
 [ext_resource type="PackedScene" uid="uid://dgljijvd3g7qr" path="res://scenes/enemy/walking_enemy/walking_enemy.tscn" id="1_k4coe"]
 [ext_resource type="Script" uid="uid://bu7r450xv2n7b" path="res://scenes/enemy/walking_enemy/dismounted_bike/dismounted_bike.gd" id="2_2rdu0"]
-[ext_resource type="Texture2D" uid="uid://bid8l5i72ah7t" path="res://scenes/enemy/walking_enemy/dismounted_bike/sprites/bike_placeholder.png" id="2_4o3jn"]
+[ext_resource type="Texture2D" uid="uid://bfqeyekedc3o3" path="res://scenes/enemy/walking_enemy/biker/sprites/biker.png" id="3_2rdu0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rdu0"]
-size = Vector2(15, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rdu0"]
+atlas = ExtResource("3_2rdu0")
+region = Rect2(32, 0, 16, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xneyv"]
-size = Vector2(32, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wgfe"]
+atlas = ExtResource("3_2rdu0")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xneyv"]
+atlas = ExtResource("3_2rdu0")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmtvs"]
+atlas = ExtResource("3_2rdu0")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wgfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rdu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wgfe")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xneyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmtvs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2rdu0"]
+radius = 7.0
+height = 18.0
 
 [node name="DismountedBike" unique_id=792489795 groups=["pushables"] instance=ExtResource("1_k4coe")]
 script = ExtResource("2_2rdu0")
-speed = 120.0
+speed = 100.0
 
-[node name="Sprite2D" parent="." index="0" unique_id=996180208]
-texture = ExtResource("2_4o3jn")
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=253899374]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_8wgfe")
+animation = &"death"
+autoplay = "default"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1783304354]
-position = Vector2(-2.1855694e-08, 0.5)
+position = Vector2(0, -7)
 rotation = 1.5707964
-shape = SubResource("RectangleShape2D_2rdu0")
+shape = SubResource("CapsuleShape2D_2rdu0")
 
-[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(100812387) index="0" unique_id=1802961022]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_xneyv")
+[node name="VisibleOnScreenEnabler2D" parent="." index="2" unique_id=1947978349]
+position = Vector2(0, -6)
+rect = Rect2(-10, -8, 20, 16)
+
+[node name="Timer" type="Timer" parent="." index="3" unique_id=1099029353]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

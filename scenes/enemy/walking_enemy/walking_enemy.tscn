@@ -6,12 +6,5 @@
 [node name="WalkingEnemy" unique_id=792489795 instance=ExtResource("1_bin0i")]
 script = ExtResource("2_anspe")
 speed = 20.0
-
-[node name="Area2D" type="Area2D" parent="." index="3" unique_id=100812387]
-collision_layer = 0
-collision_mask = 128
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=1802961022]
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+death_bump_force = -150.0
+death_rotation_speed = 8.0
