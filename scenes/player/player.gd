@@ -224,6 +224,7 @@ func _upgrade_player_mode(new_player_mode: PlayerMode) -> void:
 
 	if new_player_mode > player_mode:
 		player_mode_timer.start(consume_duration)
+		invincibility_timer.paused = true
 		if new_player_mode == PlayerMode.Large:
 			grow_large()
 
@@ -232,6 +233,7 @@ func _upgrade_player_mode(new_player_mode: PlayerMode) -> void:
 
 		player_mode = new_player_mode
 		await player_mode_timer.timeout
+		invincibility_timer.paused = false
 	elif new_player_mode <= player_mode:
 		# Bonus points
 		pass
