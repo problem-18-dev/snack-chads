@@ -12,6 +12,11 @@ func setup(spawn_position: Vector2) -> void:
 	global_position = spawn_position
 
 
+func stop() -> void:
+	super()
+	remove_from_group("enemies")
+
+
 func push(push_direction: int) -> void:
 	_direction = push_direction
 	timer.start()
