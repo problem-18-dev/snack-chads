@@ -97,7 +97,7 @@ shape = SubResource("RectangleShape2D_m1lie")
 [node name="Flag" type="AnimatedSprite2D" parent="StaticBody2D" index="2" unique_id=729403864]
 sprite_frames = SubResource("SpriteFrames_7dgwu")
 autoplay = "default"
-frame_progress = 0.7190248
+frame_progress = 0.67659247
 
 [node name="SnapMarker2D" parent="." index="2" unique_id=302847599]
 position = Vector2(0, -120)
