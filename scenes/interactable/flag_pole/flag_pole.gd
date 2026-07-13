@@ -9,6 +9,7 @@ const MAX_HEIGHT := 120.0
 @export var delay_before_store := 2.0
 
 @onready var bottom_marker: Marker2D = $BottomMarker2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func interact() -> void:
@@ -26,10 +27,11 @@ func interact() -> void:
 
 
 func _tween_and_finish() -> void:
-	var tween := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	var tween := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_parallel()
 	tween.tween_property(_player, "global_position", bottom_marker.global_position, slide_duration)
+	tween.tween_callback(animation_player.play.bind("flag_down"))
 	var end_destination := store.get_destination_global_position()
-	tween.tween_callback(_player.walk_to.bind(end_destination)).set_delay(delay_before_store)
+	tween.chain().tween_callback(_player.walk_to.bind(end_destination)).set_delay(delay_before_store)
 
 
 func _on_detection_area_body_entered(body: Player) -> void:

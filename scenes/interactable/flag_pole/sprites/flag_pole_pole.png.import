@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dolasxsekmgk4"
-path="res://.godot/imported/flagpole_placeholder.png-de5d43374eced8f6c34e44c6d02f6843.ctex"
+uid="uid://bv8cu3kuo8bc"
+path="res://.godot/imported/flag_pole_pole.png-73f98bf7e25db4cde3c11248b96684d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/interactable/flag_pole/sprites/flagpole_placeholder.png"
-dest_files=["res://.godot/imported/flagpole_placeholder.png-de5d43374eced8f6c34e44c6d02f6843.ctex"]
+source_file="res://scenes/interactable/flag_pole/sprites/flag_pole_pole.png"
+dest_files=["res://.godot/imported/flag_pole_pole.png-73f98bf7e25db4cde3c11248b96684d6.ctex"]
 
 [params]
 

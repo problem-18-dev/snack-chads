@@ -2,13 +2,72 @@
 
 [ext_resource type="PackedScene" uid="uid://vfh3o1h2a6uu" path="res://scenes/interactable/interactable.tscn" id="1_utgpf"]
 [ext_resource type="Script" uid="uid://p0iukan5goc3" path="res://scenes/interactable/flag_pole/flag_pole.gd" id="2_amq1p"]
-[ext_resource type="Texture2D" uid="uid://dolasxsekmgk4" path="res://scenes/interactable/flag_pole/sprites/flagpole_placeholder.png" id="3_m1lie"]
+[ext_resource type="Texture2D" uid="uid://bv8cu3kuo8bc" path="res://scenes/interactable/flag_pole/sprites/flag_pole_pole.png" id="3_m1lie"]
+[ext_resource type="Texture2D" uid="uid://c3k834dec6qtp" path="res://scenes/interactable/flag_pole/sprites/flag_pole.png" id="4_p1s74"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m1lie"]
 normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1lie"]
-size = Vector2(8, 128)
+size = Vector2(8, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fpjv"]
+atlas = ExtResource("4_p1s74")
+region = Rect2(0, 0, 32, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuagj"]
+atlas = ExtResource("4_p1s74")
+region = Rect2(32, 0, 32, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dgwu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fpjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuagj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_p1s74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/Flag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4fpjv"]
+resource_name = "flag_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/Flag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 104)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuagj"]
+_data = {
+&"RESET": SubResource("Animation_p1s74"),
+&"flag_down": SubResource("Animation_4fpjv")
+}
 
 [node name="FlagPole" unique_id=95559118 instance=ExtResource("1_utgpf")]
 z_index = -1
@@ -28,12 +87,22 @@ shape = SubResource("WorldBoundaryShape2D_m1lie")
 position = Vector2(0, -64)
 
 [node name="Sprite2D" parent="StaticBody2D" index="0" unique_id=2015709017]
+position = Vector2(0, -8)
 texture = ExtResource("3_m1lie")
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="1" unique_id=1210951323]
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_m1lie")
+
+[node name="Flag" type="AnimatedSprite2D" parent="StaticBody2D" index="2" unique_id=729403864]
+sprite_frames = SubResource("SpriteFrames_7dgwu")
+autoplay = "default"
+frame_progress = 0.7190248
 
 [node name="SnapMarker2D" parent="." index="2" unique_id=302847599]
 position = Vector2(0, -120)
 
 [node name="BottomMarker2D" type="Marker2D" parent="." index="3" unique_id=1084802276]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1993270549]
+libraries/ = SubResource("AnimationLibrary_tuagj")
