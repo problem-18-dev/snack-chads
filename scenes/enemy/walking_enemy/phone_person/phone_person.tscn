@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csj5opj8ti4ps"]
 
 [ext_resource type="PackedScene" uid="uid://dgljijvd3g7qr" path="res://scenes/enemy/walking_enemy/walking_enemy.tscn" id="1_n5kbo"]
-[ext_resource type="Texture2D" uid="uid://bn75rh6nnm7ws" path="res://scenes/enemy/walking_enemy/phone_person/sprites/phone_person.png" id="2_qpggh"]
+[ext_resource type="Texture2D" uid="uid://dyphgmyp2bf7n" path="res://scenes/enemy/walking_enemy/phone_person/sprites/phone_person.png" id="2_qpggh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mh51a"]
 atlas = ExtResource("2_qpggh")
@@ -81,4 +81,4 @@ position = Vector2(0, -0.5)
 shape = SubResource("CapsuleShape2D_g02h3")
 
 [node name="VisibleOnScreenEnabler2D" parent="." index="2" unique_id=1947978349]
-rect = Rect2(-8, -8, 16, 18)
+rect = Rect2(-10, -8, 20, 18)

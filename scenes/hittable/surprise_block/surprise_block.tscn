@@ -66,14 +66,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_0luhf"]
-resource_name = "pop"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4tlb"]
-_data = {
-&"pop": SubResource("Animation_0luhf")
-}
-
 [node name="SurpriseBlock" unique_id=1497541472 groups=["blocks"] instance=ExtResource("1_hh50o")]
 script = ExtResource("2_0luhf")
 content_packed = null
@@ -88,6 +80,3 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_fxmoe")
 animation = &"shine"
 autoplay = "shine"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=134524426]
-libraries/ = SubResource("AnimationLibrary_l4tlb")
