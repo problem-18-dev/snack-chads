@@ -16,6 +16,9 @@ func _enter(data := { }) -> void:
 	if data.has("death"):
 		_die()
 
+	if data.has("walk_to"):
+		_walk_to(data.walk_to)
+
 
 func _exit() -> void:
 	player.invincibility_timer.paused = false
@@ -40,6 +43,14 @@ func _die() -> void:
 	player.velocity = Vector2(0, -DEATH_JUMP_FORCE)
 	player.collision_shape.set_deferred("disabled", true)
 	player.invincible_area.monitoring = false
+
+
+func _walk_to(destination: Vector2) -> void:
+	player.sprite.flip_h = false
+	player.sprite.play("walk")
+	var tween := create_tween()
+	tween.tween_property(player, "global_position", destination, player.walk_to_duration)
+	tween.tween_callback(player.sprite.play.bind("idle"))
 
 
 func _apply_gravity(delta: float) -> void:

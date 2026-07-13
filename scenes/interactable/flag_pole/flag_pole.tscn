@@ -11,13 +11,14 @@ normal = Vector2(-1, 0)
 size = Vector2(8, 128)
 
 [node name="FlagPole" unique_id=95559118 instance=ExtResource("1_utgpf")]
+z_index = -1
 script = ExtResource("2_amq1p")
 slide_duration = 1.0
-debug_enabled = true
+delay_before_store = 2.0
+metadata/_edit_group_ = true
 
 [node name="DetectionArea" parent="." index="0" unique_id=625485120]
 position = Vector2(0, -64)
-monitorable = false
 
 [node name="CollisionShape2D" parent="DetectionArea" index="0" unique_id=1855683179]
 position = Vector2(-8, 0)

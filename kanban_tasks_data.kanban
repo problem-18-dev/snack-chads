@@ -11,9 +11,11 @@
 			"uuid": "4b284a19-7c77-4217-94dd-c9b18ac7587c",
 			"title": "Todo",
 			"tasks": [
-				"ae997540-5355-4799-a74b-4247bd7d1fa5",
 				"2c070994-f510-46da-843e-687e5c5f37f4",
-				"45e49a18-867a-4588-921a-11f15497ea3d"
+				"45e49a18-867a-4588-921a-11f15497ea3d",
+				"a58fb826-f290-472e-9ce3-9b15f9c3e2bb",
+				"4fd05f71-920d-4d0a-9285-51e5d3da81a7",
+				"d8775330-eb3f-490c-8c82-21d977e95c21"
 			]
 		},
 		{
@@ -31,7 +33,8 @@
 				"f92f24d8-c5b3-465f-b0f1-df2f80822df6",
 				"031536c9-7f62-43ef-ba42-3d1cc387751d",
 				"ab3fb2eb-589d-4f4b-a498-c4e4335461c6",
-				"e7a0ef8e-80d5-4954-9147-b9452c7324c0"
+				"e7a0ef8e-80d5-4954-9147-b9452c7324c0",
+				"ae997540-5355-4799-a74b-4247bd7d1fa5"
 			]
 		}
 	],
@@ -102,6 +105,34 @@
 		{
 			"uuid": "ab3fb2eb-589d-4f4b-a498-c4e4335461c6",
 			"title": "[Bug] Adjust player animation after taking consumable",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "a58fb826-f290-472e-9ce3-9b15f9c3e2bb",
+			"title": "[Feat] Connect entering store with ending the level",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "4fd05f71-920d-4d0a-9285-51e5d3da81a7",
+			"title": "[Feat] Add score",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "d8775330-eb3f-490c-8c82-21d977e95c21",
+			"title": "[Feat] Add lives",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "a5cc5af2-caf5-4948-939f-bd30901ce3e9",
+			"title": "New task",
 			"description": "",
 			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
 			"steps": []

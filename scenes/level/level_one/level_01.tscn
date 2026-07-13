@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bilpg3ujw5ub6" path="res://scenes/interactable/flag_pole/flag_pole.tscn" id="3_78axx"]
 [ext_resource type="PackedScene" uid="uid://cnkmybobis5mu" path="res://scenes/pipe/pipe.tscn" id="4_3nj76"]
 [ext_resource type="PackedScene" uid="uid://djmc3icr5nb0j" path="res://scenes/pipe/pipe_exit/pipe_exit.tscn" id="4_78axx"]
+[ext_resource type="PackedScene" uid="uid://ckc2eppbf4hv4" path="res://scenes/store/store.tscn" id="4_oys7u"]
 
 [node name="LevelOne" unique_id=1333482150 node_paths=PackedStringArray("start_pipe") instance=ExtResource("1_j6hfs")]
 start_pipe = NodePath("Objects/PipeExit")
@@ -24,8 +25,9 @@ position = Vector2(688, 16)
 enabled = true
 destination = "uid://dbgyvamx02b4y"
 
-[node name="FlagPole" parent="Interactables" parent_id_path=PackedInt32Array(1383092811) index="1" unique_id=1984965871 instance=ExtResource("3_78axx")]
+[node name="FlagPole" parent="Interactables" parent_id_path=PackedInt32Array(1383092811) index="1" unique_id=1984965871 node_paths=PackedStringArray("store") instance=ExtResource("3_78axx")]
 position = Vector2(3130, 0)
+store = NodePath("../../Store")
 
 [node name="Pipe" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="0" unique_id=1327778163 instance=ExtResource("4_3nj76")]
 position = Vector2(400, 48)
@@ -42,5 +44,8 @@ position = Vector2(2864, 48)
 [node name="PipeExit" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="4" unique_id=1155824070 instance=ExtResource("4_78axx")]
 position = Vector2(864, 16)
 
+[node name="Store" parent="." index="5" unique_id=553863471 instance=ExtResource("4_oys7u")]
+position = Vector2(3288, 0)
+
 [node name="SpawnMarker" parent="Markers" parent_id_path=PackedInt32Array(742689600) index="0" unique_id=1120709553]
-position = Vector2(200, 0)
+position = Vector2(128, 0)

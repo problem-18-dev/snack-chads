@@ -45,6 +45,8 @@ const PLAYER_RESOURCES := {
 @export var invincibility_duration := 10.0
 @export_group("Death")
 @export var death_jump_force := 250.0
+@export_group("End")
+@export var walk_to_duration := 3.0
 @export_group("Debug")
 @export_subgroup("Movement")
 @export var debug_velocity := false
@@ -254,6 +256,10 @@ func enable_invincibility(duration := invincibility_duration) -> void:
 	invincibility_timer.start(duration)
 	sprite.material.shader = INVINCIBILITY_SHADER
 	star_particles.emitting = true
+
+
+func walk_to(destination: Vector2) -> void:
+	state_machine.transition_to_state(PlayerState.IMMOBILE, { "walk_to": destination })
 
 
 func _upgrade_player_mode(new_player_mode: PlayerMode) -> void:
