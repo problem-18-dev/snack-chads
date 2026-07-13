@@ -78,9 +78,11 @@ func _handle_collision() -> bool:
 		if collider == null:
 			continue
 
+		var normal := collision.get_normal()
+
 		# Blocks
 		if collider.is_in_group("blocks"):
-			_check_block_hits()
+			_check_block_hits(normal)
 			continue
 
 		# Enemies
@@ -89,14 +91,17 @@ func _handle_collision() -> bool:
 				collider.die()
 				return true
 
-			var normal := collision.get_normal()
 			_check_enemy_hits(collider, normal)
 			return false
 
 	return true
 
 
-func _check_block_hits() -> void:
+func _check_block_hits(normal: Vector2) -> void:
+	var is_under_block := Vector2.DOWN.dot(normal) > 0.1
+	if not is_under_block:
+		return
+
 	for hit_ray_cast in player.hit_raycasts:
 		if hit_ray_cast.is_colliding():
 			var collider: Block = hit_ray_cast.get_collider()

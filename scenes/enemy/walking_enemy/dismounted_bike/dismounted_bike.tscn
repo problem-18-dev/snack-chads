@@ -51,7 +51,7 @@ height = 18.0
 
 [node name="DismountedBike" unique_id=792489795 groups=["pushables"] instance=ExtResource("1_k4coe")]
 script = ExtResource("2_2rdu0")
-speed = 100.0
+speed = 120.0
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=253899374]
 position = Vector2(0, -12)

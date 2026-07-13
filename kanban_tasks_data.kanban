@@ -10,7 +10,16 @@
 		{
 			"uuid": "4b284a19-7c77-4217-94dd-c9b18ac7587c",
 			"title": "Todo",
-			"tasks": []
+			"tasks": [
+				"00da61f7-7450-423f-b43e-049f3f276511",
+				"083e5cdf-98fa-4a5d-88ca-8892218d392f",
+				"031536c9-7f62-43ef-ba42-3d1cc387751d",
+				"f92f24d8-c5b3-465f-b0f1-df2f80822df6",
+				"e7a0ef8e-80d5-4954-9147-b9452c7324c0",
+				"ae997540-5355-4799-a74b-4247bd7d1fa5",
+				"2c070994-f510-46da-843e-687e5c5f37f4",
+				"45e49a18-867a-4588-921a-11f15497ea3d"
+			]
 		},
 		{
 			"uuid": "c0a908b9-e047-402c-9737-80bc5ab2d99f",
@@ -20,10 +29,76 @@
 		{
 			"uuid": "9b76ecd6-5aa2-4e6b-8a9b-83d57d837dd9",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"c0c2c338-cd9f-44d1-a8ee-1f5502e573f9"
+			]
 		}
 	],
-	"tasks": [],
+	"tasks": [
+		{
+			"uuid": "031536c9-7f62-43ef-ba42-3d1cc387751d",
+			"title": "[Feat] Pause invincibility timer when upgrading player mode",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "c0c2c338-cd9f-44d1-a8ee-1f5502e573f9",
+			"title": "[Bug] Fix blocks breaking without actual collision",
+			"description": "This happens when colliding with something else while the brick raycasts are colliding too\n",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "00da61f7-7450-423f-b43e-049f3f276511",
+			"title": "[Bug] Fix visibility ordering when interacting with a pipe",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "083e5cdf-98fa-4a5d-88ca-8892218d392f",
+			"title": "[Bug] Bike immediately hurts after being stopped once",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "f92f24d8-c5b3-465f-b0f1-df2f80822df6",
+			"title": "[Feat] Persist player's mode between levels and rooms",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "2c070994-f510-46da-843e-687e5c5f37f4",
+			"title": "[Art] Improve flagpole art",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "45e49a18-867a-4588-921a-11f15497ea3d",
+			"title": "[Art] Put more incentive on the shine of a surprise block",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "e7a0ef8e-80d5-4954-9147-b9452c7324c0",
+			"title": "[Feat] Bumping a block that's right under an enemy, kills enemy",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "ae997540-5355-4799-a74b-4247bd7d1fa5",
+			"title": "[Feat] Create level ending animation",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		}
+	],
 	"layout": {
 		"columns": [
 			[
