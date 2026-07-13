@@ -1,9 +1,8 @@
 extends Interactable
 
-
 @export_group("Destination")
 @export var enabled := false
-@export_file("*.tscn") var destination: String 
+@export_file("*.tscn") var destination: String
 @export_group("Animation")
 @export var direction := Vector2.DOWN
 @export var distance := 30.0
@@ -19,12 +18,12 @@ func _ready() -> void:
 func interact() -> void:
 	if not enabled:
 		return
-	
+
 	super()
-	
+
 	if debug_enabled:
 		Debug.log("Player interacted with pipe")
-	
+
 	_snap_player()
 	var tween := create_tween().set_ease(Tween.EASE_OUT)
 	var pipe_movement := _get_marker_position() + direction * distance
@@ -39,8 +38,9 @@ func _prepare() -> void:
 
 func _transfer() -> void:
 	assert(destination, "Pipe enabled, but no destination set.")
-	GameState.save_player_state(_player)
-	GameState.set_return_point(GameState.ReturnPoint.Pipe)
+	GameState.save_player_mode(_player.player_mode)
+	GameState.save_player_invincibility_time(_player.get_remaining_invincibility_time())
+	GameState.set_return_point(GameState.ReturnPoint.PIPE)
 	get_tree().change_scene_to_file(destination)
 
 

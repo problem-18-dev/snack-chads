@@ -2,7 +2,6 @@ extends PlayerState
 
 
 func _enter(_data := { }) -> void:
-	player.sprite.play("run")
 	player.ground_particles.emitting = true
 	_check_input()
 
@@ -29,6 +28,12 @@ func _key_input(event: InputEvent) -> void:
 
 func _process_run_movement() -> void:
 	var direction := player.get_direction()
+
+	if is_zero_approx(direction):
+		player.sprite.play("idle")
+	else:
+		player.sprite.play("run")
+
 	player.velocity.x = lerpf(player.velocity.x, player.run_speed * direction, player.run_accel)
 
 
@@ -49,7 +54,7 @@ func _handle_collision() -> void:
 			player.take_damage()
 
 
-### Test
+# We check input whether state should still be in running after pausing the player
 func _check_input() -> void:
 	if Input.is_action_pressed("interact"):
 		return

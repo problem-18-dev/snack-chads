@@ -7,6 +7,7 @@ var _is_dead := false
 
 func _enter(data := { }) -> void:
 	player.ground_particles.emitting = false
+	player.invincibility_timer.paused = true
 
 	if data.has("interactable"):
 		_interact(data.interactable)
@@ -14,6 +15,10 @@ func _enter(data := { }) -> void:
 
 	if data.has("death"):
 		_die()
+
+
+func _exit() -> void:
+	player.invincibility_timer.paused = false
 
 
 func _physics_update(delta: float) -> void:

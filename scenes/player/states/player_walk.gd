@@ -22,7 +22,7 @@ func _key_input(event: InputEvent) -> void:
 		finished.emit(PlayerState.AIR, { "jump": true })
 		return
 
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and not is_zero_approx(player.get_direction()):
 		finished.emit(PlayerState.RUN)
 		return
 

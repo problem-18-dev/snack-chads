@@ -1,16 +1,18 @@
 extends Node
 
+enum ReturnPoint { START, CHECK_POINT, PIPE }
 
-enum ReturnPoint { Start, CheckPoint, Pipe }
+var player_mode := Player.PlayerMode.Normal
+var player_invincibility_time_left := 0.0
+var return_point := ReturnPoint.START
 
-var player_state := {}
-var return_point := ReturnPoint.Start
+
+func save_player_mode(current_player_mode: Player.PlayerMode) -> void:
+	player_mode = current_player_mode
 
 
-func save_player_state(player: Player) -> void:
-	player_state = {
-		"is_grown": player.is_grown,
-	}
+func save_player_invincibility_time(new_invincibility_time_left: float) -> void:
+	player_invincibility_time_left = new_invincibility_time_left
 
 
 func get_return_point() -> ReturnPoint:

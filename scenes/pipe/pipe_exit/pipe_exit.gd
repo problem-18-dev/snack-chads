@@ -1,10 +1,6 @@
 class_name PipeExit
 extends StaticBody2D
 
-
-enum Direction { Right, Top, Bottom, Left }
-
-
 @export_group("Properties")
 @export var horizontal := false
 @export_group("Animation")
@@ -23,10 +19,10 @@ func _ready() -> void:
 func start(player: Player, is_return_point := false) -> void:
 	if debug_enabled:
 		Debug.log("Player exited pipe")
-	
+
 	if is_return_point:
-		GameState.set_return_point(GameState.ReturnPoint.Start)
-	
+		GameState.set_return_point(GameState.ReturnPoint.START)
+
 	player.spawn(start_marker.global_position)
 	var tween := create_tween()
 	tween.tween_property(player, "global_position", destination_marker.global_position, speed)
@@ -36,6 +32,6 @@ func start(player: Player, is_return_point := false) -> void:
 func _adjust_markers() -> void:
 	if not horizontal:
 		return
-	
+
 	start_marker.position.x += 8.0
 	destination_marker.position.x += 8.0

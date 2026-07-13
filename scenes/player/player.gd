@@ -39,11 +39,11 @@ const PLAYER_RESOURCES := {
 @export_group("Interactions")
 @export var pipe_maximum_speed := 10.0
 @export_group("Player Mode")
-@export var star_rotation_speed := 90.0
 @export var consume_duration := 0.5
 @export var hurt_duration := 1.5
+@export_subgroup("Invincibility")
+@export var invincibility_duration := 10.0
 @export_group("Death")
-@export var death_duration := 1.5
 @export var death_jump_force := 250.0
 @export_group("Debug")
 @export_subgroup("Movement")
@@ -102,7 +102,7 @@ func spawn(spawn_position: Vector2) -> void:
 	player_camera.reset_smoothing()
 
 
-func setup(limit_left: int, limit_right: int) -> void:
+func setup_camera(limit_left: int, limit_right: int) -> void:
 	player_camera.setup(limit_left, limit_right)
 
 
@@ -123,13 +123,21 @@ func die() -> void:
 func consume(consumable: Consumable.Type) -> void:
 	match consumable:
 		Consumable.Type.ENERGY_DRINK:
-			_enable_star()
+			enable_invincibility()
 		Consumable.Type.BACKPACK:
 			_upgrade_player_mode(PlayerMode.Large)
 		Consumable.Type.LOLLY_POP:
 			_upgrade_player_mode(PlayerMode.Fire)
 		_:
 			push_error("Consumable not handled: ", consumable)
+
+
+func grow_normal() -> void:
+	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Normal].sprite_frames
+	animation_player.play("shrink")
+
+	if debug_player_mode:
+		Debug.log("Player grows normal")
 
 
 func grow_large() -> void:
@@ -215,6 +223,39 @@ func push_enemy(enemy: Enemy) -> void:
 	enemy.push(push_direction)
 
 
+func set_player_mode(new_player_mode: PlayerMode) -> void:
+	match new_player_mode:
+		PlayerMode.Large:
+			grow_large()
+		PlayerMode.Fire:
+			enable_fire()
+		_:
+			grow_normal()
+
+	player_mode = new_player_mode
+
+
+func get_remaining_invincibility_time() -> float:
+	if invincibility_timer.is_stopped():
+		return 0.0
+
+	return invincibility_timer.time_left
+
+
+func enable_invincibility(duration := invincibility_duration) -> void:
+	if is_zero_approx(duration):
+		return
+
+	if debug_player_mode:
+		Debug.log("Player is in star mode for %s sec!" % duration)
+
+	is_invulnerable = true
+	invincible_area.monitoring = true
+	invincibility_timer.start(duration)
+	sprite.material.shader = INVINCIBILITY_SHADER
+	star_particles.emitting = true
+
+
 func _upgrade_player_mode(new_player_mode: PlayerMode) -> void:
 	consumed.emit()
 
@@ -225,13 +266,7 @@ func _upgrade_player_mode(new_player_mode: PlayerMode) -> void:
 	if new_player_mode > player_mode:
 		player_mode_timer.start(consume_duration)
 
-		if new_player_mode == PlayerMode.Large:
-			grow_large()
-
-		if new_player_mode == PlayerMode.Fire:
-			enable_fire()
-
-		player_mode = new_player_mode
+		set_player_mode(new_player_mode)
 		await player_mode_timer.timeout
 	elif new_player_mode <= player_mode:
 		# Bonus points
@@ -246,27 +281,10 @@ func _downgrade_player_mode() -> void:
 	_pause()
 	player_mode_timer.start(hurt_duration)
 
-	player_mode = (player_mode - 1) as PlayerMode
-	match player_mode:
-		PlayerMode.Large:
-			grow_large()
-		PlayerMode.Normal:
-			sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Normal].sprite_frames
-			animation_player.play("shrink")
+	set_player_mode(player_mode - 1)
 
 	await player_mode_timer.timeout
 	_unpause(previous_state)
-
-
-func _enable_star() -> void:
-	if debug_player_mode:
-		Debug.log("Player is in star mode!")
-
-	is_invulnerable = true
-	invincible_area.monitoring = true
-	invincibility_timer.start()
-	sprite.material.shader = INVINCIBILITY_SHADER
-	star_particles.emitting = true
 
 
 func _pause() -> void:
@@ -282,7 +300,7 @@ func _unpause(resume_state: String) -> void:
 func _prepare() -> void:
 	sprite.material.shader = null
 	invincible_area.monitoring = false
-	sprite.sprite_frames = PLAYER_RESOURCES[player_mode].sprite_frames
+	invincibility_timer.wait_time = invincibility_duration
 
 
 func _flicker(duration: float) -> void:
