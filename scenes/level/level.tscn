@@ -30,12 +30,13 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("3_xv074")]
+z_index = 3
 
 [node name="Interactables" type="Node2D" parent="." unique_id=1383092811]
-z_index = 1
+z_index = 2
 
 [node name="Objects" type="Node2D" parent="." unique_id=391740209]
-z_index = 1
+z_index = 2
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=464281269]
 

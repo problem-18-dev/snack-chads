@@ -147,13 +147,14 @@ grow_vertical = 2
 color = Color(0.078431375, 0.043137256, 0.06666667, 1)
 
 [node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("2_7x0sh")]
+z_index = 3
 tile_set = SubResource("TileSet_2f11h")
 
 [node name="Interactables" type="Node2D" parent="." unique_id=1783490348]
-z_index = 1
+z_index = 2
 
 [node name="Objects" type="Node2D" parent="." unique_id=1696250162]
-z_index = 1
+z_index = 2
 
 [node name="WorldBoundary" parent="." unique_id=1117372907 instance=ExtResource("3_7x0sh")]
 position = Vector2(0, 112)
