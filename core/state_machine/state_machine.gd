@@ -28,12 +28,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	_state._key_input(event)
 
 
-func force_state(state: State) -> void:
-	_state = state
-
-
-func get_current_state() -> State:
-	return _state
+func get_current_state() -> String:
+	return _state.name
 
 
 func transition_to_state(state: String, data := { }) -> void:

@@ -4,6 +4,7 @@ extends PlayerState
 func _enter(_data := { }) -> void:
 	player.sprite.play("run")
 	player.ground_particles.emitting = true
+	_check_input()
 
 
 func _physics_update(_delta: float) -> void:
@@ -46,3 +47,15 @@ func _handle_collision() -> void:
 				continue
 
 			player.take_damage()
+
+
+### Test
+func _check_input() -> void:
+	if Input.is_action_pressed("interact"):
+		return
+
+	if player.is_on_floor():
+		finished.emit(PlayerState.AIR)
+		return
+
+	finished.emit(PlayerState.WALK)

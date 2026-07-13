@@ -610,6 +610,7 @@ walk_deccel = 0.18
 bounce_force_multiplier = 2.25
 debug_points = true
 debug_player_mode = true
+debug_state = true
 metadata/_edit_group_ = true
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1040741919]

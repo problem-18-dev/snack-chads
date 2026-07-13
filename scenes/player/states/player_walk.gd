@@ -2,6 +2,7 @@ extends PlayerState
 
 
 func _enter(_data := { }) -> void:
+	player.sprite.play("walk")
 	player.ground_particles.emitting = true
 
 
