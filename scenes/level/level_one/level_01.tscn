@@ -27,7 +27,8 @@ destination = "uid://dbgyvamx02b4y"
 
 [node name="FlagPole" parent="Interactables" parent_id_path=PackedInt32Array(1383092811) index="1" unique_id=1984965871 node_paths=PackedStringArray("store") instance=ExtResource("3_78axx")]
 position = Vector2(3130, 0)
-store = NodePath("../../Store")
+store = NodePath("../../Objects/Store")
+delay_before_store = 1.0
 
 [node name="Pipe" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="0" unique_id=1327778163 instance=ExtResource("4_3nj76")]
 position = Vector2(400, 48)
@@ -44,8 +45,8 @@ position = Vector2(2864, 48)
 [node name="PipeExit" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="4" unique_id=1155824070 instance=ExtResource("4_78axx")]
 position = Vector2(864, 16)
 
-[node name="Store" parent="." index="5" unique_id=553863471 instance=ExtResource("4_oys7u")]
-position = Vector2(3288, 0)
+[node name="Store" parent="Objects" parent_id_path=PackedInt32Array(391740209) index="5" unique_id=553863471 instance=ExtResource("4_oys7u")]
+position = Vector2(3280, 0)
 
 [node name="SpawnMarker" parent="Markers" parent_id_path=PackedInt32Array(742689600) index="0" unique_id=1120709553]
-position = Vector2(128, 0)
+position = Vector2(3000, -184)

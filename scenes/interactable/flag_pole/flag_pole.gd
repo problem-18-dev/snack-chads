@@ -20,7 +20,7 @@ func interact() -> void:
 
 	var player_position := to_local(_player.global_position)
 	var snap_height := maxf(player_position.y, -MAX_HEIGHT)
-	var snap_position := Vector2(0, snap_height)
+	var snap_position := Vector2(-8.0, snap_height)
 	_adjust_marker(snap_position)
 	await _snap_player()
 	_tween_and_finish()

@@ -48,7 +48,7 @@ func _die() -> void:
 func _walk_to(destination: Vector2) -> void:
 	player.sprite.flip_h = false
 	player.sprite.play("walk")
-	var tween := create_tween()
+	var tween := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.tween_property(player, "global_position", destination, player.walk_to_duration)
 	tween.tween_callback(player.sprite.play.bind("idle"))
 

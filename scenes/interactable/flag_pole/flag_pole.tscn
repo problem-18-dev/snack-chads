@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vfh3o1h2a6uu" path="res://scenes/interactable/interactable.tscn" id="1_utgpf"]
 [ext_resource type="Script" uid="uid://p0iukan5goc3" path="res://scenes/interactable/flag_pole/flag_pole.gd" id="2_amq1p"]
-[ext_resource type="Texture2D" uid="uid://bv8cu3kuo8bc" path="res://scenes/interactable/flag_pole/sprites/flag_pole_pole.png" id="3_m1lie"]
+[ext_resource type="Texture2D" uid="uid://dtabipvwyis56" path="res://scenes/interactable/flag_pole/sprites/flag_pole_pole.png" id="3_m1lie"]
 [ext_resource type="Texture2D" uid="uid://c3k834dec6qtp" path="res://scenes/interactable/flag_pole/sprites/flag_pole.png" id="4_p1s74"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m1lie"]
@@ -33,23 +33,9 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="Animation" id="Animation_p1s74"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D/Flag:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_4fpjv"]
 resource_name = "flag_down"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,23 +43,22 @@ tracks/0/path = NodePath("StaticBody2D/Flag:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 104)]
+"values": [Vector2(0, -8), Vector2(0, 104)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tuagj"]
 _data = {
-&"RESET": SubResource("Animation_p1s74"),
 &"flag_down": SubResource("Animation_4fpjv")
 }
 
 [node name="FlagPole" unique_id=95559118 instance=ExtResource("1_utgpf")]
 z_index = -1
 script = ExtResource("2_amq1p")
-slide_duration = 1.0
-delay_before_store = 2.0
+slide_duration = 0.8
+delay_before_store = 1.25
 metadata/_edit_group_ = true
 
 [node name="DetectionArea" parent="." index="0" unique_id=625485120]
@@ -95,14 +80,16 @@ position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_m1lie")
 
 [node name="Flag" type="AnimatedSprite2D" parent="StaticBody2D" index="2" unique_id=729403864]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_7dgwu")
 autoplay = "default"
 frame_progress = 0.67659247
 
 [node name="SnapMarker2D" parent="." index="2" unique_id=302847599]
-position = Vector2(0, -120)
+position = Vector2(-8, -120)
 
 [node name="BottomMarker2D" type="Marker2D" parent="." index="3" unique_id=1084802276]
+position = Vector2(-8, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1993270549]
 libraries/ = SubResource("AnimationLibrary_tuagj")
