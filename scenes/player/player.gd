@@ -5,6 +5,7 @@ signal died
 signal fired
 signal consumed
 signal started
+signal finished_level
 
 enum PlayerMode { Normal, Large, Fire }
 
@@ -47,6 +48,7 @@ const PLAYER_RESOURCES := {
 @export var death_jump_force := 250.0
 @export_group("End")
 @export var walk_to_duration := 3.0
+@export var time_before_end := 2.0
 @export_group("Debug")
 @export_subgroup("Movement")
 @export var debug_velocity := false

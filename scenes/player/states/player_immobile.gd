@@ -51,6 +51,9 @@ func _walk_to(destination: Vector2) -> void:
 	var tween := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.tween_property(player, "global_position", destination, player.walk_to_duration)
 	tween.tween_callback(player.sprite.play.bind("idle"))
+	await tween.finished
+	await get_tree().create_timer(player.time_before_end).timeout
+	player.finished_level.emit()
 
 
 func _apply_gravity(delta: float) -> void:

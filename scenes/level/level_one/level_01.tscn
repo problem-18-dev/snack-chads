@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ckc2eppbf4hv4" path="res://scenes/store/store.tscn" id="4_oys7u"]
 
 [node name="LevelOne" unique_id=1333482150 node_paths=PackedStringArray("start_pipe") instance=ExtResource("1_j6hfs")]
+next_level = 1
 start_pipe = NodePath("Objects/PipeExit")
 
 [node name="Background" parent="." index="0" unique_id=350663284]
@@ -49,4 +50,4 @@ position = Vector2(864, 16)
 position = Vector2(3280, 0)
 
 [node name="SpawnMarker" parent="Markers" parent_id_path=PackedInt32Array(742689600) index="0" unique_id=1120709553]
-position = Vector2(3000, -184)
+position = Vector2(3000, -168)

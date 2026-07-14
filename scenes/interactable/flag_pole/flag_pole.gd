@@ -30,8 +30,8 @@ func _tween_and_finish() -> void:
 	var tween := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_parallel()
 	tween.tween_property(_player, "global_position", bottom_marker.global_position, slide_duration)
 	tween.tween_callback(animation_player.play.bind("flag_down"))
-	var end_destination := store.get_destination_global_position()
-	tween.chain().tween_callback(_player.walk_to.bind(end_destination)).set_delay(delay_before_store)
+	var walk_destination := store.get_destination_global_position()
+	tween.chain().tween_callback(_player.walk_to.bind(walk_destination)).set_delay(delay_before_store)
 
 
 func _on_detection_area_body_entered(body: Player) -> void:

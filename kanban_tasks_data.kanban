@@ -11,9 +11,12 @@
 			"uuid": "4b284a19-7c77-4217-94dd-c9b18ac7587c",
 			"title": "Todo",
 			"tasks": [
-				"a58fb826-f290-472e-9ce3-9b15f9c3e2bb",
+				"095ec87d-ee3d-4b98-99b6-040317d73158",
+				"4798ebdf-d744-43dc-8470-f06f3017e708",
+				"93388cf7-6b70-41e6-9871-01cc7c7dda6e",
 				"4fd05f71-920d-4d0a-9285-51e5d3da81a7",
-				"d8775330-eb3f-490c-8c82-21d977e95c21"
+				"d8775330-eb3f-490c-8c82-21d977e95c21",
+				"d5000aa1-a1dc-4160-b11a-fb5ac0f16387"
 			]
 		},
 		{
@@ -26,6 +29,7 @@
 			"title": "Done",
 			"tasks": [
 				"c0c2c338-cd9f-44d1-a8ee-1f5502e573f9",
+				"a58fb826-f290-472e-9ce3-9b15f9c3e2bb",
 				"00da61f7-7450-423f-b43e-049f3f276511",
 				"42ea586b-f289-44ac-bf2c-9fa0b5244bb9",
 				"083e5cdf-98fa-4a5d-88ca-8892218d392f",
@@ -134,6 +138,34 @@
 		{
 			"uuid": "42ea586b-f289-44ac-bf2c-9fa0b5244bb9",
 			"title": "[Feat] Improve slide down on flag pole animation",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "095ec87d-ee3d-4b98-99b6-040317d73158",
+			"title": "[Feat] Create level two (underground)",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "93388cf7-6b70-41e6-9871-01cc7c7dda6e",
+			"title": "[Feat] Create level three (normal, longer and more enemies)",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "4798ebdf-d744-43dc-8470-f06f3017e708",
+			"title": "[Feat] Create level four (end)",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "d5000aa1-a1dc-4160-b11a-fb5ac0f16387",
+			"title": "[Feat] Add timer",
 			"description": "",
 			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
 			"steps": []

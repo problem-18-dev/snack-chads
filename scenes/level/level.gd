@@ -4,6 +4,8 @@ extends Node2D
 const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 
 @export_group("Level")
+@export var next_level: Main.Scene
+@export_group("Properties")
 @export var start_pipe: PipeExit
 
 @onready var world: TileMapLayer = $WorldTileMapLayer
@@ -18,6 +20,7 @@ func _prepare_player() -> Player:
 	add_child(player)
 	player.consumed.connect(_on_player_consumed)
 	player.started.connect(_on_player_started)
+	player.finished_level.connect(_on_player_finished_level)
 
 	var level_size := world.get_used_rect()
 	var tile_size := world.tile_set.tile_size
@@ -50,3 +53,8 @@ func _on_player_consumed() -> void:
 
 func _on_player_started() -> void:
 	get_tree().call_group("enemies", "resume")
+
+
+func _on_player_finished_level() -> void:
+	GameManager.set_next_level(next_level)
+	GameManager.main.load_scene(Main.Scene.TRANSITION)
