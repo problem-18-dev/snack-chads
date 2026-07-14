@@ -1,13 +1,14 @@
 class_name Main
 extends Node
 
-enum Scene { LEVEL_ONE, LEVEL_TWO, TRANSITION }
+enum Scene { MAIN_MENU, LEVEL_ONE, LEVEL_TWO, TRANSITION }
 
 @export_group("Scenes")
 @export var initial_scene := Scene.LEVEL_ONE
 
 var _current_scene: Node
 var _scene_paths: Dictionary[Scene, String] = {
+	Scene.MAIN_MENU: "uid://b8c6p7bmxprbg",
 	Scene.LEVEL_ONE: "uid://dab63ts13sv8m",
 	Scene.LEVEL_TWO: "uid://baeaiso4a67ed",
 	Scene.TRANSITION: "uid://b4rgsq0f0o7ti",

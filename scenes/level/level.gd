@@ -49,10 +49,12 @@ func _spawn_player() -> void:
 
 func _on_player_consumed() -> void:
 	get_tree().call_group("enemies", "pause")
+	get_tree().call_group("pushables", "pause")
 
 
 func _on_player_started() -> void:
 	get_tree().call_group("enemies", "resume")
+	get_tree().call_group("pushables", "resume")
 
 
 func _on_player_finished_level() -> void:
