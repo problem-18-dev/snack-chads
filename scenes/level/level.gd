@@ -9,10 +9,11 @@ const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 @export var start_pipe: PipeExit
 
 @onready var world: TileMapLayer = $WorldTileMapLayer
+@onready var transition: Control = $HUD/Transition
 
 
 func _ready() -> void:
-	_spawn_player()
+	transition.show()
 
 
 func _prepare_player() -> Player:
@@ -48,6 +49,12 @@ func _spawn_player() -> void:
 	player.start()
 
 
+func _start_level() -> void:
+	_spawn_player()
+	get_tree().call_group("enemies", "resume")
+	get_tree().call_group("pushables", "resume")
+
+
 func _on_player_died() -> void:
 	GameManager.main.load_scene(Main.Scene.LEVEL_ONE)
 
@@ -63,5 +70,8 @@ func _on_player_started() -> void:
 
 
 func _on_player_finished_level() -> void:
-	GameManager.set_next_level(next_level)
-	GameManager.main.load_scene(Main.Scene.TRANSITION)
+	GameManager.main.load_scene(next_level)
+
+
+func _on_transition_hidden() -> void:
+	_start_level()

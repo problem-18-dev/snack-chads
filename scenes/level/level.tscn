@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b1bnhvryadtop" path="res://scenes/level/level.gd" id="1_vpf64"]
 [ext_resource type="PackedScene" uid="uid://oixjpegbqcmd" path="res://scenes/debug/debug.tscn" id="1_wcngd"]
 [ext_resource type="PackedScene" uid="uid://hdisw1n8q63w" path="res://scenes/level/tile_map_layer/world_tile_map_layer.tscn" id="3_xv074"]
+[ext_resource type="PackedScene" uid="uid://b4rgsq0f0o7ti" path="res://ui/transition/transition.tscn" id="5_hnne4"]
 [ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/death_zone/death_zone.tscn" id="7_b7m21"]
 
 [node name="Level" type="Node2D" unique_id=48944664]
@@ -30,6 +31,9 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="Transition" parent="HUD" unique_id=414138858 instance=ExtResource("5_hnne4")]
+visible = false
+
 [node name="Interactables" type="Node2D" parent="." unique_id=1383092811]
 
 [node name="Objects" type="Node2D" parent="." unique_id=391740209]
@@ -45,3 +49,5 @@ grow_vertical = 1
 [node name="WorldBoundary" parent="." unique_id=1117372907 instance=ExtResource("7_b7m21")]
 position = Vector2(0, 112)
 collision_layer = 8
+
+[connection signal="hidden" from="HUD/Transition" to="." method="_on_transition_hidden"]

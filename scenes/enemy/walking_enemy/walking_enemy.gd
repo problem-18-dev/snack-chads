@@ -10,7 +10,7 @@ extends Enemy
 var _direction := -1
 var _is_dead := false
 
-@onready var _current_speed := speed
+@onready var _current_speed := 0.0
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
