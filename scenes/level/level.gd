@@ -18,6 +18,7 @@ func _ready() -> void:
 func _prepare_player() -> Player:
 	var player: Player = PLAYER_PACKED.instantiate()
 	add_child(player)
+	player.died.connect(_on_player_died)
 	player.consumed.connect(_on_player_consumed)
 	player.started.connect(_on_player_started)
 	player.finished_level.connect(_on_player_finished_level)
@@ -45,6 +46,10 @@ func _spawn_player() -> void:
 	var spawn_position := spawn_marker.position
 	player.spawn(spawn_position)
 	player.start()
+
+
+func _on_player_died() -> void:
+	GameManager.main.load_scene(Main.Scene.LEVEL_ONE)
 
 
 func _on_player_consumed() -> void:

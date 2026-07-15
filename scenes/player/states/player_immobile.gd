@@ -1,7 +1,5 @@
 extends PlayerState
 
-const DEATH_JUMP_FORCE := 250.0
-
 var _is_dead := false
 
 
@@ -15,6 +13,7 @@ func _enter(data := { }) -> void:
 
 	if data.has("death"):
 		_die()
+		return
 
 	if data.has("walk_to"):
 		_walk_to(data.walk_to)
@@ -22,14 +21,6 @@ func _enter(data := { }) -> void:
 
 func _exit() -> void:
 	player.invincibility_timer.paused = false
-
-
-func _physics_update(delta: float) -> void:
-	if not _is_dead:
-		return
-
-	_apply_gravity(delta)
-	player.move_and_slide()
 
 
 func _interact(interactable: Interactable) -> void:
@@ -40,9 +31,16 @@ func _interact(interactable: Interactable) -> void:
 func _die() -> void:
 	_is_dead = true
 	player.sprite.play("death")
-	player.velocity = Vector2(0, -DEATH_JUMP_FORCE)
 	player.collision_shape.set_deferred("disabled", true)
 	player.invincible_area.monitoring = false
+
+	var tween := create_tween().set_trans(Tween.TRANS_SINE)
+	var jump_distance = Vector2.UP * player.death_jump_distance
+	tween.tween_property(player, "position", player.position + jump_distance, player.death_duration).set_delay(player.death_pause)
+	tween.tween_property(player, "position", player.position - jump_distance, player.death_duration)
+	await tween.finished
+
+	player.died.emit()
 
 
 func _walk_to(destination: Vector2) -> void:
@@ -54,8 +52,3 @@ func _walk_to(destination: Vector2) -> void:
 	await tween.finished
 	await get_tree().create_timer(player.time_before_end).timeout
 	player.finished_level.emit()
-
-
-func _apply_gravity(delta: float) -> void:
-	var death_gravity := player.get_gravity().y / 2
-	player.velocity.y += death_gravity * delta

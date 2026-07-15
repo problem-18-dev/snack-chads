@@ -7,14 +7,14 @@ signal consumed
 signal started
 signal finished_level
 
-enum PlayerMode { Normal, Large, Fire }
+enum PlayerMode { NORMAL, LARGE, FIRE }
 
 const PROJECTILE: PackedScene = preload("uid://dvmwy36oldp5")
 const INVINCIBILITY_SHADER: Shader = preload("uid://u1wm04bxa3qy")
 const PLAYER_RESOURCES := {
-	PlayerMode.Normal: preload("uid://bkxnhau8jvgdv"),
-	PlayerMode.Large: preload("uid://bqgwcyojoi3a1"),
-	PlayerMode.Fire: preload("uid://dcsb3nuldr7a7"),
+	PlayerMode.NORMAL: preload("uid://bkxnhau8jvgdv"),
+	PlayerMode.LARGE: preload("uid://bqgwcyojoi3a1"),
+	PlayerMode.FIRE: preload("uid://dcsb3nuldr7a7"),
 }
 
 @export_group("Movement")
@@ -45,7 +45,9 @@ const PLAYER_RESOURCES := {
 @export_subgroup("Invincibility")
 @export var invincibility_duration := 10.0
 @export_group("Death")
-@export var death_jump_force := 250.0
+@export var death_pause := 0.5
+@export var death_jump_distance := 64.0
+@export var death_duration := 0.75
 @export_group("End")
 @export var walk_to_duration := 3.0
 @export var time_before_end := 2.0
@@ -61,7 +63,7 @@ const PLAYER_RESOURCES := {
 @export_subgroup("State machine")
 @export var debug_state := false
 
-var player_mode := PlayerMode.Normal
+var player_mode := PlayerMode.NORMAL
 var is_invulnerable := false
 var _interactable: Interactable
 var _can_shoot := false
@@ -70,7 +72,10 @@ var _can_shoot := false
 	$Raycasts/LeftJumpBufferRayCast,
 	$Raycasts/RightJumpBufferRayCast,
 ]
-@onready var hit_raycasts: Array[RayCast2D] = [$Raycasts/LeftUpperHitRaycast, $Raycasts/RightUpperHitRaycast]
+@onready var hit_raycasts: Array[RayCast2D] = [
+	$Raycasts/LeftUpperHitRaycast,
+	$Raycasts/RightUpperHitRaycast,
+]
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_camera: PlayerCamera = $PlayerCamera
@@ -111,7 +116,7 @@ func setup_camera(limit_left: int, limit_right: int) -> void:
 
 
 func take_damage() -> void:
-	if player_mode == PlayerMode.Normal:
+	if player_mode == PlayerMode.NORMAL:
 		die()
 		return
 
@@ -120,7 +125,6 @@ func take_damage() -> void:
 
 
 func die() -> void:
-	died.emit()
 	state_machine.transition_to_state(PlayerState.IMMOBILE, { "death": true })
 
 
@@ -129,15 +133,15 @@ func consume(consumable: Consumable.Type) -> void:
 		Consumable.Type.ENERGY_DRINK:
 			enable_invincibility()
 		Consumable.Type.BACKPACK:
-			_upgrade_player_mode(PlayerMode.Large)
+			_upgrade_player_mode(PlayerMode.LARGE)
 		Consumable.Type.LOLLY_POP:
-			_upgrade_player_mode(PlayerMode.Fire)
+			_upgrade_player_mode(PlayerMode.FIRE)
 		_:
 			push_error("Consumable not handled: ", consumable)
 
 
 func grow_normal() -> void:
-	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Normal].sprite_frames
+	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.NORMAL].sprite_frames
 	animation_player.play("shrink")
 
 	if debug_player_mode:
@@ -145,7 +149,7 @@ func grow_normal() -> void:
 
 
 func grow_large() -> void:
-	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Large].sprite_frames
+	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.LARGE].sprite_frames
 	animation_player.play("large")
 
 	if debug_player_mode:
@@ -153,7 +157,7 @@ func grow_large() -> void:
 
 
 func enable_fire() -> void:
-	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.Fire].sprite_frames
+	sprite.sprite_frames = PLAYER_RESOURCES[PlayerMode.FIRE].sprite_frames
 	animation_player.play("fire")
 	_can_shoot = true
 
@@ -166,7 +170,7 @@ func is_slow() -> bool:
 
 
 func is_grown() -> bool:
-	return player_mode != PlayerMode.Normal
+	return player_mode != PlayerMode.NORMAL
 
 
 func reset() -> void:
@@ -174,7 +178,7 @@ func reset() -> void:
 
 
 func shoot() -> void:
-	if player_mode != PlayerMode.Fire or not _can_shoot:
+	if player_mode != PlayerMode.FIRE or not _can_shoot:
 		return
 
 	var projectile: Projectile = PROJECTILE.instantiate()
@@ -229,9 +233,9 @@ func push_enemy(enemy: Enemy) -> void:
 
 func set_player_mode(new_player_mode: PlayerMode) -> void:
 	match new_player_mode:
-		PlayerMode.Large:
+		PlayerMode.LARGE:
 			grow_large()
-		PlayerMode.Fire:
+		PlayerMode.FIRE:
 			enable_fire()
 		_:
 			grow_normal()
@@ -371,7 +375,7 @@ func _on_state_finished_debug(state: String, data := { }) -> void:
 
 
 func _on_shoot_cooldown_timer_timeout() -> void:
-	if player_mode != PlayerMode.Fire:
+	if player_mode != PlayerMode.FIRE:
 		_can_shoot = false
 		return
 

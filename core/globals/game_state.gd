@@ -2,7 +2,7 @@ extends Node
 
 enum ReturnPoint { START, CHECK_POINT, PIPE }
 
-var player_mode := Player.PlayerMode.Normal
+var player_mode := Player.PlayerMode.NORMAL
 var player_invincibility_time_left := 0.0
 var return_point := ReturnPoint.START
 

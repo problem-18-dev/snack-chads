@@ -30,20 +30,17 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("3_xv074")]
-z_index = 3
-
 [node name="Interactables" type="Node2D" parent="." unique_id=1383092811]
-z_index = 2
 
 [node name="Objects" type="Node2D" parent="." unique_id=391740209]
-z_index = 2
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=464281269]
 
 [node name="Markers" type="Node2D" parent="." unique_id=742689600]
 
 [node name="SpawnMarker" type="Marker2D" parent="Markers" unique_id=1120709553]
+
+[node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("3_xv074")]
 
 [node name="WorldBoundary" parent="." unique_id=1117372907 instance=ExtResource("7_b7m21")]
 position = Vector2(0, 112)
