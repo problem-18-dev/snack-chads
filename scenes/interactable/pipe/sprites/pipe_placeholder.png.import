@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd7adqhsghmj0"
-path="res://.godot/imported/flag_pole_pole.png-73f98bf7e25db4cde3c11248b96684d6.ctex"
+uid="uid://00wsyaeihkue"
+path="res://.godot/imported/pipe_placeholder.png-0f20edb37ff54fcff8c24a3a2241e655.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/interactable/flag_pole/sprites/flag_pole_pole.png"
-dest_files=["res://.godot/imported/flag_pole_pole.png-73f98bf7e25db4cde3c11248b96684d6.ctex"]
+source_file="res://scenes/interactable/pipe/sprites/pipe_placeholder.png"
+dest_files=["res://.godot/imported/pipe_placeholder.png-0f20edb37ff54fcff8c24a3a2241e655.ctex"]
 
 [params]
 

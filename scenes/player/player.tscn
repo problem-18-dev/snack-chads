@@ -622,7 +622,7 @@ limit_bottom = 48
 position_smoothing_enabled = true
 position_smoothing_speed = 7.5
 drag_horizontal_enabled = true
-drag_left_margin = 0.9
+drag_left_margin = 0.8
 drag_right_margin = 0.0
 script = ExtResource("2_5gtgg")
 
@@ -670,7 +670,7 @@ gravity = Vector2(0, -25)
 angular_velocity_min = 10.0
 angular_velocity_max = 45.0
 scale_amount_max = 1.5
-color = Color(0.87058824, 0.6392157, 0.54509807, 1)
+color = Color(0.34117648, 0.40784314, 0.45882353, 1)
 
 [node name="StarParticles" type="CPUParticles2D" parent="AnimatedSprite2D" unique_id=320743878]
 z_index = -1

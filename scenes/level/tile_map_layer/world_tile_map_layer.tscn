@@ -91,6 +91,8 @@ texture = ExtResource("1_i1mrs")
 2:2/0/terrains_peering_bit/left_side = 0
 2:2/0/terrains_peering_bit/top_left_corner = 0
 2:2/0/terrains_peering_bit/top_side = 0
+15:1/0 = 0
+15:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_pio3d"]
 resource_name = "Enemies"

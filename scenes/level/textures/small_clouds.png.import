@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd7adqhsghmj0"
-path="res://.godot/imported/flag_pole_pole.png-73f98bf7e25db4cde3c11248b96684d6.ctex"
+uid="uid://bl2cllo4akbcp"
+path="res://.godot/imported/small_clouds.png-b92e582063b1f286fbb1d1e123c3e8ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/interactable/flag_pole/sprites/flag_pole_pole.png"
-dest_files=["res://.godot/imported/flag_pole_pole.png-73f98bf7e25db4cde3c11248b96684d6.ctex"]
+source_file="res://scenes/level/textures/small_clouds.png"
+dest_files=["res://.godot/imported/small_clouds.png-b92e582063b1f286fbb1d1e123c3e8ec.ctex"]
 
 [params]
 

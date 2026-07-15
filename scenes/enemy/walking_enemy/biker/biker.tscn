@@ -49,7 +49,7 @@ death_rotation_speed = 16.0
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=253899374]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_6jpr1")
-animation = &"death"
+animation = &"walk"
 autoplay = "walk"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1783304354]

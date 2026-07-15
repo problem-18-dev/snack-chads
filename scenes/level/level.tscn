@@ -34,6 +34,14 @@ grow_vertical = 1
 [node name="Transition" parent="HUD" unique_id=414138858 instance=ExtResource("5_hnne4")]
 visible = false
 
+[node name="FarParallax" type="Parallax2D" parent="." unique_id=396682803]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(240, 0)
+
+[node name="NearParallax" type="Parallax2D" parent="." unique_id=2060077157]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(240, 0)
+
 [node name="Interactables" type="Node2D" parent="." unique_id=1383092811]
 
 [node name="Objects" type="Node2D" parent="." unique_id=391740209]
