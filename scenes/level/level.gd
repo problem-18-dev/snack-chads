@@ -50,13 +50,15 @@ func _spawn_player() -> void:
 
 
 func _start_level() -> void:
-	_spawn_player()
+	call_deferred("_spawn_player")
 	get_tree().call_group("enemies", "resume")
 	get_tree().call_group("pushables", "resume")
 
 
 func _on_player_died() -> void:
-	GameManager.main.load_scene(Main.Scene.LEVEL_ONE)
+	GameState.reset()
+	# Next level is always next pointer, so -1 is same level
+	GameManager.main.load_scene(next_level - 1)
 
 
 func _on_player_consumed() -> void:
@@ -73,5 +75,5 @@ func _on_player_finished_level() -> void:
 	GameManager.main.load_scene(next_level)
 
 
-func _on_transition_hidden() -> void:
+func _on_transition_tree_exiting() -> void:
 	_start_level()

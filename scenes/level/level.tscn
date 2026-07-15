@@ -47,7 +47,7 @@ visible = false
 [node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("3_xv074")]
 
 [node name="WorldBoundary" parent="." unique_id=1117372907 instance=ExtResource("7_b7m21")]
-position = Vector2(0, 112)
+position = Vector2(0, 32)
 collision_layer = 8
 
-[connection signal="hidden" from="HUD/Transition" to="." method="_on_transition_hidden"]
+[connection signal="tree_exiting" from="HUD/Transition" to="." method="_on_transition_tree_exiting"]

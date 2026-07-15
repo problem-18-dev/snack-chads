@@ -1,25 +1,6 @@
 [gd_scene format=3 uid="uid://b4rgsq0f0o7ti"]
 
-[sub_resource type="Animation" id="Animation_1tu1e"]
-resource_name = "fade"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8qd52"]
-_data = {
-&"fade": SubResource("Animation_1tu1e")
-}
+[ext_resource type="Script" uid="uid://cvubc12ykg825" path="res://ui/transition/transition.gd" id="1_1tu1e"]
 
 [node name="Transition" type="Control" unique_id=414138858]
 layout_mode = 3
@@ -28,6 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1tu1e")
+duration = 2.0
 
 [node name="Background" type="ColorRect" parent="." unique_id=558431637]
 layout_mode = 1
@@ -67,6 +50,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Next: 1-2"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1831522952]
-libraries/ = SubResource("AnimationLibrary_8qd52")
-autoplay = &"fade"
+[node name="DurationTimer" type="Timer" parent="." unique_id=1262773461]
+one_shot = true
+
+[connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]

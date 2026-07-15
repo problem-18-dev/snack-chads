@@ -21,3 +21,9 @@ func get_return_point() -> ReturnPoint:
 
 func set_return_point(new_return_point: ReturnPoint) -> void:
 	return_point = new_return_point
+
+
+func reset() -> void:
+	player_mode = Player.PlayerMode.NORMAL
+	player_invincibility_time_left = 0.0
+	return_point = ReturnPoint.START
