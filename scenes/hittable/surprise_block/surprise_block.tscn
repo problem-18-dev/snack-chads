@@ -67,6 +67,7 @@ animations = [{
 }]
 
 [node name="SurpriseBlock" unique_id=1497541472 groups=["blocks"] instance=ExtResource("1_hh50o")]
+z_index = 1
 script = ExtResource("2_0luhf")
 content_packed = null
 duration = 0.5

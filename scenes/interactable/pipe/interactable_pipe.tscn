@@ -11,6 +11,7 @@ size = Vector2(18, 146)
 size = Vector2(32, 128)
 
 [node name="InteractablePipe" unique_id=95559118 instance=ExtResource("1_jcf1n")]
+z_index = 1
 script = ExtResource("2_ia0d4")
 enabled = false
 destination = ""

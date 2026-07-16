@@ -4,15 +4,19 @@ extends Node2D
 const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 
 @export_group("Level")
+@export var transition: Transition
 @export var next_level: Main.Scene
 @export_group("Properties")
 @export var start_pipe: PipeExit
 
 @onready var world: TileMapLayer = $WorldTileMapLayer
-@onready var transition: Control = $HUD/Transition
 
 
 func _ready() -> void:
+	if not transition:
+		_start_level()
+		return
+
 	transition.show()
 
 

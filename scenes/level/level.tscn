@@ -11,7 +11,7 @@ script = ExtResource("1_vpf64")
 next_level = 1
 
 [node name="Background" type="ColorRect" parent="." unique_id=350663284]
-z_index = -1
+z_index = -4
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

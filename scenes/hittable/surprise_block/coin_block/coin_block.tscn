@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b615s7vi8t3mu"]
+
+[ext_resource type="PackedScene" uid="uid://tioa1x6hm6hk" path="res://scenes/hittable/surprise_block/surprise_block.tscn" id="1_x8apq"]
+[ext_resource type="PackedScene" uid="uid://bnlemcsa2avmg" path="res://scenes/pickuppable/coin/coin.tscn" id="2_i28jd"]
+
+[node name="CoinBlock" unique_id=1497541472 instance=ExtResource("1_x8apq")]
+content_packed = ExtResource("2_i28jd")
+duration = 0.0

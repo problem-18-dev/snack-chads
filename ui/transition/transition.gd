@@ -1,3 +1,4 @@
+class_name Transition
 extends Control
 
 @export_group("Properties")
