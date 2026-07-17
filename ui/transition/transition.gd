@@ -12,4 +12,4 @@ func _ready() -> void:
 
 
 func _on_duration_timer_timeout() -> void:
-	queue_free()
+	hide()

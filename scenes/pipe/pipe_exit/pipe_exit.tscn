@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ds7a011c10in2" path="res://scenes/pipe/pipe_exit/pipe_exit.gd" id="2_4s1ww"]
 
 [node name="PipeExit" unique_id=1327778163 instance=ExtResource("1_y6dsl")]
+z_index = 1
 script = ExtResource("2_4s1ww")
 
 [node name="StartMarker" type="Marker2D" parent="." index="2" unique_id=860085417]

@@ -622,7 +622,7 @@ limit_bottom = 48
 position_smoothing_enabled = true
 position_smoothing_speed = 7.5
 drag_horizontal_enabled = true
-drag_left_margin = 0.8
+drag_left_margin = 1.0
 drag_right_margin = 0.0
 script = ExtResource("2_5gtgg")
 

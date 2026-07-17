@@ -334,6 +334,10 @@ func _limit_movement() -> void:
 		global_position.x = limit_left
 		velocity.x = 0
 
+	if current_position < player_camera.left_boundary:
+		global_position.x = player_camera.left_boundary
+		velocity.x = 0
+
 	if is_equal_approx(current_position, limit_right):
 		global_position.x = limit_right
 		velocity.x = 0

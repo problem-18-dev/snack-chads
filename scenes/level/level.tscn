@@ -58,4 +58,5 @@ repeat_size = Vector2(240, 0)
 position = Vector2(0, 32)
 collision_layer = 8
 
+[connection signal="hidden" from="HUD/Transition" to="." method="_on_transition_hidden"]
 [connection signal="tree_exiting" from="HUD/Transition" to="." method="_on_transition_tree_exiting"]

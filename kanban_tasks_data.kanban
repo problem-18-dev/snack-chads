@@ -17,6 +17,13 @@
 				"4fd05f71-920d-4d0a-9285-51e5d3da81a7",
 				"d8775330-eb3f-490c-8c82-21d977e95c21",
 				"d5000aa1-a1dc-4160-b11a-fb5ac0f16387",
+				"e9f026e2-eb02-4663-9431-e344b523889e",
+				"0a10c935-869d-4ceb-83c5-69b9067e7d77",
+				"982446db-79e3-4b56-b708-ec3ccb95410f",
+				"35869da5-92d8-4791-946a-25896a0ccab7",
+				"36bb8924-b7f6-4c0c-9b12-4ac5da6ee156",
+				"44786212-aa62-4b73-95e8-c41adca36d62",
+				"1adaeafd-98ec-45ed-8ea3-b13628ff85a7",
 				"9e0299be-0693-4908-a0be-b231916a7b41"
 			]
 		},
@@ -33,6 +40,7 @@
 				"a58fb826-f290-472e-9ce3-9b15f9c3e2bb",
 				"00da61f7-7450-423f-b43e-049f3f276511",
 				"c18509b5-14f6-4912-8c1f-ca71dd0a4862",
+				"d0a9ab1c-51ef-4f38-a02a-364e550f5e19",
 				"962ffbc4-f118-4a89-90fc-bf3f13f6a61d",
 				"42ea586b-f289-44ac-bf2c-9fa0b5244bb9",
 				"9950f24e-5503-497a-b59a-9eb6f6e9d95e",
@@ -206,6 +214,62 @@
 		{
 			"uuid": "9950f24e-5503-497a-b59a-9eb6f6e9d95e",
 			"title": "[Bug] Player not visible when dying",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "e9f026e2-eb02-4663-9431-e344b523889e",
+			"title": "[Feat] 1-up backpack",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "0a10c935-869d-4ceb-83c5-69b9067e7d77",
+			"title": "[Feat] Pipe enemy bite thingy",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "982446db-79e3-4b56-b708-ec3ccb95410f",
+			"title": "[Feat] Add SFX",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "35869da5-92d8-4791-946a-25896a0ccab7",
+			"title": "[Feat] Create main menu",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "36bb8924-b7f6-4c0c-9b12-4ac5da6ee156",
+			"title": "[Feat] Create transition screen",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "44786212-aa62-4b73-95e8-c41adca36d62",
+			"title": "[Feat] Create end boss",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "1adaeafd-98ec-45ed-8ea3-b13628ff85a7",
+			"title": "[Feat] Create credits screen",
+			"description": "",
+			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
+			"steps": []
+		},
+		{
+			"uuid": "d0a9ab1c-51ef-4f38-a02a-364e550f5e19",
+			"title": "[Bug] Block player from going backwards",
 			"description": "",
 			"category": "8a467bad-e748-447b-9083-603d1dae87f6",
 			"steps": []

@@ -10,10 +10,11 @@ const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 @export var start_pipe: PipeExit
 
 @onready var world: TileMapLayer = $WorldTileMapLayer
+@onready var spawn_in_pipe := GameState.get_return_point() == GameState.ReturnPoint.PIPE
 
 
 func _ready() -> void:
-	if not transition:
+	if not transition or spawn_in_pipe:
 		_start_level()
 		return
 
@@ -41,7 +42,6 @@ func _prepare_player() -> Player:
 func _spawn_player() -> void:
 	var player := _prepare_player()
 
-	var spawn_in_pipe := GameState.get_return_point() == GameState.ReturnPoint.PIPE
 	if spawn_in_pipe and start_pipe:
 		assert(start_pipe, "Player to spawn in pipe, but pipe doesn't exist.")
 		start_pipe.start(player)
@@ -55,8 +55,8 @@ func _spawn_player() -> void:
 
 func _start_level() -> void:
 	call_deferred("_spawn_player")
-	get_tree().call_group("enemies", "resume")
-	get_tree().call_group("pushables", "resume")
+	get_tree().call_deferred("call_group", "enemies", "resume")
+	get_tree().call_deferred("call_group", "pushables", "resume")
 
 
 func _on_player_died() -> void:
@@ -79,5 +79,5 @@ func _on_player_finished_level() -> void:
 	GameManager.main.load_scene(next_level)
 
 
-func _on_transition_tree_exiting() -> void:
+func _on_transition_hidden() -> void:
 	_start_level()
