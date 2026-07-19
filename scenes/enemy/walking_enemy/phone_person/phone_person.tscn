@@ -81,4 +81,12 @@ position = Vector2(0, -0.5)
 shape = SubResource("CapsuleShape2D_g02h3")
 
 [node name="VisibleOnScreenEnabler2D" parent="." index="2" unique_id=1947978349]
-rect = Rect2(-10, -8, 20, 18)
+rect = Rect2(-13, -8, 26, 18)
+
+[node name="GroundCheckLeftRayCast" parent="." index="3" unique_id=1260554353]
+position = Vector2(-8, 0)
+target_position = Vector2(-4, 10)
+
+[node name="GroundCheckRightRayCast" parent="." index="4" unique_id=1567533170]
+position = Vector2(8, 0)
+target_position = Vector2(4, 10)

@@ -27,9 +27,9 @@ func _adjust_marker(new_position: Vector2) -> void:
 
 func _snap_player() -> void:
 	if not snap_animated:
-		_player.spawn(_get_marker_position())
+		_player.spawn(_get_marker_position(), false)
 		return
-	
+
 	_snap_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_snap_tween.tween_property(_player, "global_position", _get_marker_position(), snap_duration)
 	await _snap_tween.finished

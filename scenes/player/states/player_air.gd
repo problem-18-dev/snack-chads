@@ -110,6 +110,7 @@ func _check_block_hits(normal: Vector2) -> void:
 				return
 
 			collider.bump()
+			return
 
 
 func _check_enemy_hits(collider: Enemy, normal: Vector2) -> void:

@@ -7,9 +7,21 @@ extends Hittable
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+var _rest_position: Vector2
+var _bump_tween: Tween
+
+
+func _ready() -> void:
+	_rest_position = position
+
 
 func bump() -> void:
-	var tween := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.tween_callback(_check_hit)
-	tween.tween_property(self, "position", position + Vector2.UP * bump_offset, bump_duration / 2)
-	tween.tween_property(self, "position", position, bump_duration / 2)
+	if _bump_tween and _bump_tween.is_valid():
+		_bump_tween.kill()
+
+	position = _rest_position
+
+	_bump_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	_bump_tween.tween_callback(_check_hit)
+	_bump_tween.tween_property(self, "position", _rest_position + Vector2.UP * bump_offset, bump_duration / 2)
+	_bump_tween.tween_property(self, "position", _rest_position, bump_duration / 2)

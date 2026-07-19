@@ -52,6 +52,7 @@ height = 18.0
 [node name="DismountedBike" unique_id=792489795 groups=["pushables"] instance=ExtResource("1_k4coe")]
 script = ExtResource("2_2rdu0")
 speed = 160.0
+turn_around_on_cliff = false
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=253899374]
 position = Vector2(0, -12)
@@ -66,10 +67,13 @@ shape = SubResource("CapsuleShape2D_2rdu0")
 
 [node name="VisibleOnScreenEnabler2D" parent="." index="2" unique_id=1947978349]
 position = Vector2(0, -6)
-rect = Rect2(-12, -8, 24, 16)
+rect = Rect2(-15, -8, 30, 16)
 
 [node name="Timer" type="Timer" parent="." index="3" unique_id=1099029353]
 wait_time = 0.1
 one_shot = true
+
+[node name="GroundCheckRayCast" parent="." index="4" unique_id=517677263]
+target_position = Vector2(8, 8)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

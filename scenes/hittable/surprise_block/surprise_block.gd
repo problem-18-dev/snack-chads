@@ -11,6 +11,7 @@ var _content: Node2D
 
 
 func _ready() -> void:
+	super()
 	_prepare_content()
 
 

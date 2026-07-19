@@ -105,14 +105,15 @@ func start() -> void:
 	state_machine.transition_to_state(PlayerState.AIR)
 
 
-func spawn(spawn_position: Vector2) -> void:
+func spawn(spawn_position: Vector2, camera_instant := true) -> void:
 	global_position = spawn_position
-	player_camera.align()
-	player_camera.reset_smoothing()
+	if camera_instant:
+		player_camera.align()
+		player_camera.reset_smoothing()
 
 
-func setup_camera(limit_left: int, limit_right: int) -> void:
-	player_camera.setup(limit_left, limit_right)
+func setup_camera(limit_left: int, limit_right: int, should_update_left := true) -> void:
+	player_camera.setup(limit_left, limit_right, should_update_left)
 
 
 func take_damage() -> void:

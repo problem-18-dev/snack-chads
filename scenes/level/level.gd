@@ -8,6 +8,7 @@ const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 @export var next_level: Main.Scene
 @export_group("Properties")
 @export var start_pipe: PipeExit
+@export var update_player_left := true
 
 @onready var world: TileMapLayer = $WorldTileMapLayer
 @onready var spawn_in_pipe := GameState.get_return_point() == GameState.ReturnPoint.PIPE
@@ -32,8 +33,8 @@ func _prepare_player() -> Player:
 	var level_size := world.get_used_rect()
 	var tile_size := world.tile_set.tile_size
 	var limit_left := level_size.position.x * tile_size.x
-	var limit_right := (level_size.size.x * tile_size.x) - 48
-	player.setup_camera(limit_left, limit_right)
+	var limit_right := level_size.end.x * tile_size.x
+	player.setup_camera(limit_left, limit_right, update_player_left)
 	player.set_player_mode(GameState.player_mode)
 	player.enable_invincibility(GameState.player_invincibility_time_left)
 	return player

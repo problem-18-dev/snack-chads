@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://c02hlphhlcrkv" path="res://scenes/player/states/player_immobile.gd" id="8_qek5x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
-size = Vector2(8, 16)
+size = Vector2(8, 15)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_myrg7"]
 shader = ExtResource("3_fcs02")
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 16)]
+"values": [Vector2(8, 15)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -479,7 +479,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 16)]
+"values": [Vector2(8, 15)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -603,10 +603,30 @@ collision_mask = 62
 slide_on_ceiling = false
 script = ExtResource("1_8afob")
 air_movement_weight = 0.07
+coyote_time = null
+coyote_minimum_speed = null
+jump_force = null
+jump_running_force = null
 jump_release_divider = 2.0
+walk_speed = null
 walk_accel = 0.3
 walk_deccel = 0.18
+run_speed = null
+run_accel = null
+bounce_force = null
 bounce_force_multiplier = 2.25
+pipe_maximum_speed = null
+consume_duration = null
+hurt_duration = null
+invincibility_duration = null
+death_pause = null
+death_jump_distance = null
+death_duration = null
+walk_to_duration = null
+time_before_end = null
+debug_velocity = null
+debug_coyote = null
+debug_movement_limit = null
 debug_points = true
 debug_player_mode = true
 debug_state = true
