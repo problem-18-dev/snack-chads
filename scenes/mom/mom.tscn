@@ -84,6 +84,10 @@ radius = 24.0
 collision_layer = 288
 collision_mask = 18
 script = ExtResource("1_4mrok")
+attack_time_minimum = 1.5
+attack_time_maximum = 2.75
+jump_time_minimum = 1.75
+jump_time_maximum = 3.8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=371614704]
 position = Vector2(0, -16)
@@ -97,7 +101,7 @@ position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_4mrok")
 
 [node name="AttackMarker" type="Marker2D" parent="." unique_id=110488442]
-position = Vector2(-16, -16)
+position = Vector2(-16, -14)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=313257691]
 position = Vector2(0, -16)

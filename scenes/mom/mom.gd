@@ -58,6 +58,7 @@ func _walk() -> void:
 
 func _attack() -> void:
 	# Spawn slipper
+	AudioManager.play_sfx(AudioManager.Sfx.SLIPPER_THROW)
 	var slipper := SLIPPER_SCENE.instantiate()
 	slipper.start(attack_marker.global_position)
 	get_parent().add_child(slipper)

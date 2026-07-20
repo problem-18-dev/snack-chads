@@ -10,6 +10,7 @@ func start() -> void:
 
 func _pick_up() -> void:
 	picked_up.emit(Pickuppable.HAMMER)
+	AudioManager.play_sfx(AudioManager.Sfx.EXPLOSION)
 	target_body.die()
 	queue_free()
 
