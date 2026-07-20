@@ -70,7 +70,7 @@ position = Vector2(0, -6)
 rect = Rect2(-15, -8, 30, 16)
 
 [node name="Timer" type="Timer" parent="." index="3" unique_id=1099029353]
-wait_time = 0.1
+wait_time = 0.175
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

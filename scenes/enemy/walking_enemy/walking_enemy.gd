@@ -67,6 +67,7 @@ func die() -> void:
 	_is_dead = true
 	remove_from_group("enemies")
 	set_collision_layer_value(6, false) # Enemies
+	set_collision_layer_value(9, true) # Disposables
 	set_collision_mask_value(2, false) # Hittables
 	set_collision_mask_value(5, false) # World
 	set_collision_mask_value(6, false) # Other enemies
@@ -129,5 +130,5 @@ func _handle_collision() -> void:
 	if _is_dead:
 		return
 
-	if is_on_wall():
+	if is_on_wall() and sign(get_wall_normal().x) == -sign(_direction):
 		_direction *= -1

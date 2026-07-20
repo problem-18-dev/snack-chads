@@ -45,6 +45,7 @@ const PLAYER_RESOURCES := {
 @export var damage_pause_duration := 0.5
 @export_subgroup("Energy")
 @export var energy_duration := 10.0
+@export var energy_warning_treshold := 2.0
 @export_group("Death")
 @export var death_pause := 0.5
 @export var death_jump_distance := 64.0
@@ -95,6 +96,10 @@ var _can_take_damage := true
 func _ready() -> void:
 	_debug_states()
 	_prepare()
+
+
+func _process(_delta: float) -> void:
+	_flicker_on_low_energy()
 
 
 func _physics_process(_delta: float) -> void:
@@ -264,6 +269,7 @@ func enable_energy(duration := energy_duration) -> void:
 	energy_timer.start(duration)
 	sprite.material.shader = INVINCIBILITY_SHADER
 	energy_particles.emitting = true
+	set_collision_mask_value(ENEMY_MASK_LAYER, false)
 
 
 func walk_to(destination: Vector2) -> void:
@@ -346,6 +352,14 @@ func _flip_sprite() -> void:
 	sprite.flip_h = should_flip
 
 
+func _flicker_on_low_energy() -> void:
+	if not is_energized or flicker_component.is_flickering():
+		return
+
+	if energy_timer.time_left <= energy_warning_treshold:
+		flicker_component.flicker(energy_warning_treshold)
+
+
 func _debug_states() -> void:
 	if not debug_state:
 		return
@@ -378,6 +392,7 @@ func _on_energy_timer_timeout() -> void:
 	energy_area.monitoring = false
 	sprite.material.shader = null
 	energy_particles.emitting = false
+	set_collision_mask_value(ENEMY_MASK_LAYER, true)
 
 
 func _on_energy_area_body_entered(body: WalkingEnemy) -> void:

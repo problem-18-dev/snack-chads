@@ -735,7 +735,7 @@ script = ExtResource("8_qek5x")
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_h17s1")
 
-[connection signal="body_entered" from="EnergyArea" to="." method="_on_invincible_area_body_entered"]
+[connection signal="body_entered" from="EnergyArea" to="." method="_on_energy_area_body_entered"]
 [connection signal="timeout" from="ShootCooldownTimer" to="." method="_on_shoot_cooldown_timer_timeout"]
 [connection signal="timeout" from="EnergyTimer" to="." method="_on_energy_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Air/CoyoteTimer" to="StateMachine/Air" method="_on_coyote_timer_timeout"]

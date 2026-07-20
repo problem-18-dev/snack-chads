@@ -4,6 +4,7 @@ extends Block
 
 
 func hit() -> void:
+	_check_hit()
 	sprite.hide()
 	particles.emitting = true
 	await particles.finished

@@ -99,6 +99,7 @@ interact={
 2d_physics/layer_6="enemy"
 2d_physics/layer_7="consumable"
 2d_physics/layer_8="projectile"
+2d_physics/layer_9="disposable"
 
 [physics]
 
