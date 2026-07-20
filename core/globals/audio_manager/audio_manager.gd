@@ -29,7 +29,7 @@ var sfx_paths := {
 	Sfx.LEVEL_CLEAR: "uid://by1uybv0oanki",
 	Sfx.CONSUME: "uid://d8muhrqdwn6x",
 	Sfx.PLAYER_HURT: "uid://5604oesivdw5",
-	Sfx.PING: "uid://j5n742eluy2a",
+	Sfx.PING: "uid://b7q2ii3tfcx5",
 }
 
 
