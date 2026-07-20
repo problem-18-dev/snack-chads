@@ -25,6 +25,7 @@ func interact() -> void:
 		Debug.log("Player interacted with pipe")
 
 	_snap_player()
+	AudioManager.play_sfx(AudioManager.Sfx.PIPE)
 	var tween := create_tween().set_ease(Tween.EASE_OUT)
 	var pipe_movement := _get_marker_position() + direction * distance
 	tween.tween_property(_player, "global_position", pipe_movement, speed)

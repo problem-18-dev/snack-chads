@@ -93,6 +93,7 @@ var _can_take_damage := true
 @onready var land_particles: CPUParticles2D = $AnimatedSprite2D/LandParticles
 @onready var flicker_component: FlickerComponent = $FlickerComponent
 @onready var elastic_land_component: Node2D = $ElasticLandComponent
+@onready var energy_audio_player: AudioStreamPlayer = $EnergyAudioPlayer
 
 
 func _ready() -> void:
@@ -130,6 +131,7 @@ func take_damage() -> void:
 		return
 
 	if is_large():
+		AudioManager.play_sfx(AudioManager.Sfx.PLAYER_HURT)
 		player_camera.screen_shake(PlayerCamera.SMALL_INTENSITY, PlayerCamera.SHORT_LENGTH)
 		_downgrade_player_mode()
 		return
@@ -139,10 +141,12 @@ func take_damage() -> void:
 
 
 func die() -> void:
+	AudioManager.play_sfx(AudioManager.Sfx.GAME_OVER)
 	state_machine.transition_to_state(PlayerState.IMMOBILE, { "death": true })
 
 
 func consume(consumable: Consumable.Type) -> void:
+	AudioManager.play_sfx(AudioManager.Sfx.CONSUME)
 	match consumable:
 		Consumable.Type.ENERGY_DRINK:
 			enable_energy()
@@ -191,6 +195,7 @@ func shoot() -> void:
 	if not _can_shoot:
 		return
 
+	AudioManager.play_sfx(AudioManager.Sfx.FIREBALL)
 	var projectile: Projectile = PROJECTILE.instantiate()
 	var direction := -1 if sprite.flip_h else 1
 	projectile.spawn(shoot_marker.global_position, direction, velocity.x)
@@ -268,6 +273,7 @@ func enable_energy(duration := energy_duration) -> void:
 	if debug_player_mode:
 		Debug.log("Player is in star mode for %s sec!" % duration)
 
+	energy_audio_player.play()
 	is_energized = true
 	energy_area.monitoring = true
 	energy_timer.start(duration)
@@ -299,6 +305,10 @@ func _upgrade_player_mode(new_player_mode: PlayerMode) -> void:
 
 
 func _downgrade_player_mode() -> void:
+	# Will always downgrade from LOLLY_POP at maximum
+	if _can_shoot:
+		_can_shoot = false
+
 	set_player_mode(player_mode - 1)
 	_grant_invincibility(damage_invincibility_duration)
 	await _pause(damage_pause_duration)
@@ -396,8 +406,10 @@ func _on_energy_timer_timeout() -> void:
 	energy_area.monitoring = false
 	sprite.material.shader = null
 	energy_particles.emitting = false
+	energy_audio_player.stop()
 	set_collision_mask_value(ENEMY_MASK_LAYER, true)
 
 
 func _on_energy_area_body_entered(body: WalkingEnemy) -> void:
+	AudioManager.play_sfx(AudioManager.Sfx.STOMP)
 	body.hurt()

@@ -4,4 +4,4 @@
 
 [node name="Main" type="Node" unique_id=698738702]
 script = ExtResource("1_8fcwd")
-initial_scene = 3
+initial_scene = 0

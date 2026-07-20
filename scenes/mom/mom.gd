@@ -22,6 +22,7 @@ var _move_tween: Tween
 @onready var attack_marker: Marker2D = $AttackMarker
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var visible_on_screen_enabler_2d: VisibleOnScreenEnabler2D = $VisibleOnScreenEnabler2D
 
 
 func _ready() -> void:
@@ -41,6 +42,7 @@ func _physics_process(delta: float) -> void:
 
 
 func die() -> void:
+	visible_on_screen_enabler_2d.queue_free()
 	_move_tween.kill()
 	sprite.play("death")
 	attack_timer.stop()

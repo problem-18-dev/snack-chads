@@ -22,7 +22,7 @@ color = Color(0.6745098, 0.8, 0.89411765, 1)
 
 [node name="FarParallax" parent="." index="2" unique_id=396682803]
 scroll_scale = Vector2(0.05, 1)
-scroll_offset = Vector2(152, -64)
+scroll_offset = Vector2(-8, -72)
 autoscroll = Vector2(-2, 0)
 repeat_times = 6
 

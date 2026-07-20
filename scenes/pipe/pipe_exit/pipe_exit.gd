@@ -23,6 +23,7 @@ func start(player: Player, is_return_point := false) -> void:
 	if is_return_point:
 		GameState.set_return_point(GameState.ReturnPoint.START)
 
+	AudioManager.play_sfx(AudioManager.Sfx.PIPE)
 	player.spawn(start_marker.global_position)
 	var tween := create_tween()
 	tween.tween_property(player, "global_position", destination_marker.global_position, speed)

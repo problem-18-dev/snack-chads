@@ -19,6 +19,7 @@ func stop() -> void:
 
 func push(push_direction: int) -> void:
 	_direction = push_direction
+	AudioManager.play_sfx(AudioManager.Sfx.BIKE_PUSH)
 	timer.start()
 
 
@@ -38,6 +39,7 @@ func _handle_collision() -> void:
 			continue
 
 		if collider.is_in_group("enemies") and not _is_stopped():
+			AudioManager.play_sfx(AudioManager.Sfx.STOMP)
 			collider.die()
 
 

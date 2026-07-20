@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://f4f27d5v458l" path="res://core/components/elastic_land_component.tscn" id="6_fm80t"]
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://c02hlphhlcrkv" path="res://scenes/player/states/player_immobile.gd" id="8_qek5x"]
+[ext_resource type="AudioStream" uid="uid://j5n742eluy2a" path="res://assets/audio/ping.mp3" id="13_gx1jg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
 size = Vector2(8, 15)
@@ -681,7 +682,7 @@ position = Vector2(-2, 7)
 scale = Vector2(2, 2)
 emitting = false
 amount = 16
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
 lifetime_randomness = 0.2
@@ -763,6 +764,10 @@ script = ExtResource("8_qek5x")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=922000421]
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_h17s1")
+
+[node name="EnergyAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=2025412464]
+stream = ExtResource("13_gx1jg")
+bus = &"SFX"
 
 [connection signal="body_entered" from="EnergyArea" to="." method="_on_energy_area_body_entered"]
 [connection signal="timeout" from="ShootCooldownTimer" to="." method="_on_shoot_cooldown_timer_timeout"]

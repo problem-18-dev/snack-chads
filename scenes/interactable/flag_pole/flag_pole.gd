@@ -25,6 +25,7 @@ func interact() -> void:
 	var snap_position := Vector2(-8.0, snap_height)
 	_adjust_marker(snap_position)
 	await _snap_player()
+	AudioManager.play_sfx(AudioManager.Sfx.LEVEL_CLEAR)
 	_tween_and_finish()
 
 

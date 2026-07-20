@@ -122,11 +122,13 @@ func _check_enemy_hits(collider: CharacterBody2D, normal: Vector2) -> void:
 		return
 
 	if collider.is_in_group("pushables"):
+		AudioManager.play_sfx(AudioManager.Sfx.STOMP)
 		collider.stop()
 		_bounce()
 		return
 
 	if collider.has_method("hurt"):
+		AudioManager.play_sfx(AudioManager.Sfx.STOMP)
 		player.player_camera.screen_shake(PlayerCamera.SMALL_INTENSITY, PlayerCamera.SHORT_LENGTH)
 		collider.hurt()
 	else:
@@ -160,6 +162,8 @@ func _handle_landing() -> void:
 
 
 func _jump(is_running := false) -> void:
+	AudioManager.play_sfx(AudioManager.Sfx.JUMP)
+
 	if is_running and player.velocity.x > player.walk_speed:
 		player.velocity.y = -player.jump_running_force
 	else:

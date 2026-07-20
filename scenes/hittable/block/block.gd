@@ -19,6 +19,7 @@ func bump() -> void:
 	if _bump_tween and _bump_tween.is_valid():
 		_bump_tween.kill()
 
+	AudioManager.play_sfx(AudioManager.Sfx.BLOCK_BUMP)
 	position = _rest_position
 
 	_bump_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)

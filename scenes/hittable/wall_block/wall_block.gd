@@ -5,6 +5,7 @@ extends Block
 
 func hit() -> void:
 	_check_hit()
+	AudioManager.play_sfx(AudioManager.Sfx.BLOCK_BREAK)
 	sprite.hide()
 	particles.emitting = true
 	await particles.finished

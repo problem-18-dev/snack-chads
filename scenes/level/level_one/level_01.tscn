@@ -46,7 +46,6 @@ duration = 3.0
 level_title = "01: Lunch equals snack time"
 
 [node name="FarParallax" parent="." index="2" unique_id=396682803]
-z_index = -2
 scroll_scale = Vector2(0.05, 1)
 scroll_offset = Vector2(152, -64)
 autoscroll = Vector2(-2, 0)
@@ -56,7 +55,6 @@ repeat_times = 6
 texture = ExtResource("2_cgnc7")
 
 [node name="NearParallax" parent="." index="3" unique_id=2060077157]
-z_index = -2
 scroll_scale = Vector2(0.4, 1)
 scroll_offset = Vector2(0, -120)
 autoscroll = Vector2(-6, 0)
@@ -106,22 +104,22 @@ text = "ARROWS to move
 X to RUN and SHOOT"
 
 [connection signal="body_entered" from="WorldTileMapLayer/Coin" to="WorldTileMapLayer/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270109" to="WorldTileMapLayer/@Area2D@270109" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270110" to="WorldTileMapLayer/@Area2D@270110" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270111" to="WorldTileMapLayer/@Area2D@270111" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270112" to="WorldTileMapLayer/@Area2D@270112" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270113" to="WorldTileMapLayer/@Area2D@270113" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270121" to="WorldTileMapLayer/@Area2D@270121" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270122" to="WorldTileMapLayer/@Area2D@270122" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270123" to="WorldTileMapLayer/@Area2D@270123" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270124" to="WorldTileMapLayer/@Area2D@270124" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270125" to="WorldTileMapLayer/@Area2D@270125" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270126" to="WorldTileMapLayer/@Area2D@270126" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270127" to="WorldTileMapLayer/@Area2D@270127" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270128" to="WorldTileMapLayer/@Area2D@270128" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270129" to="WorldTileMapLayer/@Area2D@270129" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270130" to="WorldTileMapLayer/@Area2D@270130" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270131" to="WorldTileMapLayer/@Area2D@270131" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270132" to="WorldTileMapLayer/@Area2D@270132" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270133" to="WorldTileMapLayer/@Area2D@270133" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@270134" to="WorldTileMapLayer/@Area2D@270134" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28500" to="WorldTileMapLayer/@Area2D@28500" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28501" to="WorldTileMapLayer/@Area2D@28501" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28502" to="WorldTileMapLayer/@Area2D@28502" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28503" to="WorldTileMapLayer/@Area2D@28503" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28504" to="WorldTileMapLayer/@Area2D@28504" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28512" to="WorldTileMapLayer/@Area2D@28512" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28513" to="WorldTileMapLayer/@Area2D@28513" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28514" to="WorldTileMapLayer/@Area2D@28514" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28515" to="WorldTileMapLayer/@Area2D@28515" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28516" to="WorldTileMapLayer/@Area2D@28516" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28517" to="WorldTileMapLayer/@Area2D@28517" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28518" to="WorldTileMapLayer/@Area2D@28518" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28519" to="WorldTileMapLayer/@Area2D@28519" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28520" to="WorldTileMapLayer/@Area2D@28520" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28521" to="WorldTileMapLayer/@Area2D@28521" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28522" to="WorldTileMapLayer/@Area2D@28522" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28523" to="WorldTileMapLayer/@Area2D@28523" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28524" to="WorldTileMapLayer/@Area2D@28524" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@28525" to="WorldTileMapLayer/@Area2D@28525" method="_on_body_entered"]

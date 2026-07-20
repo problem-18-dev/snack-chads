@@ -16,11 +16,17 @@ config/version="1.0.0"
 run/main_scene="uid://dxamxphi8iwss"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[audio]
+
+buses/default_bus_layout="uid://cx43fqr8t5spp"
+general/default_playback_type.web=0
+
 [autoload]
 
 Debug="*uid://7mngwk0lxy83"
 GameState="*uid://dnm0gwvgjny4b"
 GameManager="*uid://1hvdby26iv0m"
+AudioManager="*uid://b0kmgyb7lucuh"
 
 [debug]
 
