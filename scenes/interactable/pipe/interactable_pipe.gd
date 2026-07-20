@@ -39,7 +39,7 @@ func _prepare() -> void:
 func _transfer() -> void:
 	assert(destination, "Pipe enabled, but no destination set.")
 	GameState.save_player_mode(_player.player_mode)
-	GameState.save_player_energy_time(_player.get_remaining_invincibility_time())
+	GameState.save_player_energy_time(_player.get_remaining_energy_time())
 	GameState.set_return_point(GameState.ReturnPoint.PIPE)
 	GameManager.main.load_scene(destination)
 

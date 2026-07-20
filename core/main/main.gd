@@ -42,9 +42,9 @@ func unload_scene() -> void:
 	if not _current_scene:
 		return
 
-	call_deferred("remove_child", _current_scene)
+	remove_child.call_deferred(_current_scene)
 	_current_scene.queue_free()
-	_current_scene = null
+	set_deferred("_current_scene", null)
 
 
 func load_scene(new_scene: Scene) -> void:
@@ -52,4 +52,4 @@ func load_scene(new_scene: Scene) -> void:
 
 	var scene := load(_scene_paths[new_scene])
 	_current_scene = scene.instantiate()
-	add_child(_current_scene)
+	add_child.call_deferred(_current_scene)

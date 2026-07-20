@@ -127,6 +127,7 @@ func _check_enemy_hits(collider: CharacterBody2D, normal: Vector2) -> void:
 		return
 
 	if collider.has_method("hurt"):
+		player.player_camera.screen_shake(PlayerCamera.SMALL_INTENSITY, PlayerCamera.SHORT_LENGTH)
 		collider.hurt()
 	else:
 		player.take_damage()
@@ -143,8 +144,10 @@ func _handle_landing() -> void:
 		_jump()
 		return
 
+	player.elastic_land_component.use()
+	player.land_particles.emitting = true
 	# Run if holding run
-	# Walk if not
+	# Walk if notp
 	# Idle if not moving at all
 	var moving := Input.is_action_pressed("left") or Input.is_action_pressed("right")
 	var running := Input.is_action_pressed("interact")

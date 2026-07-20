@@ -66,8 +66,8 @@ func hurt() -> void:
 func die() -> void:
 	_is_dead = true
 	remove_from_group("enemies")
+	visible_on_screen_enabler_2d.queue_free()
 	set_collision_layer_value(6, false) # Enemies
-	set_collision_layer_value(9, true) # Disposables
 	set_collision_mask_value(2, false) # Hittables
 	set_collision_mask_value(5, false) # World
 	set_collision_mask_value(6, false) # Other enemies

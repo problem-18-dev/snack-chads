@@ -47,7 +47,7 @@ func _handle_collision() -> void:
 		var collider := collision.get_collider()
 
 		if collider.is_in_group("enemies") or collider.is_in_group("pushables"):
-			collider.hurt()
+			collider.die()
 			_destroy()
 			return
 

@@ -55,7 +55,7 @@ repeat_size = Vector2(240, 0)
 [node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("3_xv074")]
 
 [node name="DeathZone" parent="." unique_id=1117372907 instance=ExtResource("7_b7m21")]
-position = Vector2(0, 32)
+position = Vector2(0, 56)
 collision_layer = 8
 
 [connection signal="hidden" from="HUD/Transition" to="." method="_on_transition_hidden"]

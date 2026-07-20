@@ -16,8 +16,8 @@ func _ready() -> void:
 
 func flicker(duration := flicker_duration) -> void:
 	_flicker_tween = create_tween().set_loops()
-	_flicker_tween.tween_property(flicker_target, "visible", false, 0.05)
-	_flicker_tween.tween_property(flicker_target, "visible", true, 0.05)
+	_flicker_tween.tween_property(flicker_target, "visible", false, 0.075)
+	_flicker_tween.tween_property(flicker_target, "visible", true, 0.075)
 	await get_tree().create_timer(duration).timeout
 	_flicker_tween.kill()
 	flicker_target.show()

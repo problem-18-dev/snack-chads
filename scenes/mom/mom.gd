@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+const ENEMY_LAYER := 6
 const SLIPPER_SCENE := preload("uid://b87ptsubfqo8e")
 
 @export_group("Moving")
@@ -42,7 +43,9 @@ func _physics_process(delta: float) -> void:
 func die() -> void:
 	_move_tween.kill()
 	sprite.play("death")
-	collision_shape.set_deferred("disabled", true)
+	attack_timer.stop()
+	jump_timer.stop()
+	set_collision_layer_value(ENEMY_LAYER, false)
 
 
 func _walk() -> void:

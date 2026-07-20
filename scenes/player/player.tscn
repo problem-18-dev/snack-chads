@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://22xqrsuw6gaa" path="res://scenes/player/states/player_air.gd" id="4_lvxji"]
 [ext_resource type="PackedScene" uid="uid://1uu8s6u576ml" path="res://core/components/flicker_component.tscn" id="5_je7p5"]
 [ext_resource type="Script" uid="uid://bjcr78gqjqpbv" path="res://scenes/player/states/player_walk.gd" id="6_75vfm"]
+[ext_resource type="PackedScene" uid="uid://f4f27d5v458l" path="res://core/components/elastic_land_component.tscn" id="6_fm80t"]
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://c02hlphhlcrkv" path="res://scenes/player/states/player_immobile.gd" id="8_qek5x"]
 
@@ -96,7 +97,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -8)]
+"values": [Vector2(0, -7.5)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -232,7 +233,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 32)]
+"values": [Vector2(8, 31)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -292,7 +293,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -16)]
+"values": [Vector2(0, -15.5)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -356,7 +357,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 32)]
+"values": [Vector2(8, 31)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -416,7 +417,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -16)]
+"values": [Vector2(0, -15.5)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -540,7 +541,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -8)]
+"values": [Vector2(0, -7.5)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -653,7 +654,7 @@ target_position = Vector2(0, -14)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1365819839]
-position = Vector2(0, -8)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_gmlin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1228927741]
@@ -671,6 +672,29 @@ emission_sphere_radius = 1.0
 gravity = Vector2(0, -25)
 angular_velocity_min = 10.0
 angular_velocity_max = 45.0
+scale_amount_max = 1.5
+color = Color(0.34117648, 0.40784314, 0.45882353, 1)
+
+[node name="LandParticles" type="CPUParticles2D" parent="AnimatedSprite2D" unique_id=588513980]
+z_index = -1
+position = Vector2(-2, 7)
+scale = Vector2(2, 2)
+emitting = false
+amount = 16
+lifetime = 0.09999999999999999
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.2
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+angular_velocity_min = 10.0
+angular_velocity_max = 45.0
+scale_amount_min = 1.25
 scale_amount_max = 1.5
 color = Color(0.34117648, 0.40784314, 0.45882353, 1)
 
@@ -704,8 +728,11 @@ position = Vector2(5, -22)
 [node name="FlickerComponent" parent="." unique_id=1464092214 node_paths=PackedStringArray("flicker_target") instance=ExtResource("5_je7p5")]
 flicker_target = NodePath("../AnimatedSprite2D")
 
+[node name="ElasticLandComponent" parent="." unique_id=2043251623 node_paths=PackedStringArray("elastic_target") instance=ExtResource("6_fm80t")]
+elastic_target = NodePath("../AnimatedSprite2D")
+
 [node name="ShootCooldownTimer" type="Timer" parent="." unique_id=1380033556]
-wait_time = 0.35
+wait_time = 0.3
 one_shot = true
 
 [node name="EnergyTimer" type="Timer" parent="." unique_id=997760771]

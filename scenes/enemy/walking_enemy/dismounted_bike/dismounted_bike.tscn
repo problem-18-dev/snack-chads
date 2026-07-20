@@ -46,8 +46,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2rdu0"]
-radius = 7.0
-height = 18.0
+radius = 6.0
+height = 15.999999
 
 [node name="DismountedBike" unique_id=792489795 groups=["pushables"] instance=ExtResource("1_k4coe")]
 script = ExtResource("2_2rdu0")
@@ -61,16 +61,22 @@ animation = &"death"
 autoplay = "default"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1783304354]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_2rdu0")
 
 [node name="VisibleOnScreenEnabler2D" parent="." index="2" unique_id=1947978349]
-position = Vector2(0, -6)
-rect = Rect2(-15, -8, 30, 16)
+position = Vector2(0, -8)
+rect = Rect2(-54, -41, 108, 84)
 
 [node name="Timer" type="Timer" parent="." index="3" unique_id=1099029353]
 wait_time = 0.175
 one_shot = true
+
+[node name="GroundCheckLeftRayCast" parent="." index="4" unique_id=1260554353]
+position = Vector2(-5, -8)
+
+[node name="GroundCheckRightRayCast" parent="." index="5" unique_id=1567533170]
+position = Vector2(5, -8)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

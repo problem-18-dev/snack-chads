@@ -27,6 +27,9 @@ func can_be_pushed() -> bool:
 
 
 func _handle_collision() -> void:
+	if is_on_wall() and sign(get_wall_normal().x) != -sign(_direction):
+		_direction *= -1
+
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
@@ -36,13 +39,6 @@ func _handle_collision() -> void:
 
 		if collider.is_in_group("enemies") and not _is_stopped():
 			collider.die()
-			continue
-
-		var normal := collision.get_normal()
-
-		# If not floor
-		if not normal.is_equal_approx(Vector2.UP):
-			_direction *= -1
 
 
 func _on_timer_timeout() -> void:

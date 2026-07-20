@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqejb2s8i5xc1"]
 
-[ext_resource type="Script" uid="uid://cnjnwaho3fjs" path="res://mom.gd" id="1_4mrok"]
+[ext_resource type="Script" uid="uid://cnjnwaho3fjs" path="res://scenes/mom/mom.gd" id="1_4mrok"]
 [ext_resource type="Texture2D" uid="uid://cg5iuaw4fuhwi" path="res://scenes/mom/sprites/mom.png" id="2_qnswn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6wit"]
@@ -81,7 +81,7 @@ animations = [{
 radius = 24.0
 
 [node name="Mom" type="CharacterBody2D" unique_id=914720157 groups=["enemies"]]
-collision_layer = 32
+collision_layer = 288
 collision_mask = 18
 script = ExtResource("1_4mrok")
 
@@ -101,7 +101,7 @@ position = Vector2(-16, -16)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=313257691]
 position = Vector2(0, -16)
-rect = Rect2(-448, -16, 464, 32)
+rect = Rect2(-640, -16, 656, 32)
 
 [node name="JumpTimer" type="Timer" parent="." unique_id=304342799]
 one_shot = true

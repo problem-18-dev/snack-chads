@@ -90,7 +90,9 @@ var _can_take_damage := true
 @onready var energy_timer: Timer = $EnergyTimer
 @onready var ground_particles: CPUParticles2D = $AnimatedSprite2D/GroundParticles
 @onready var energy_particles: CPUParticles2D = $AnimatedSprite2D/EnergyParticles
+@onready var land_particles: CPUParticles2D = $AnimatedSprite2D/LandParticles
 @onready var flicker_component: FlickerComponent = $FlickerComponent
+@onready var elastic_land_component: Node2D = $ElasticLandComponent
 
 
 func _ready() -> void:
@@ -128,9 +130,11 @@ func take_damage() -> void:
 		return
 
 	if is_large():
+		player_camera.screen_shake(PlayerCamera.SMALL_INTENSITY, PlayerCamera.SHORT_LENGTH)
 		_downgrade_player_mode()
 		return
 
+	player_camera.screen_shake(PlayerCamera.MEDIUM_INTENSITY, PlayerCamera.LONG_LENGTH)
 	die()
 
 

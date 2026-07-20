@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://f4f27d5v458l"]
+
+[ext_resource type="Script" uid="uid://bwklkworce21c" path="res://core/components/elastic_land_component.gd" id="1_j8gdp"]
+
+[node name="ElasticLandComponent" type="Node2D" unique_id=2043251623]
+script = ExtResource("1_j8gdp")
