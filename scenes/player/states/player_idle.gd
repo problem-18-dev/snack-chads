@@ -8,6 +8,9 @@ func _enter(_data := { }) -> void:
 
 
 func _physics_update(_delta: float) -> void:
+	if not is_zero_approx(player.get_direction()):
+		finished.emit(PlayerState.WALK)
+
 	player.move_and_slide()
 	_handle_collision()
 
