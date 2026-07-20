@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b87ptsubfqo8e"]
+
+[ext_resource type="Script" uid="uid://du0v65xn2cihx" path="res://scenes/mom/slipper/slipper.gd" id="1_mhgbn"]
+[ext_resource type="Texture2D" uid="uid://dvejnvpje1qu6" path="res://scenes/mom/sprites/slipper.png" id="1_vpmt7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhgbn"]
+radius = 3.0
+height = 12.0
+
+[node name="Slipper" type="Area2D" unique_id=218259459 groups=["enemies"]]
+collision_layer = 32
+script = ExtResource("1_mhgbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=418366588]
+position = Vector2(-2, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mhgbn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1481159583]
+position = Vector2(-2, -1)
+texture = ExtResource("1_vpmt7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1423041706]
+rect = Rect2(-10, -8, 17, 14)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

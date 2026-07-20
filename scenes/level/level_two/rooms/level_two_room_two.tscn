@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ckc2eppbf4hv4" path="res://scenes/store/store.tscn" id="4_xm8i5"]
 
 [node name="LevelTwoRoomTwo" unique_id=48944664 node_paths=PackedStringArray("start_pipe") instance=ExtResource("1_dmqnb")]
-next_level = 2
+current_level = 5
+next_level = 6
 start_pipe = NodePath("Objects/PipeExit")
 update_player_left = false
 

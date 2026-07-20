@@ -4,6 +4,7 @@ extends Node2D
 const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 
 @export_group("Level")
+@export var current_level: Main.Scene
 @export var transition: Transition
 @export var next_level: Main.Scene
 @export_group("Properties")
@@ -36,7 +37,7 @@ func _prepare_player() -> Player:
 	var limit_right := level_size.end.x * tile_size.x
 	player.setup_camera(limit_left, limit_right, update_player_left)
 	player.set_player_mode(GameState.player_mode)
-	player.enable_invincibility(GameState.player_invincibility_time_left)
+	player.enable_energy(GameState.player_energy_time_left)
 	return player
 
 
@@ -63,7 +64,7 @@ func _start_level() -> void:
 func _on_player_died() -> void:
 	GameState.reset()
 	# Next level is always next pointer, so -1 is same level
-	GameManager.main.load_scene(next_level - 1)
+	GameManager.main.load_scene(current_level)
 
 
 func _on_player_consumed() -> void:

@@ -1,10 +1,10 @@
 class_name Pickuppable
 extends Area2D
 
+signal picked_up(type: String)
 
 const COIN = "Coin"
-
-signal picked_up(type: String)
+const HAMMER = "Hammer"
 
 
 func _pick_up() -> void:

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bqruerc4mfb2f"]
+
+[ext_resource type="Texture2D" uid="uid://g3325874vilu" path="res://scenes/level/tile_map_layer/textures/tilemap_underground.png" id="1_ia4ra"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdo1r"]
+size = Vector2(64, 16)
+
+[node name="Platform" type="StaticBody2D" unique_id=1917794388]
+collision_layer = 18
+collision_mask = 0
+
+[node name="Sprite" type="Node2D" parent="." unique_id=1274873989]
+position = Vector2(-24, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite" unique_id=329600010]
+texture = ExtResource("1_ia4ra")
+region_enabled = true
+region_rect = Rect2(240, 0, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite" unique_id=1847964656]
+position = Vector2(16, 0)
+texture = ExtResource("1_ia4ra")
+region_enabled = true
+region_rect = Rect2(240, 0, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite" unique_id=1983531626]
+position = Vector2(32, 0)
+texture = ExtResource("1_ia4ra")
+region_enabled = true
+region_rect = Rect2(240, 0, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprite" unique_id=1889335869]
+position = Vector2(48, 0)
+texture = ExtResource("1_ia4ra")
+region_enabled = true
+region_rect = Rect2(240, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=173649407]
+shape = SubResource("RectangleShape2D_fdo1r")

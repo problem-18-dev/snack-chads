@@ -2,7 +2,7 @@ extends Interactable
 
 @export_group("Destination")
 @export var enabled := false
-@export_file("*.tscn") var destination: String
+@export var destination: Main.Scene
 @export_group("Animation")
 @export var direction := Vector2.DOWN
 @export var distance := 30.0
@@ -39,9 +39,9 @@ func _prepare() -> void:
 func _transfer() -> void:
 	assert(destination, "Pipe enabled, but no destination set.")
 	GameState.save_player_mode(_player.player_mode)
-	GameState.save_player_invincibility_time(_player.get_remaining_invincibility_time())
+	GameState.save_player_energy_time(_player.get_remaining_invincibility_time())
 	GameState.set_return_point(GameState.ReturnPoint.PIPE)
-	get_tree().change_scene_to_file(destination)
+	GameManager.main.load_scene(destination)
 
 
 func _on_detection_area_body_entered(body: Player) -> void:

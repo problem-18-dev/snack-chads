@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://8gckiu7b6820"]
+
+[ext_resource type="Texture2D" uid="uid://g3325874vilu" path="res://scenes/level/tile_map_layer/textures/tilemap_underground.png" id="1_ce2fi"]
+[ext_resource type="Script" uid="uid://csniqjcb3dpo0" path="res://scenes/danger_block/danger_block.gd" id="1_wcbxu"]
+[ext_resource type="Texture2D" uid="uid://jscriufsihav" path="res://scenes/projectile/sprites/fireball.png" id="2_wcbxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcbxu"]
+size = Vector2(16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vve2k"]
+radius = 4.0
+height = 48.0
+
+[node name="DangerBlock" type="StaticBody2D" unique_id=973916940]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_wcbxu")
+speed = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=804331936]
+shape = SubResource("RectangleShape2D_wcbxu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=739267073]
+texture = ExtResource("1_ce2fi")
+region_enabled = true
+region_rect = Rect2(240, 0, 16, 16)
+
+[node name="DangerArea" type="Area2D" parent="." unique_id=918617750]
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerArea" unique_id=118737676]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_vve2k")
+
+[node name="FirePivot" type="Node2D" parent="DangerArea" unique_id=69268178]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="DangerArea/FirePivot" unique_id=968071241]
+rotation = 400.48984
+texture = ExtResource("2_wcbxu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="DangerArea/FirePivot" unique_id=403584068]
+position = Vector2(0, -8)
+rotation = 400.48984
+texture = ExtResource("2_wcbxu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="DangerArea/FirePivot" unique_id=2060928369]
+position = Vector2(0, -16)
+rotation = 400.48984
+texture = ExtResource("2_wcbxu")
+
+[node name="Sprite2D4" type="Sprite2D" parent="DangerArea/FirePivot" unique_id=1488199506]
+position = Vector2(0, -24)
+rotation = 400.48984
+texture = ExtResource("2_wcbxu")
+
+[node name="Sprite2D5" type="Sprite2D" parent="DangerArea/FirePivot" unique_id=2082472659]
+position = Vector2(0, -32)
+rotation = 400.48984
+texture = ExtResource("2_wcbxu")
+
+[node name="Sprite2D6" type="Sprite2D" parent="DangerArea/FirePivot" unique_id=1944460477]
+position = Vector2(0, -40)
+rotation = 400.48984
+texture = ExtResource("2_wcbxu")
+
+[connection signal="body_entered" from="DangerArea" to="." method="_on_danger_area_body_entered"]

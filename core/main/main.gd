@@ -1,7 +1,18 @@
 class_name Main
 extends Node
 
-enum Scene { MAIN_MENU, LEVEL_ONE, LEVEL_TWO, TRANSITION }
+enum Scene {
+	MAIN_MENU,
+	LEVEL_ONE,
+	LEVEL_ONE_ROOM_ONE,
+	LEVEL_TWO,
+	LEVEL_TWO_ROOM_ONE,
+	LEVEL_TWO_ROOM_TWO,
+	LEVEL_THREE,
+	LEVEL_FOUR,
+	CREDITS,
+	TRANSITION,
+}
 
 @export_group("Scenes")
 @export var initial_scene := Scene.LEVEL_ONE
@@ -10,7 +21,13 @@ var _current_scene: Node
 var _scene_paths: Dictionary[Scene, String] = {
 	Scene.MAIN_MENU: "uid://b8c6p7bmxprbg",
 	Scene.LEVEL_ONE: "uid://dab63ts13sv8m",
+	Scene.LEVEL_ONE_ROOM_ONE: "uid://byxhe68v53wwa",
 	Scene.LEVEL_TWO: "uid://baeaiso4a67ed",
+	Scene.LEVEL_TWO_ROOM_ONE: "uid://biy5osm7f328q",
+	Scene.LEVEL_TWO_ROOM_TWO: "uid://cnf5awhp2i2ox",
+	Scene.LEVEL_THREE: "uid://bwcvt8pdnord",
+	Scene.LEVEL_FOUR: "uid://ndxe33khqqff",
+	Scene.CREDITS: "uid://5ukcqx4syxbo",
 	Scene.TRANSITION: "uid://b4rgsq0f0o7ti",
 }
 

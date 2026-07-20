@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bjph4ifm2gg4m" path="res://scenes/player/states/player_idle.gd" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://dmqpduv8ajuw6" path="res://scenes/player/sprites/star_particle.png" id="4_h17s1"]
 [ext_resource type="Script" uid="uid://22xqrsuw6gaa" path="res://scenes/player/states/player_air.gd" id="4_lvxji"]
+[ext_resource type="PackedScene" uid="uid://1uu8s6u576ml" path="res://core/components/flicker_component.tscn" id="5_je7p5"]
 [ext_resource type="Script" uid="uid://bjcr78gqjqpbv" path="res://scenes/player/states/player_walk.gd" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://c02hlphhlcrkv" path="res://scenes/player/states/player_immobile.gd" id="8_qek5x"]
@@ -160,7 +161,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("InvincibleArea:monitoring")
+tracks/11/path = NodePath("EnergyArea:monitoring")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -184,7 +185,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("InvincibleArea/CollisionShape2D:shape:size")
+tracks/13/path = NodePath("EnergyArea/CollisionShape2D:shape:size")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -196,7 +197,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("InvincibleArea/CollisionShape2D:position")
+tracks/14/path = NodePath("EnergyArea/CollisionShape2D:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -308,7 +309,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("InvincibleArea/CollisionShape2D:shape:size")
+tracks/7/path = NodePath("EnergyArea/CollisionShape2D:shape:size")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -320,7 +321,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("InvincibleArea/CollisionShape2D:position")
+tracks/8/path = NodePath("EnergyArea/CollisionShape2D:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -432,7 +433,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("InvincibleArea/CollisionShape2D:shape:size")
+tracks/7/path = NodePath("EnergyArea/CollisionShape2D:shape:size")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -444,7 +445,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("InvincibleArea/CollisionShape2D:position")
+tracks/8/path = NodePath("EnergyArea/CollisionShape2D:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -556,7 +557,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("InvincibleArea/CollisionShape2D:shape:size")
+tracks/7/path = NodePath("EnergyArea/CollisionShape2D:shape:size")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -568,7 +569,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("InvincibleArea/CollisionShape2D:position")
+tracks/8/path = NodePath("EnergyArea/CollisionShape2D:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -603,30 +604,9 @@ collision_mask = 62
 slide_on_ceiling = false
 script = ExtResource("1_8afob")
 air_movement_weight = 0.07
-coyote_time = null
-coyote_minimum_speed = null
-jump_force = null
-jump_running_force = null
 jump_release_divider = 2.0
-walk_speed = null
 walk_accel = 0.3
 walk_deccel = 0.18
-run_speed = null
-run_accel = null
-bounce_force = null
-bounce_force_multiplier = 2.25
-pipe_maximum_speed = null
-consume_duration = null
-hurt_duration = null
-invincibility_duration = null
-death_pause = null
-death_jump_distance = null
-death_duration = null
-walk_to_duration = null
-time_before_end = null
-debug_velocity = null
-debug_coyote = null
-debug_movement_limit = null
 debug_points = true
 debug_player_mode = true
 debug_state = true
@@ -692,7 +672,7 @@ angular_velocity_max = 45.0
 scale_amount_max = 1.5
 color = Color(0.34117648, 0.40784314, 0.45882353, 1)
 
-[node name="StarParticles" type="CPUParticles2D" parent="AnimatedSprite2D" unique_id=320743878]
+[node name="EnergyParticles" type="CPUParticles2D" parent="AnimatedSprite2D" unique_id=320743878]
 z_index = -1
 material = SubResource("ShaderMaterial_h17s1")
 emitting = false
@@ -706,28 +686,28 @@ gravity = Vector2(0, 0)
 scale_amount_min = 0.05
 scale_amount_max = 0.15
 
-[node name="InvincibleArea" type="Area2D" parent="." unique_id=869657757]
+[node name="EnergyArea" type="Area2D" parent="." unique_id=869657757]
 collision_layer = 0
 collision_mask = 32
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvincibleArea" unique_id=1243369703]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnergyArea" unique_id=1243369703]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_fm80t")
 
 [node name="ShootMarker" type="Marker2D" parent="." unique_id=1198042160]
 position = Vector2(5, -22)
 
+[node name="FlickerComponent" parent="." unique_id=1464092214 node_paths=PackedStringArray("flicker_target") instance=ExtResource("5_je7p5")]
+flicker_target = NodePath("../AnimatedSprite2D")
+
 [node name="ShootCooldownTimer" type="Timer" parent="." unique_id=1380033556]
 wait_time = 0.35
 one_shot = true
 
-[node name="InvincibilityTimer" type="Timer" parent="." unique_id=997760771]
+[node name="EnergyTimer" type="Timer" parent="." unique_id=997760771]
 wait_time = 10.0
-one_shot = true
-
-[node name="PlayerModeTimer" type="Timer" parent="." unique_id=731814570]
 one_shot = true
 
 [node name="StateMachine" parent="." unique_id=1355614857 node_paths=PackedStringArray("initial_state") instance=ExtResource("2_dovo2")]
@@ -755,7 +735,7 @@ script = ExtResource("8_qek5x")
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_h17s1")
 
-[connection signal="body_entered" from="InvincibleArea" to="." method="_on_invincible_area_body_entered"]
+[connection signal="body_entered" from="EnergyArea" to="." method="_on_invincible_area_body_entered"]
 [connection signal="timeout" from="ShootCooldownTimer" to="." method="_on_shoot_cooldown_timer_timeout"]
-[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="EnergyTimer" to="." method="_on_energy_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Air/CoyoteTimer" to="StateMachine/Air" method="_on_coyote_timer_timeout"]

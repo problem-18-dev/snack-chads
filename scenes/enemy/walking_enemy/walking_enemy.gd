@@ -129,19 +129,5 @@ func _handle_collision() -> void:
 	if _is_dead:
 		return
 
-	for i in get_slide_collision_count():
-		var collision := get_slide_collision(i)
-		var collider := collision.get_collider()
-
-		if collider == null:
-			continue
-
-		var normal := collision.get_normal()
-
-		if normal.is_equal_approx(Vector2.UP):
-			continue
-
-		# Only turn around if actually blocked in the direction we're moving
-		if sign(normal.x) == -sign(_direction):
-			_direction *= -1
-			break
+	if is_on_wall():
+		_direction *= -1

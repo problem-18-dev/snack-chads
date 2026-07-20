@@ -66,10 +66,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g02h3"]
-radius = 7.0
+radius = 6.0
 height = 17.0
 
 [node name="PhonePerson" unique_id=792489795 instance=ExtResource("1_n5kbo")]
+safe_margin = 0.15
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=253899374]
 sprite_frames = SubResource("SpriteFrames_rkttj")
@@ -84,9 +85,9 @@ shape = SubResource("CapsuleShape2D_g02h3")
 rect = Rect2(-13, -8, 26, 18)
 
 [node name="GroundCheckLeftRayCast" parent="." index="3" unique_id=1260554353]
-position = Vector2(-8, 0)
+position = Vector2(-6, 0)
 target_position = Vector2(-4, 10)
 
 [node name="GroundCheckRightRayCast" parent="." index="4" unique_id=1567533170]
-position = Vector2(8, 0)
+position = Vector2(6, 0)
 target_position = Vector2(4, 10)

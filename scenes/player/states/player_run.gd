@@ -47,7 +47,7 @@ func _handle_collision() -> void:
 			continue
 
 		if collider.is_in_group("enemies"):
-			if player.is_invulnerable:
+			if player.is_energized:
 				collider.die()
 				continue
 

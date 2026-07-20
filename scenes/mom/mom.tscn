@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://bqejb2s8i5xc1"]
+
+[ext_resource type="Script" uid="uid://cnjnwaho3fjs" path="res://mom.gd" id="1_4mrok"]
+[ext_resource type="Texture2D" uid="uid://cg5iuaw4fuhwi" path="res://scenes/mom/sprites/mom.png" id="2_qnswn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6wit"]
+atlas = ExtResource("2_qnswn")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p67lc"]
+atlas = ExtResource("2_qnswn")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bni11"]
+atlas = ExtResource("2_qnswn")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjb7o"]
+atlas = ExtResource("2_qnswn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kjbu"]
+atlas = ExtResource("2_qnswn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvds3"]
+atlas = ExtResource("2_qnswn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on7co"]
+atlas = ExtResource("2_qnswn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxsl5"]
+atlas = ExtResource("2_qnswn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_intsa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6wit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p67lc")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bni11")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjb7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kjbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvds3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on7co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxsl5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4mrok"]
+radius = 24.0
+
+[node name="Mom" type="CharacterBody2D" unique_id=914720157 groups=["enemies"]]
+collision_layer = 32
+collision_mask = 18
+script = ExtResource("1_4mrok")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=371614704]
+position = Vector2(0, -16)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_intsa")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1543472976]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_4mrok")
+
+[node name="AttackMarker" type="Marker2D" parent="." unique_id=110488442]
+position = Vector2(-16, -16)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=313257691]
+position = Vector2(0, -16)
+rect = Rect2(-448, -16, 464, 32)
+
+[node name="JumpTimer" type="Timer" parent="." unique_id=304342799]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=893722360]
+one_shot = true
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

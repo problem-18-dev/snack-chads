@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bekxxr844rl7o" path="res://scenes/level/tile_map_layer/textures/tilemap_placeholder.png" id="1_i1mrs"]
 [ext_resource type="PackedScene" uid="uid://hg21feacdnjc" path="res://scenes/enemy/walking_enemy/biker/biker.tscn" id="2_ml5tt"]
 [ext_resource type="PackedScene" uid="uid://csj5opj8ti4ps" path="res://scenes/enemy/walking_enemy/phone_person/phone_person.tscn" id="3_0k0s3"]
+[ext_resource type="PackedScene" uid="uid://8gckiu7b6820" path="res://scenes/danger_block/danger_block.tscn" id="4_gs6kr"]
 [ext_resource type="PackedScene" uid="uid://b615s7vi8t3mu" path="res://scenes/hittable/surprise_block/coin_block/coin_block.tscn" id="5_l3q8x"]
 [ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="5_o6m22"]
 [ext_resource type="PackedScene" uid="uid://dfcuf2bc0w733" path="res://scenes/hittable/surprise_block/energy_drink_block/energy_drink_block.tscn" id="6_o6m22"]
@@ -141,6 +142,7 @@ resource_name = "Blocks"
 scenes/2/scene = ExtResource("5_o6m22")
 scenes/3/scene = ExtResource("5_l3q8x")
 scenes/4/scene = ExtResource("6_o6m22")
+scenes/5/scene = ExtResource("4_gs6kr")
 scenes/6/scene = ExtResource("7_fcknj")
 scenes/8/scene = ExtResource("8_l3q8x")
 

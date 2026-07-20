@@ -18,6 +18,8 @@ func interact() -> void:
 	if debug_enabled:
 		Debug.log("Player interacted with flag pole")
 
+	GameState.save_player_mode(_player.player_mode)
+	GameState.set_return_point(GameState.ReturnPoint.START)
 	var player_position := to_local(_player.global_position)
 	var snap_height := maxf(player_position.y, -MAX_HEIGHT)
 	var snap_position := Vector2(-8.0, snap_height)

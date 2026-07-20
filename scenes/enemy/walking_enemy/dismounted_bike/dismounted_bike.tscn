@@ -73,7 +73,4 @@ rect = Rect2(-15, -8, 30, 16)
 wait_time = 0.1
 one_shot = true
 
-[node name="GroundCheckRayCast" parent="." index="4" unique_id=517677263]
-target_position = Vector2(8, 8)
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

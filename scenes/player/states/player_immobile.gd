@@ -5,7 +5,7 @@ var _is_dead := false
 
 func _enter(data := { }) -> void:
 	player.ground_particles.emitting = false
-	player.invincibility_timer.paused = true
+	player.energy_timer.paused = true
 
 	if data.has("interactable"):
 		_interact(data.interactable)
@@ -20,7 +20,7 @@ func _enter(data := { }) -> void:
 
 
 func _exit() -> void:
-	player.invincibility_timer.paused = false
+	player.energy_timer.paused = false
 
 
 func _interact(interactable: Interactable) -> void:
@@ -32,7 +32,7 @@ func _die() -> void:
 	_is_dead = true
 	player.sprite.play("death")
 	player.collision_shape.set_deferred("disabled", true)
-	player.invincible_area.monitoring = false
+	player.energy_area.monitoring = false
 
 	var tween := create_tween().set_trans(Tween.TRANS_SINE)
 	var jump_distance = Vector2.UP * player.death_jump_distance

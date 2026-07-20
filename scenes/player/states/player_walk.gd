@@ -11,6 +11,10 @@ func _physics_update(_delta: float) -> void:
 	player.move_and_slide()
 	_handle_collision()
 
+	if Input.is_action_pressed("interact") and not is_zero_approx(player.get_direction()):
+		finished.emit(PlayerState.RUN)
+		return
+
 	if not player.is_on_floor():
 		finished.emit(PlayerState.AIR, { "coyote": player.can_coyote() })
 
@@ -22,11 +26,7 @@ func _key_input(event: InputEvent) -> void:
 		finished.emit(PlayerState.AIR, { "jump": true })
 		return
 
-	if event.is_action_pressed("interact") and not is_zero_approx(player.get_direction()):
-		finished.emit(PlayerState.RUN)
-		return
-
-	if event.is_action_pressed("down") and player.is_slow():
+	if event.is_action_pressed("down") and player.can_use_pipe():
 		player.attempt_interaction()
 
 
@@ -58,7 +58,7 @@ func _handle_collision() -> void:
 			continue
 
 		if collider.is_in_group("enemies"):
-			if player.is_invulnerable:
+			if player.is_energized:
 				collider.die()
 				continue
 

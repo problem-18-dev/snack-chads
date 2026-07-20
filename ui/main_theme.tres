@@ -1,9 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://dm2a8fvc6fv71"]
 
-[sub_resource type="SystemFont" id="SystemFont_tsbh2"]
+[ext_resource type="FontFile" uid="uid://c2ggcy1ttguqi" path="res://ui/theme/Tiny5/Tiny5-Regular.ttf" id="1_g1fjd"]
 
 [resource]
-default_font = SubResource("SystemFont_tsbh2")
+default_font = ExtResource("1_g1fjd")
 DebugLabel/base_type = &"Label"
 DebugLabel/colors/font_color = Color(1, 1, 1, 1)
 DebugLabel/constants/line_spacing = -1

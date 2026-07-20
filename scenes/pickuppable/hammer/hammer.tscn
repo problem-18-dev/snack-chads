@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cwj3hq8u1wv25"]
+
+[ext_resource type="PackedScene" uid="uid://bvciw3dcyxwkh" path="res://scenes/pickuppable/pickuppable.tscn" id="1_0gvtw"]
+[ext_resource type="Texture2D" uid="uid://dc4wvku2j22vg" path="res://scenes/mom/sprites/hammer.png" id="2_0ayw1"]
+[ext_resource type="Script" uid="uid://celykfo32lygg" path="res://scenes/pickuppable/hammer/hammer.gd" id="2_bwurd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ayw1"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwurd"]
+atlas = ExtResource("2_0ayw1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0i3kn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwurd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Hammer" unique_id=413452588 instance=ExtResource("1_0gvtw")]
+script = ExtResource("2_bwurd")
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=672722965]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_0ayw1")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=1543657691]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_0i3kn")
+autoplay = "default"

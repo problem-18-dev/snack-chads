@@ -87,7 +87,7 @@ func _handle_collision() -> bool:
 
 		# Enemies
 		if collider.is_in_group("enemies") or collider.is_in_group("pushables"):
-			if player.is_invulnerable:
+			if player.is_energized:
 				collider.die()
 				return true
 
@@ -113,7 +113,7 @@ func _check_block_hits(normal: Vector2) -> void:
 			return
 
 
-func _check_enemy_hits(collider: Enemy, normal: Vector2) -> void:
+func _check_enemy_hits(collider: CharacterBody2D, normal: Vector2) -> void:
 	var is_on_head := Vector2.UP.dot(normal) > 0.1
 
 	if not is_on_head:
@@ -125,7 +125,10 @@ func _check_enemy_hits(collider: Enemy, normal: Vector2) -> void:
 		_bounce()
 		return
 
-	collider.hurt()
+	if collider.has_method("hurt"):
+		collider.hurt()
+	else:
+		player.take_damage()
 	_bounce()
 
 
