@@ -29,6 +29,14 @@ func can_be_pushed() -> bool:
 
 func _handle_collision() -> void:
 	if is_on_wall() and sign(get_wall_normal().x) == -sign(_direction):
+		for i in get_slide_collision_count():
+			var collision := get_slide_collision(i)
+			var collider := collision.get_collider()
+			if collider.is_in_group("enemies"):
+				AudioManager.play_sfx(AudioManager.Sfx.STOMP)
+				collider.die()
+				return
+
 		_direction *= -1
 
 

@@ -15,7 +15,7 @@ var music_paths := {
 
 func play_music(music: Music) -> void:
 	stream = load(music_paths[music])
-	volume_db = -2
+	volume_db = -6
 	play()
 
 
