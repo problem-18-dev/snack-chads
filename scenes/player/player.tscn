@@ -607,7 +607,6 @@ collision_mask = 62
 slide_on_ceiling = false
 script = ExtResource("1_8afob")
 air_movement_weight = 0.07
-jump_running_force = 410.0
 jump_release_divider = 2.0
 bounce_force_multiplier = 2.75
 walk_accel = 0.3

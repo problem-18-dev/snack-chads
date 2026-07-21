@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://boqxoo06wqx3p"]
 
-[ext_resource type="PackedScene" uid="uid://oixjpegbqcmd" path="res://scenes/debug/debug.tscn" id="1_na3h5"]
 [ext_resource type="Script" uid="uid://dy1wx8prx3gsa" path="res://scenes/level/room/room.gd" id="1_rcg68"]
 [ext_resource type="PackedScene" uid="uid://hdisw1n8q63w" path="res://scenes/level/tile_map_layer/world_tile_map_layer.tscn" id="2_7x0sh"]
 [ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/death_zone/death_zone.tscn" id="3_7x0sh"]
@@ -11,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://exwb6tydvfno" path="res://scenes/hittable/wall_block/wall_block.tscn" id="7_x3ryn"]
 [ext_resource type="PackedScene" uid="uid://dfcuf2bc0w733" path="res://scenes/hittable/surprise_block/energy_drink_block/energy_drink_block.tscn" id="8_7ptbo"]
 [ext_resource type="PackedScene" uid="uid://bnlemcsa2avmg" path="res://scenes/pickuppable/coin/coin.tscn" id="9_4l6qi"]
+[ext_resource type="PackedScene" uid="uid://dpfpliadnjd4k" path="res://ui/hud/hud.tscn" id="11_rcg68"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgwon"]
 resource_name = "Outside World"
@@ -124,14 +124,7 @@ tile_proxies/coords_level = [[1, Vector2i(0, 0)], [3, Vector2i(0, 0)], [2, Vecto
 [node name="Room" type="Node2D" unique_id=806301198]
 script = ExtResource("1_rcg68")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1262373997]
-
-[node name="Debug" parent="HUD" unique_id=1012360878 instance=ExtResource("1_na3h5")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="HUD" parent="." unique_id=1923680103 instance=ExtResource("11_rcg68")]
 
 [node name="Background" type="ColorRect" parent="." unique_id=484793716]
 z_index = -1
@@ -155,6 +148,9 @@ z_index = 2
 
 [node name="Objects" type="Node2D" parent="." unique_id=1696250162]
 z_index = 2
+
+[node name="Points" type="Node2D" parent="." unique_id=441183136]
+z_index = 10
 
 [node name="WorldBoundary" parent="." unique_id=1117372907 instance=ExtResource("3_7x0sh")]
 position = Vector2(0, 112)

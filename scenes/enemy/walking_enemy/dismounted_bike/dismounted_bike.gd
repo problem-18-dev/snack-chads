@@ -28,7 +28,7 @@ func can_be_pushed() -> bool:
 
 
 func _handle_collision() -> void:
-	if is_on_wall() and sign(get_wall_normal().x) != -sign(_direction):
+	if is_on_wall() and sign(get_wall_normal().x) == -sign(_direction):
 		_direction *= -1
 
 	for i in get_slide_collision_count():

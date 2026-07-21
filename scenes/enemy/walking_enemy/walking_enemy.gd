@@ -7,6 +7,8 @@ extends Enemy
 @export_group("Death")
 @export var death_bump_force := -150.0
 @export var death_rotation_speed := 8.0
+@export_group("Points")
+@export var points := 100
 
 var _direction := -1
 var _is_dead := false
@@ -64,6 +66,7 @@ func hurt() -> void:
 
 
 func die() -> void:
+	GameState.add_points(points, global_position)
 	_is_dead = true
 	remove_from_group("enemies")
 	visible_on_screen_enabler_2d.queue_free()

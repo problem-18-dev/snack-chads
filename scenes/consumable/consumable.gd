@@ -6,6 +6,7 @@ enum Type { ENERGY_DRINK, BACKPACK, LOLLY_POP }
 @export_group("Properties")
 @export var speed := 40.0
 @export var type := Type.BACKPACK
+@export var points := 200
 
 var _direction := 0
 
@@ -31,10 +32,11 @@ func _handle_movement(delta: float) -> void:
 
 
 func _handle_collision() -> void:
-	if is_on_wall() and sign(get_wall_normal().x) != -sign(_direction):
+	if is_on_wall() and sign(get_wall_normal().x) == -sign(_direction):
 		_direction *= -1
 
 
 func _on_detection_area_body_entered(body: Player) -> void:
 	body.consume(type)
+	GameState.add_points(points, global_position)
 	queue_free()

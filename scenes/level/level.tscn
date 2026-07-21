@@ -44,6 +44,9 @@ repeat_size = Vector2(240, 0)
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=464281269]
 
+[node name="Points" type="Node2D" parent="." unique_id=1109105176]
+z_index = 10
+
 [node name="Markers" type="Node2D" parent="." unique_id=742689600]
 
 [node name="SpawnMarker" type="Marker2D" parent="Markers" unique_id=1120709553]
@@ -54,6 +57,10 @@ repeat_size = Vector2(240, 0)
 position = Vector2(0, 56)
 collision_layer = 8
 
+[node name="CountdownTimer" type="Timer" parent="." unique_id=126041452]
+process_mode = 1
+
 [connection signal="game_quit" from="HUD" to="." method="_on_hud_game_quit"]
 [connection signal="game_resumed" from="HUD" to="." method="_on_hud_game_resumed"]
 [connection signal="visibility_changed" from="Transition" to="." method="_on_transition_visibility_changed"]
+[connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]

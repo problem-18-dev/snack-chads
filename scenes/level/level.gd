@@ -7,15 +7,23 @@ const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 @export var current_level: Main.Scene
 @export var next_level: Main.Scene
 @export var transition: Transition
+@export var level_time := 300
 @export_group("Properties")
 @export var start_pipe: PipeExit
 @export var update_player_left := true
 
 var _player: Player
 
+@onready var countdown_timer: Timer = $CountdownTimer
 @onready var world: TileMapLayer = $WorldTileMapLayer
 @onready var spawn_in_pipe := GameState.get_return_point() == GameState.ReturnPoint.PIPE
 @onready var hud: HUD = $HUD
+@onready var points_container: Node2D = $Points
+
+
+func _init() -> void:
+	GameState.points_added.connect(_on_points_added)
+	GameState.time_stopped.connect(_end_countdown)
 
 
 func _ready() -> void:
@@ -66,6 +74,10 @@ func _start_level() -> void:
 	get_tree().call_deferred("call_group", "enemies", "resume")
 	get_tree().call_deferred("call_group", "pushables", "resume")
 
+	if not spawn_in_pipe:
+		GameState.set_time(level_time)
+	countdown_timer.start()
+
 
 func _toggle_pause() -> void:
 	var paused := get_tree().paused
@@ -80,8 +92,14 @@ func _toggle_pause() -> void:
 
 
 func _on_player_died() -> void:
-	GameState.reset()
-	# Next level is always next pointer, so -1 is same level
+	_end_countdown()
+	GameState.lives -= 1
+	if GameState.lives <= 0:
+		GameState.reset_game_state()
+		GameManager.main.load_scene(Main.Scene.MAIN_MENU)
+		return
+
+	GameState.reset_player()
 	GameManager.main.load_scene(current_level)
 
 
@@ -96,6 +114,7 @@ func _on_player_started() -> void:
 
 
 func _on_player_finished_level() -> void:
+	_end_countdown()
 	GameManager.main.load_scene(next_level)
 
 
@@ -110,3 +129,20 @@ func _on_hud_game_resumed() -> void:
 func _on_transition_visibility_changed() -> void:
 	if transition and not transition.visible:
 		_start_level()
+
+
+func _on_points_added(amount: int, at: Vector2) -> void:
+	PointsComponent.spawn(points_container, at, amount)
+
+
+func _end_countdown() -> void:
+	countdown_timer.stop()
+
+
+func _on_countdown_timer_timeout() -> void:
+	GameState.decrement_time()
+
+	if GameState.time_left <= 0:
+		_end_countdown()
+		if _player:
+			_player.die()

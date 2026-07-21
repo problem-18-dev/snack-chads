@@ -71,6 +71,7 @@ height = 17.0
 
 [node name="PhonePerson" unique_id=792489795 instance=ExtResource("1_n5kbo")]
 safe_margin = 0.15
+points = 100
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=253899374]
 sprite_frames = SubResource("SpriteFrames_rkttj")

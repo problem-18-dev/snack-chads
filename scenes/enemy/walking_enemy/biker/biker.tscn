@@ -45,6 +45,7 @@ height = 24.0
 [node name="Biker" unique_id=792489795 instance=ExtResource("1_1f3w6")]
 script = ExtResource("2_hcgm2")
 death_rotation_speed = 16.0
+points = 100
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=253899374]
 position = Vector2(0, -4)

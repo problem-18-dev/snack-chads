@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bor67w714f6wa"]
+
+[ext_resource type="Script" uid="uid://bwjtt2o5x4xmj" path="res://core/components/points_component/points_component.gd" id="1_8tbif"]
+
+[node name="PointsComponent" type="Node2D" unique_id=288267605]
+script = ExtResource("1_8tbif")
+
+[node name="Label" type="Label" parent="." unique_id=251327925]
+offset_left = -6.0
+offset_top = -4.5
+offset_right = 6.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SmallLabel"
+theme_override_font_sizes/font_size = 12
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1

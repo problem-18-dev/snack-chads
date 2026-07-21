@@ -1,6 +1,7 @@
 extends Interactable
 
 const MAX_HEIGHT := 120.0
+const MAX_POINTS := 1000
 
 @export_group("Properties")
 @export var slide_duration := 1.0
@@ -18,6 +19,7 @@ func interact() -> void:
 	if debug_enabled:
 		Debug.log("Player interacted with flag pole")
 
+	GameState.stop_time()
 	GameState.save_player_mode(_player.player_mode)
 	GameState.set_return_point(GameState.ReturnPoint.START)
 	var player_position := to_local(_player.global_position)
@@ -26,6 +28,9 @@ func interact() -> void:
 	_adjust_marker(snap_position)
 	await _snap_player()
 	AudioManager.play_sfx(AudioManager.Sfx.LEVEL_CLEAR)
+	var height_fraction := clampf(abs(snap_height) / MAX_HEIGHT, 0.0, 1.0)
+	var points := roundi(MAX_POINTS * lerpf(0.1, 1.0, height_fraction))
+	GameState.add_points(points, to_global(snap_position))
 	_tween_and_finish()
 
 
