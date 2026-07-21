@@ -3,5 +3,6 @@
 [ext_resource type="Script" uid="uid://bji8wqqxpxsjn" path="res://core/main/main.gd" id="1_8fcwd"]
 
 [node name="Main" type="Node" unique_id=698738702]
+process_mode = 3
 script = ExtResource("1_8fcwd")
-initial_scene = 7
+initial_scene = 0

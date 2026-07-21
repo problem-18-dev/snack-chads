@@ -1,56 +1,234 @@
-[gd_scene format=3 uid="uid://b4rgsq0f0o7ti"]
+[gd_scene format=4 uid="uid://b4rgsq0f0o7ti"]
 
 [ext_resource type="Script" uid="uid://cvubc12ykg825" path="res://ui/transition/transition.gd" id="1_1tu1e"]
+[ext_resource type="Texture2D" uid="uid://bl2cllo4akbcp" path="res://scenes/level/textures/small_clouds.png" id="2_g6222"]
+[ext_resource type="Texture2D" uid="uid://dbi64rfk4xpro" path="res://scenes/level/textures/large_clouds.png" id="3_wfasa"]
+[ext_resource type="PackedScene" uid="uid://hdisw1n8q63w" path="res://scenes/level/tile_map_layer/world_tile_map_layer.tscn" id="4_me7b2"]
+[ext_resource type="Texture2D" uid="uid://dgsx47xq58u0t" path="res://scenes/player/sprites/player_big.png" id="5_wfasa"]
+[ext_resource type="Texture2D" uid="uid://by3rohb63x80l" path="res://ui/sprites/player_head.png" id="6_me7b2"]
 
-[node name="Transition" type="Control" unique_id=414138858]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="Gradient" id="Gradient_12hx7"]
+offsets = PackedFloat32Array(0, 0.475)
+colors = PackedColorArray(1, 0.96862745, 0.627451, 0.39215687, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d5p1i"]
+gradient = SubResource("Gradient_12hx7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e78x"]
+atlas = ExtResource("5_wfasa")
+region = Rect2(0, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4pem"]
+atlas = ExtResource("5_wfasa")
+region = Rect2(18, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c04x"]
+atlas = ExtResource("5_wfasa")
+region = Rect2(36, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joh67"]
+atlas = ExtResource("5_wfasa")
+region = Rect2(54, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u184e"]
+atlas = ExtResource("5_wfasa")
+region = Rect2(72, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mijq"]
+atlas = ExtResource("5_wfasa")
+region = Rect2(90, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2r0d"]
+atlas = ExtResource("5_wfasa")
+region = Rect2(108, 0, 18, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_me7b2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e78x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4pem")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c04x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joh67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u184e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mijq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2r0d")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_me7b2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(680, 320)]
+}
+
+[sub_resource type="Animation" id="Animation_bii4t"]
+resource_name = "transition"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.9666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-40, 320), Vector2(680, 320)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xev3y"]
+_data = {
+&"RESET": SubResource("Animation_me7b2"),
+&"transition": SubResource("Animation_bii4t")
+}
+
+[node name="Transition" type="CanvasLayer" unique_id=1922069582]
 script = ExtResource("1_1tu1e")
-duration = 2.0
 
-[node name="Background" type="ColorRect" parent="." unique_id=558431637]
-layout_mode = 1
+[node name="Background" type="ColorRect" parent="." unique_id=400166509]
+z_index = -4
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15686275, 0.15686275, 0.18039216, 1)
+color = Color(0.6745098, 0.8, 0.89411765, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=890509382]
+[node name="Light" type="TextureRect" parent="Background" unique_id=735034380]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 640.0
+offset_top = 1.2239188e-05
+offset_right = 360.0
+offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_d5p1i")
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer" unique_id=466075091]
+[node name="FarParallax" type="Parallax2D" parent="." unique_id=229862578]
+z_index = -2
+scroll_scale = Vector2(0.05, 1)
+repeat_size = Vector2(240, 0)
+autoscroll = Vector2(-2, 0)
+repeat_times = 4
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="SmallClouds" type="Sprite2D" parent="FarParallax" unique_id=1937371256]
+position = Vector2(296, 96)
+texture = ExtResource("2_g6222")
+centered = false
+
+[node name="NearParallax" type="Parallax2D" parent="." unique_id=1742053884]
+z_index = -2
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(240, 0)
+autoscroll = Vector2(-6, 0)
+repeat_times = 4
+
+[node name="BigClouds" type="Sprite2D" parent="NearParallax" unique_id=363053371]
+position = Vector2(384, 0)
+texture = ExtResource("3_wfasa")
+centered = false
+
+[node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("4_me7b2")]
+tile_map_data = PackedByteArray("AAAPABYAAAABAAEAAAAPABUAAAABAAAAAAAOABYAAAABAAEAAAAOABUAAAABAAAAAAANABYAAAABAAEAAAANABUAAAABAAAAAAAMABYAAAABAAEAAAAMABUAAAABAAAAAAALABYAAAABAAEAAAALABUAAAABAAAAAAAKABYAAAABAAEAAAAKABUAAAABAAAAAAAJABYAAAABAAEAAAAJABUAAAABAAAAAAAIABYAAAABAAEAAAAIABUAAAABAAAAAAAHABYAAAABAAEAAAAHABUAAAABAAAAAAAGABYAAAABAAEAAAAGABUAAAABAAAAAAAFABYAAAABAAEAAAAFABUAAAABAAAAAAAEABYAAAABAAEAAAAEABUAAAABAAAAAAADABYAAAABAAEAAAADABUAAAABAAAAAAACABYAAAABAAEAAAACABUAAAABAAAAAAABABYAAAABAAEAAAABABUAAAABAAAAAAAAABYAAAABAAEAAAAAABUAAAABAAAAAAAnABcAAAABAAIAAAAnABYAAAABAAEAAAAnABUAAAABAAAAAAAmABcAAAABAAIAAAAmABYAAAABAAEAAAAmABUAAAABAAAAAAAlABcAAAABAAIAAAAlABYAAAABAAEAAAAlABUAAAABAAAAAAAkABcAAAABAAIAAAAkABYAAAABAAEAAAAkABUAAAABAAAAAAAjABcAAAABAAIAAAAjABYAAAABAAEAAAAjABUAAAABAAAAAAAiABcAAAABAAIAAAAiABYAAAABAAEAAAAiABUAAAABAAAAAAAhABcAAAABAAIAAAAhABYAAAABAAEAAAAhABUAAAABAAAAAAAgABcAAAABAAIAAAAgABYAAAABAAEAAAAgABUAAAABAAAAAAAfABcAAAABAAIAAAAfABYAAAABAAEAAAAfABUAAAABAAAAAAAeABcAAAABAAIAAAAeABYAAAABAAEAAAAeABUAAAABAAAAAAAdABcAAAABAAIAAAAdABYAAAABAAEAAAAdABUAAAABAAAAAAAcABcAAAABAAIAAAAcABYAAAABAAEAAAAcABUAAAABAAAAAAAbABcAAAABAAIAAAAbABYAAAABAAEAAAAbABUAAAABAAAAAAAaABcAAAABAAIAAAAaABYAAAABAAEAAAAaABUAAAABAAAAAAAZABcAAAABAAIAAAAZABYAAAABAAEAAAAZABUAAAABAAAAAAAPABcAAAABAAIAAAAOABcAAAABAAIAAAANABcAAAABAAIAAAAMABcAAAABAAIAAAALABcAAAABAAIAAAAKABcAAAABAAIAAAAJABcAAAABAAIAAAAIABcAAAABAAIAAAAHABcAAAABAAIAAAAGABcAAAABAAIAAAAFABcAAAABAAIAAAAEABcAAAABAAIAAAADABcAAAABAAIAAAACABcAAAABAAIAAAABABcAAAABAAIAAAAAABcAAAABAAIAAAD//xcAAAAAAAIAAAD//xYAAAAAAAEAAAD//xUAAAAAAAAAAAAoABcAAAACAAIAAAAoABYAAAACAAEAAAAoABUAAAACAAAAAAAYABcAAAABAAIAAAAYABYAAAABAAEAAAAYABUAAAABAAAAAAAQABYAAAABAAEAAAARABYAAAABAAEAAAATABYAAAABAAEAAAASABYAAAABAAEAAAAUABYAAAABAAEAAAAWABYAAAABAAEAAAAVABYAAAABAAEAAAAXABYAAAABAAEAAAAXABcAAAABAAIAAAAXABUAAAABAAAAAAAWABcAAAABAAIAAAAWABUAAAABAAAAAAAVABcAAAABAAIAAAAVABUAAAABAAAAAAAUABcAAAABAAIAAAAUABUAAAABAAAAAAATABcAAAABAAIAAAATABUAAAABAAAAAAASABcAAAABAAIAAAASABUAAAABAAAAAAARABcAAAABAAIAAAARABUAAAABAAAAAAAQABcAAAABAAIAAAAQABUAAAABAAAAAAAGABQABAAMAAAAAAAgABQABAAMAAAAAAATABQABAAKAAAAAAA=")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=23296590]
+position = Vector2(680, 320)
+sprite_frames = SubResource("SpriteFrames_me7b2")
+animation = &"run"
+autoplay = "run"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=952619096]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -125.0
+offset_right = 156.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=400954073]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Score: 0"
+theme_type_variation = &"HeaderLarge"
+text = "First snack"
 
-[node name="LivesLabel" type="Label" parent="MarginContainer" unique_id=413684732]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "Lives: 5"
-
-[node name="NextLevelLabel" type="Label" parent="MarginContainer" unique_id=2124803937]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1724331114]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Next: 1-2"
 
-[node name="DurationTimer" type="Timer" parent="." unique_id=1262773461]
-one_shot = true
+[node name="Head" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=1074045698]
+layout_mode = 2
+texture = ExtResource("6_me7b2")
+expand_mode = 2
 
-[connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
+[node name="Lives" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=716606264]
+layout_mode = 2
+theme_type_variation = &"SecondaryLabel"
+text = "x 5"
+
+[node name="Score" type="Label" parent="VBoxContainer" unique_id=752888623]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"SecondaryLabel"
+text = "000000"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=862059102]
+libraries/ = SubResource("AnimationLibrary_xev3y")
+autoplay = &"transition"

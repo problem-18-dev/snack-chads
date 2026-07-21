@@ -10,8 +10,6 @@ enum Scene {
 	LEVEL_TWO_ROOM_TWO,
 	LEVEL_THREE,
 	LEVEL_FOUR,
-	CREDITS,
-	TRANSITION,
 }
 
 @export_group("Scenes")
@@ -27,8 +25,6 @@ var _scene_paths: Dictionary[Scene, String] = {
 	Scene.LEVEL_TWO_ROOM_TWO: "uid://cnf5awhp2i2ox",
 	Scene.LEVEL_THREE: "uid://bwcvt8pdnord",
 	Scene.LEVEL_FOUR: "uid://ndxe33khqqff",
-	Scene.CREDITS: "uid://5ukcqx4syxbo",
-	Scene.TRANSITION: "uid://b4rgsq0f0o7ti",
 }
 
 
@@ -42,7 +38,6 @@ func unload_scene() -> void:
 	if not _current_scene:
 		return
 
-	remove_child.call_deferred(_current_scene)
 	_current_scene.queue_free()
 	_current_scene = null
 

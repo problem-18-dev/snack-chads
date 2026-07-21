@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cf2gbx8xsodlg" path="res://scenes/enemy/enemy.gd" id="1_4a83h"]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=792489795 groups=["enemies"]]
+process_mode = 1
 collision_layer = 32
 collision_mask = 58
 script = ExtResource("1_4a83h")

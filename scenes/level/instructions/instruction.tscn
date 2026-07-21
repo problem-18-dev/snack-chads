@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cwuj701osm8n6"]
+
+[ext_resource type="Script" uid="uid://bmeetxcgf7f4w" path="res://scenes/level/instructions/instruction.gd" id="1_0xb13"]
+
+[sub_resource type="Animation" id="Animation_0xb13"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_5w4ht"]
+resource_name = "instruction"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67o7p"]
+_data = {
+&"RESET": SubResource("Animation_0xb13"),
+&"instruction": SubResource("Animation_5w4ht")
+}
+
+[node name="Instruction" type="Control" unique_id=1601852821]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0xb13")
+
+[node name="Label" type="Label" parent="." unique_id=2122303886]
+layout_mode = 0
+offset_right = 78.0
+offset_bottom = 27.0
+theme_type_variation = &"SmallLabel"
+text = "Press F to pay respect"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label" unique_id=989851703]
+libraries/ = SubResource("AnimationLibrary_67o7p")
+autoplay = &"instruction"

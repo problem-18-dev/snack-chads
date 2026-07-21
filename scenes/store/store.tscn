@@ -34,6 +34,8 @@ script = ExtResource("1_5517u")
 z_index = -1
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_aloq4")
+autoplay = "default"
+frame_progress = 0.40676892
 
 [node name="Foreground" type="Sprite2D" parent="." unique_id=1198413204]
 z_index = 2

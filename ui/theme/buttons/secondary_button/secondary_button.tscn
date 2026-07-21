@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://d3vn3masjhyjr"]
+
+[ext_resource type="Script" uid="uid://xpgxyh0fx3du" path="res://ui/theme/buttons/secondary_button/secondary_button.gd" id="1_no08f"]
+
+[node name="SecondaryButton" type="MarginContainer" unique_id=1039945589]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_no08f")
+
+[node name="SecondaryButton" type="Button" parent="." unique_id=1571685118]
+layout_mode = 2
+theme_type_variation = &"PrimaryButton"
+
+[node name="Label" type="Label" parent="SecondaryButton" unique_id=721967817]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -27.0
+offset_right = 177.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SecondaryLabel"
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="SecondaryButton" to="." method="_on_secondary_button_down"]
+[connection signal="button_up" from="SecondaryButton" to="." method="_on_secondary_button_up"]
+[connection signal="mouse_entered" from="SecondaryButton" to="." method="_on_secondary_button_mouse_entered"]
+[connection signal="mouse_exited" from="SecondaryButton" to="." method="_on_secondary_button_mouse_exited"]
+[connection signal="pressed" from="SecondaryButton" to="." method="_on_secondary_button_pressed"]

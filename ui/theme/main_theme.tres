@@ -1,0 +1,96 @@
+[gd_resource type="Theme" format=3 uid="uid://dm2a8fvc6fv71"]
+
+[ext_resource type="FontFile" uid="uid://c2ggcy1ttguqi" path="res://ui/theme/Tiny5/Tiny5-Regular.ttf" id="1_640h2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_640h2"]
+border_width_left = 2
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6901961, 0.6627451, 0.89411765, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muu7h"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.09803922, 0.07058824, 0, 1)
+border_blend = true
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dn1j"]
+border_width_left = 2
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.96862745, 0.627451, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muu7h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g1fjd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_640h2"]
+
+[resource]
+default_font = ExtResource("1_640h2")
+default_font_size = 24
+DebugLabel/base_type = &"Label"
+DebugLabel/colors/font_color = Color(1, 1, 1, 1)
+DebugLabel/constants/line_spacing = -1
+DebugLabel/font_sizes/font_size = 8
+HeaderLarge/base_type = &"Label"
+HeaderLarge/colors/font_color = Color(1, 0.96862745, 0.89411765, 1)
+HeaderLarge/colors/font_shadow_color = Color(0.09803922, 0.07058824, 0, 1)
+HeaderLarge/constants/shadow_offset_x = 3
+HeaderLarge/constants/shadow_offset_y = 3
+HeaderLarge/constants/shadow_outline_size = 4
+HeaderLarge/font_sizes/font_size = 64
+ImageButton/base_type = &"Button"
+ImageButton/styles/hover = SubResource("StyleBoxFlat_640h2")
+ImageButton/styles/normal = SubResource("StyleBoxFlat_muu7h")
+ImageButton/styles/pressed = SubResource("StyleBoxFlat_6dn1j")
+PrimaryButton/base_type = &"Button"
+PrimaryButton/colors/font_color = Color(1, 0.96862745, 0.89411765, 1)
+PrimaryButton/font_sizes/font_size = 48
+PrimaryButton/styles/hover = SubResource("StyleBoxEmpty_muu7h")
+PrimaryButton/styles/normal = SubResource("StyleBoxEmpty_g1fjd")
+PrimaryButton/styles/pressed = SubResource("StyleBoxEmpty_640h2")
+PrimaryLabel/base_type = &"Label"
+PrimaryLabel/colors/font_color = Color(1, 0.96862745, 0.89411765, 1)
+PrimaryLabel/colors/font_shadow_color = Color(0.09803922, 0.07058824, 0, 1)
+PrimaryLabel/constants/shadow_offset_x = 3
+PrimaryLabel/constants/shadow_offset_y = 3
+PrimaryLabel/constants/shadow_outline_size = 4
+PrimaryLabel/font_sizes/font_size = 48
+PrimaryMarginContainer/base_type = &"MarginContainer"
+PrimaryMarginContainer/constants/margin_bottom = 8
+PrimaryMarginContainer/constants/margin_left = 8
+PrimaryMarginContainer/constants/margin_right = 8
+PrimaryMarginContainer/constants/margin_top = 8
+SecondaryLabel/base_type = &"Label"
+SecondaryLabel/colors/font_color = Color(1, 0.96862745, 0.89411765, 1)
+SecondaryLabel/colors/font_shadow_color = Color(0.09803922, 0.07058824, 0, 1)
+SecondaryLabel/constants/shadow_offset_x = 2
+SecondaryLabel/constants/shadow_offset_y = 2
+SecondaryLabel/constants/shadow_outline_size = 4
+SecondaryLabel/font_sizes/font_size = 32
+SmallLabel/base_type = &"Label"
+SmallLabel/colors/font_color = Color(1, 0.96862745, 0.627451, 1)
+SmallLabel/font_sizes/font_size = 8
+TernaryLabel/base_type = &"Label"
+TernaryLabel/colors/font_color = Color(1, 0.96862745, 0.89411765, 1)
+TernaryLabel/colors/font_shadow_color = Color(0.09803922, 0.07058824, 0, 1)
+TernaryLabel/constants/shadow_offset_x = 2
+TernaryLabel/constants/shadow_offset_y = 2
+TernaryLabel/constants/shadow_outline_size = 2

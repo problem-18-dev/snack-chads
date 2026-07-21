@@ -149,7 +149,7 @@ func _handle_landing() -> void:
 	player.elastic_land_component.use()
 	player.land_particles.emitting = true
 	# Run if holding run
-	# Walk if notp
+	# Walk if not
 	# Idle if not moving at all
 	var moving := Input.is_action_pressed("left") or Input.is_action_pressed("right")
 	var running := Input.is_action_pressed("interact")
@@ -164,7 +164,7 @@ func _handle_landing() -> void:
 func _jump(is_running := false) -> void:
 	AudioManager.play_sfx(AudioManager.Sfx.JUMP)
 
-	if is_running and player.velocity.x > player.walk_speed:
+	if is_running:
 		player.velocity.y = -player.jump_running_force
 	else:
 		player.velocity.y = -player.jump_force

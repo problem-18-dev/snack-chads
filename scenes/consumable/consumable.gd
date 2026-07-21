@@ -31,18 +31,8 @@ func _handle_movement(delta: float) -> void:
 
 
 func _handle_collision() -> void:
-	for i in get_slide_collision_count():
-		var collision := get_slide_collision(i)
-		var collider := collision.get_collider()
-
-		if collider == null:
-			continue
-
-		var normal := collision.get_normal()
-
-		# If not floor
-		if not normal.is_equal_approx(Vector2.UP):
-			_direction *= -1
+	if is_on_wall() and sign(get_wall_normal().x) != -sign(_direction):
+		_direction *= -1
 
 
 func _on_detection_area_body_entered(body: Player) -> void:

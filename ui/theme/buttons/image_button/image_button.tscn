@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cxowbrw1ax4pr"]
+
+[ext_resource type="Texture2D" uid="uid://crxw4x0upx428" path="res://assets/images/levels/level_1.png" id="1_fxbb8"]
+[ext_resource type="Script" uid="uid://be7wmjc4ewmbp" path="res://ui/theme/buttons/image_button/image_button.gd" id="1_hy3ap"]
+
+[node name="ImageButton" type="MarginContainer" unique_id=1338278625]
+offset_right = 2.0
+offset_bottom = 2.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_hy3ap")
+
+[node name="ImageButton" type="Button" parent="." unique_id=1394713527]
+layout_mode = 2
+theme_type_variation = &"ImageButton"
+
+[node name="TextureRect" type="TextureRect" parent="ImageButton" unique_id=1637747698]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fxbb8")
+expand_mode = 1
+stretch_mode = 6
+
+[connection signal="pressed" from="ImageButton" to="." method="_on_image_button_pressed"]

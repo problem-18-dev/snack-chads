@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://bgo80kcmv612m"]
 
 [ext_resource type="Script" uid="uid://b1bnhvryadtop" path="res://scenes/level/level.gd" id="1_vpf64"]
-[ext_resource type="PackedScene" uid="uid://oixjpegbqcmd" path="res://scenes/debug/debug.tscn" id="1_wcngd"]
+[ext_resource type="PackedScene" uid="uid://dpfpliadnjd4k" path="res://ui/hud/hud.tscn" id="2_qkmgm"]
 [ext_resource type="PackedScene" uid="uid://hdisw1n8q63w" path="res://scenes/level/tile_map_layer/world_tile_map_layer.tscn" id="3_xv074"]
 [ext_resource type="PackedScene" uid="uid://b4rgsq0f0o7ti" path="res://ui/transition/transition.tscn" id="5_hnne4"]
 [ext_resource type="PackedScene" uid="uid://d1ejujm206u82" path="res://scenes/death_zone/death_zone.tscn" id="7_b7m21"]
 
 [node name="Level" type="Node2D" unique_id=48944664]
+process_mode = 3
 script = ExtResource("1_vpf64")
 next_level = 1
 
@@ -22,16 +23,9 @@ offset_bottom = -296.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=2071549087]
+[node name="HUD" parent="." unique_id=1923680103 instance=ExtResource("2_qkmgm")]
 
-[node name="Debug" parent="HUD" unique_id=1012360878 instance=ExtResource("1_wcngd")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="Transition" parent="HUD" unique_id=414138858 instance=ExtResource("5_hnne4")]
+[node name="Transition" parent="." unique_id=1971988051 instance=ExtResource("5_hnne4")]
 visible = false
 
 [node name="FarParallax" type="Parallax2D" parent="." unique_id=396682803]
@@ -60,5 +54,6 @@ repeat_size = Vector2(240, 0)
 position = Vector2(0, 56)
 collision_layer = 8
 
-[connection signal="hidden" from="HUD/Transition" to="." method="_on_transition_hidden"]
-[connection signal="tree_exiting" from="HUD/Transition" to="." method="_on_transition_tree_exiting"]
+[connection signal="game_quit" from="HUD" to="." method="_on_hud_game_quit"]
+[connection signal="game_resumed" from="HUD" to="." method="_on_hud_game_resumed"]
+[connection signal="visibility_changed" from="Transition" to="." method="_on_transition_visibility_changed"]
