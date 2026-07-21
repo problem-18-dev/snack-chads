@@ -3,13 +3,8 @@
 [ext_resource type="Script" uid="uid://dscklwxigthbp" path="res://scenes/debug/debug.gd" id="1_kfclf"]
 
 [node name="Debug" type="Control" unique_id=1012360878]
-visible = false
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_kfclf")
 
 [node name="DebugRect" type="ColorRect" parent="." unique_id=194616270]

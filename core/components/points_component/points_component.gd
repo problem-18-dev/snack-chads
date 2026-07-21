@@ -2,7 +2,7 @@ class_name PointsComponent
 extends Node2D
 
 const SCENE := preload("uid://bor67w714f6wa")
-const DEFAULT_DURATION := 0.4
+const DEFAULT_DURATION := 0.75
 const DEFAULT_RISE := 16.0
 
 @export_group("Properties")

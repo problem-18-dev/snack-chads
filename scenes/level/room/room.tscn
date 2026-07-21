@@ -155,3 +155,10 @@ z_index = 10
 [node name="WorldBoundary" parent="." unique_id=1117372907 instance=ExtResource("3_7x0sh")]
 position = Vector2(0, 112)
 collision_layer = 8
+
+[node name="CountdownTimer" type="Timer" parent="." unique_id=247753133]
+process_mode = 1
+
+[connection signal="game_quit" from="HUD" to="." method="_on_hud_game_quit"]
+[connection signal="game_resumed" from="HUD" to="." method="_on_hud_game_resumed"]
+[connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]

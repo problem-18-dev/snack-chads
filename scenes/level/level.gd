@@ -119,6 +119,8 @@ func _on_player_finished_level() -> void:
 
 
 func _on_hud_game_quit() -> void:
+	get_tree().paused = false
+	GameState.reset_game_state()
 	GameManager.main.load_scene(Main.Scene.MAIN_MENU)
 
 
