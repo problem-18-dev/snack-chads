@@ -18,6 +18,7 @@ func _ready() -> void:
 
 
 func _on_primary_button_mouse_entered() -> void:
+	AudioManager.play_sfx(AudioManager.Sfx.SLIPPER_THROW)
 	label.add_theme_color_override("font_color", HOVER_COLOR)
 
 
@@ -26,7 +27,7 @@ func _on_primary_button_mouse_exited() -> void:
 
 
 func _on_primary_button_button_up() -> void:
-	_on_primary_button_mouse_entered()
+	label.add_theme_color_override("font_color", HOVER_COLOR)
 
 
 func _on_primary_button_button_down() -> void:

@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://f4f27d5v458l" path="res://core/components/elastic_land_component.tscn" id="6_fm80t"]
 [ext_resource type="Script" uid="uid://bm4kcy4n0b0di" path="res://scenes/player/states/player_run.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://c02hlphhlcrkv" path="res://scenes/player/states/player_immobile.gd" id="8_qek5x"]
-[ext_resource type="AudioStream" uid="uid://b7q2ii3tfcx5" path="res://assets/audio/ping.ogg" id="13_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://cy6h2gtbvrsbf" path="res://assets/audio/alarm.ogg" id="13_gx1jg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
 size = Vector2(8, 15)

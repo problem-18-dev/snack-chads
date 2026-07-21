@@ -9,6 +9,7 @@ const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 @export var transition: Transition
 @export var level_time := 300
 @export_group("Audio")
+@export var replace_music := true
 @export var music: MusicPlayer.Music
 @export_group("Properties")
 @export var start_pipe: PipeExit
@@ -29,7 +30,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	MusicPlayer.play_music(music)
+	if replace_music and not spawn_in_pipe:
+		MusicPlayer.play_music(music)
 
 	if not transition or spawn_in_pipe:
 		_start_level()

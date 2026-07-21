@@ -18,6 +18,7 @@ load_path = "res://.godot/imported/large_clouds.png-ce78edb6d3223f2ff6b7c77f5ca3
 
 [node name="LevelOneRoomOne" unique_id=48944664 instance=ExtResource("1_u5ny8")]
 current_level = 2
+replace_music = false
 
 [node name="Background" parent="." index="0" unique_id=350663284]
 custom_minimum_size = Vector2(256, 256)
@@ -34,7 +35,7 @@ offset_bottom = 3811.099
 rotation = 1.5707964
 texture = SubResource("GradientTexture1D_u5ny8")
 
-[node name="FarParallax" parent="." index="3" unique_id=396682803]
+[node name="FarParallax" parent="." index="4" unique_id=396682803]
 scroll_scale = Vector2(0.05, 1)
 scroll_offset = Vector2(0, -52)
 autoscroll = Vector2(-2, 0)
@@ -43,7 +44,7 @@ repeat_times = 6
 [node name="SmallClouds" type="Sprite2D" parent="FarParallax" index="0" unique_id=1800199551]
 texture = SubResource("CompressedTexture2D_u5ny8")
 
-[node name="NearParallax" parent="." index="4" unique_id=2060077157]
+[node name="NearParallax" parent="." index="5" unique_id=2060077157]
 scroll_scale = Vector2(0.4, 1)
 scroll_offset = Vector2(0, -120)
 autoscroll = Vector2(-6, 0)
@@ -60,28 +61,28 @@ destination = 1
 [node name="SpawnMarker" parent="Markers" parent_id_path=PackedInt32Array(742689600) index="0" unique_id=1120709553]
 position = Vector2(-8, -208)
 
-[node name="WorldTileMapLayer" parent="." index="9" unique_id=1077262160]
+[node name="WorldTileMapLayer" parent="." index="11" unique_id=1077262160]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAABAAAAAAAAAAQAAAABAAEAAAABAAEAAAACAAEAAAABAAEAAAADAAEAAAABAAEAAAAPAAMAAAABAAIAAAAPAAIAAAABAAEAAAAPAAEAAAABAAEAAAAPAAAAAAABAAAAAAAOAAMAAAABAAIAAAAOAAIAAAABAAEAAAAOAAEAAAABAAEAAAAOAAAAAAAAAAQAAAANAAMAAAABAAIAAAANAAIAAAABAAEAAAANAAEAAAABAAEAAAANAAAAAAABAAAAAAAMAAMAAAABAAIAAAAMAAIAAAABAAEAAAAMAAEAAAABAAEAAAAMAAAAAAAAAAQAAAALAAMAAAABAAIAAAALAAIAAAABAAEAAAALAAEAAAABAAEAAAALAAAAAAABAAAAAAAKAAMAAAABAAIAAAAKAAIAAAABAAEAAAAKAAEAAAABAAEAAAAKAAAAAAABAAAAAAAJAAMAAAABAAIAAAAJAAIAAAABAAEAAAAJAAEAAAABAAEAAAAJAAAAAAABAAQAAAAIAAMAAAABAAIAAAAIAAIAAAABAAEAAAAIAAEAAAABAAEAAAAIAAAAAAABAAAAAAAHAAMAAAABAAIAAAAHAAIAAAABAAEAAAAHAAEAAAABAAEAAAAHAAAAAAABAAAAAAAGAAMAAAABAAIAAAAGAAIAAAABAAEAAAAGAAEAAAABAAEAAAAGAAAAAAABAAQAAAAFAAMAAAABAAIAAAAFAAIAAAABAAEAAAAFAAEAAAABAAEAAAAFAAAAAAABAAAAAAAEAAMAAAABAAIAAAAEAAIAAAABAAEAAAAEAAEAAAABAAEAAAAEAAAAAAAAAAQAAAADAAMAAAABAAIAAAADAAIAAAABAAEAAAADAAAAAAABAAQAAAACAAMAAAABAAIAAAACAAIAAAABAAEAAAACAAAAAAAAAAQAAAABAAMAAAABAAIAAAABAAIAAAABAAEAAAAAAAMAAAABAAIAAAAAAAIAAAABAAEAAAAAAAEAAAABAAEAAAAWAAMAAAABAAIAAAAWAAIAAAABAAEAAAAWAAEAAAABAAEAAAAWAAAAAAABAAAAAAAVAAMAAAABAAIAAAAVAAIAAAABAAEAAAAVAAEAAAABAAEAAAAVAAAAAAABAAAAAAAUAAMAAAABAAIAAAAUAAIAAAABAAEAAAAUAAEAAAABAAEAAAAUAAAAAAABAAAAAAATAAMAAAABAAIAAAATAAIAAAABAAEAAAATAAEAAAABAAEAAAATAAAAAAABAAQAAAASAAMAAAABAAIAAAASAAIAAAABAAEAAAASAAEAAAABAAEAAAASAAAAAAABAAAAAAARAAMAAAABAAIAAAARAAIAAAABAAEAAAARAAEAAAABAAEAAAARAAAAAAAAAAQAAAAQAAMAAAABAAIAAAAQAAIAAAABAAEAAAAQAAEAAAABAAEAAAAQAAAAAAABAAQAAAD//wMAAAABAAIAAAD//wIAAAABAAEAAAD//wEAAAABAAEAAAD//wAAAAABAAAAAAD+/wMAAAABAAIAAAD+/wIAAAABAAEAAAD+/wEAAAABAAEAAAD+/wAAAAAAAAQAAAD9/wMAAAABAAIAAAD9/wIAAAABAAEAAAD9/wEAAAABAAEAAAD9/wAAAAABAAQAAAD8/wMAAAABAAIAAAD8/wIAAAABAAEAAAD8/wEAAAABAAEAAAD8/wAAAAAAAAQAAAD7/wMAAAABAAIAAAD7/wIAAAABAAEAAAD7/wEAAAABAAAAAAD7/wAAAAABAAQAAAD6/wMAAAABAAIAAAD6/wIAAAABAAEAAAD6/wEAAAABAAEAAAD6/wAAAAABAAAAAAD5/wMAAAABAAIAAAD5/wIAAAABAAEAAAD5/wEAAAABAAEAAAD5/wAAAAABAAAAAAD4/wMAAAABAAIAAAD4/wIAAAABAAEAAAD4/wEAAAABAAEAAAD4/wAAAAABAAAAAAD3/wMAAAABAAIAAAD3/wIAAAABAAEAAAD3/wEAAAABAAEAAAD3/wAAAAABAAAAAAD2/wMAAAABAAIAAAD2/wIAAAABAAEAAAD2/wEAAAABAAEAAAD2/wAAAAABAAAAAAD1/wMAAAABAAIAAAD1/wIAAAABAAEAAAD1/wEAAAABAAEAAAD1/wAAAAABAAAAAAD0/wMAAAABAAIAAAD0/wIAAAABAAEAAAD0/wEAAAABAAEAAAD0/wAAAAABAAAAAADz/wMAAAABAAIAAADz/wIAAAABAAEAAADz/wEAAAABAAEAAADz/wAAAAABAAAAAADy/wMAAAABAAIAAADy/wIAAAABAAEAAADy/wEAAAABAAEAAADy/wAAAAABAAAAAAAEAPL/AAAPAAAAAAAEAPn/AwAAAAAAAQAEAPv/AwAAAAAAAQAEAPz/AgAAAAAAAgAEAP3/AgAAAAAAAgAEAP7/AgAAAAAAAgAEAP//AgAAAAAAAgAFAPL/AAAPAAAAAAAFAPb/AwAAAAAAAQAFAPn/AwAAAAAAAQAFAPv/AwAAAAAAAQAFAPz/AgAAAAAAAgAFAP3/AgAAAAAAAgAFAP7/AgAAAAAAAgAFAP//AgAAAAAAAgAGAPL/AAAPAAAAAAAGAPb/AwAAAAAAAQAGAPn/AwAAAAAAAQAGAPv/AwAAAAAAAQAGAPz/AgAAAAAAAgAGAP3/AgAAAAAAAgAGAP7/AgAAAAAAAgAGAP//AgAAAAAAAgAHAPL/AAAPAAAAAAAHAPb/AwAAAAAAAQAHAPn/AwAAAAAAAQAHAPv/AwAAAAAAAQAHAPz/AgAAAAAAAgAHAP3/AgAAAAAAAgAHAP7/AgAAAAAAAgAHAP//AgAAAAAAAgAIAPL/AAAPAAAAAAAIAPn/AwAAAAAAAQAIAPv/AwAAAAAAAQAIAPz/AgAAAAAAAgAIAP3/AgAAAAAAAgAIAP7/AgAAAAAAAgAIAP//AgAAAAAAAgAJAPL/AAAPAAAAAAAKAPL/AAAPAAAAAAALAPL/AAAPAAAAAAALAPz/AAAOAAAAAAAMAPL/AAAPAAEAAAANAPL/AAAPAAEAAAD9//L/AAAPAAAAAAD9//P/AAAPAAAAAAD9//T/AAAPAAAAAAD9//X/AAAPAAAAAAD9//b/AAAPAAAAAAD9//f/AAAPAAAAAAD9//j/AAAPAAAAAAD9//n/AAAPAAAAAAD9//r/AAAPAAAAAAD9//v/AAAPAAAAAAD9//z/AAAPAAAAAAD9//3/AAAPAAAAAAD9//7/AAAPAAAAAAD9////AAAPAAAAAAABAPL/AAAPAAAAAAABAPn/AwAAAAAAAQABAPv/AwAAAAAAAQABAPz/AgAAAAAAAgABAP3/AgAAAAAAAgABAP7/AgAAAAAAAgABAP//AgAAAAAAAgACAPL/AAAPAAAAAAACAPb/AwAAAAAAAQACAPn/AwAAAAAAAQACAPv/AwAAAAAAAQACAPz/AgAAAAAAAgACAP3/AgAAAAAAAgACAP7/AgAAAAAAAgACAP//AgAAAAAAAgADAPL/AAAPAAAAAAADAPb/AwAAAAAAAQADAPn/AwAAAAAAAQADAPv/AwAAAAAAAQADAPz/AgAAAAAAAgADAP3/AgAAAAAAAgADAP7/AgAAAAAAAgADAP//AgAAAAAAAgAEAPb/AwAAAAAAAQANAPP/AAAPAAEAAAANAPT/AAAPAAEAAAANAPX/AAAPAAEAAAANAPb/AAAPAAEAAAANAPf/AAAPAAEAAAANAPj/AAAPAAEAAAANAPn/AAAPAAEAAAANAPr/AAAPAAEAAAANAPv/AAAPAAEAAAANAPz/AAAPAAEAAAANAP3/AAAPAAEAAAANAP7/AAAPAAEAAAANAP//AAAPAAEAAAAdAAMAAAACAAIAAAAdAAIAAAACAAEAAAAdAAEAAAACAAEAAAAdAAAAAAACAAAAAAAcAAMAAAABAAIAAAAcAAIAAAABAAEAAAAcAAEAAAABAAEAAAAcAAAAAAABAAAAAAAbAAMAAAABAAIAAAAbAAIAAAABAAEAAAAbAAEAAAABAAEAAAAbAAAAAAABAAAAAAAaAAMAAAABAAIAAAAaAAIAAAABAAEAAAAaAAEAAAABAAEAAAAaAAAAAAABAAAAAAAZAAMAAAABAAIAAAAZAAIAAAABAAEAAAAZAAEAAAABAAEAAAAZAAAAAAABAAAAAAAYAAMAAAABAAIAAAAYAAIAAAABAAEAAAAYAAEAAAABAAEAAAAYAAAAAAABAAAAAAAXAAMAAAABAAIAAAAXAAIAAAABAAEAAAAXAAEAAAABAAEAAAAXAAAAAAABAAAAAADx/wMAAAABAAIAAADx/wIAAAABAAEAAADx/wEAAAABAAEAAADx/wAAAAABAAAAAADw/wMAAAABAAIAAADw/wIAAAABAAEAAADw/wEAAAABAAEAAADw/wAAAAABAAAAAADv/wMAAAABAAIAAADv/wIAAAABAAEAAADv/wEAAAABAAEAAADv/wAAAAABAAAAAADu/wMAAAABAAIAAADu/wIAAAABAAEAAADu/wEAAAABAAEAAADu/wAAAAABAAAAAADt/wMAAAAAAAIAAADt/wIAAAAAAAEAAADt/wEAAAAAAAEAAADt/wAAAAAAAAAAAAA=")
 
 [connection signal="body_entered" from="WorldTileMapLayer/Coin" to="WorldTileMapLayer/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35286" to="WorldTileMapLayer/@Area2D@35286" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35290" to="WorldTileMapLayer/@Area2D@35290" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35291" to="WorldTileMapLayer/@Area2D@35291" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35292" to="WorldTileMapLayer/@Area2D@35292" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35297" to="WorldTileMapLayer/@Area2D@35297" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35298" to="WorldTileMapLayer/@Area2D@35298" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35299" to="WorldTileMapLayer/@Area2D@35299" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35304" to="WorldTileMapLayer/@Area2D@35304" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35305" to="WorldTileMapLayer/@Area2D@35305" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35306" to="WorldTileMapLayer/@Area2D@35306" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35311" to="WorldTileMapLayer/@Area2D@35311" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35312" to="WorldTileMapLayer/@Area2D@35312" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35317" to="WorldTileMapLayer/@Area2D@35317" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35318" to="WorldTileMapLayer/@Area2D@35318" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35323" to="WorldTileMapLayer/@Area2D@35323" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35324" to="WorldTileMapLayer/@Area2D@35324" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35325" to="WorldTileMapLayer/@Area2D@35325" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35330" to="WorldTileMapLayer/@Area2D@35330" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35331" to="WorldTileMapLayer/@Area2D@35331" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35332" to="WorldTileMapLayer/@Area2D@35332" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@35337" to="WorldTileMapLayer/@Area2D@35337" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38600" to="WorldTileMapLayer/@Area2D@38600" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38604" to="WorldTileMapLayer/@Area2D@38604" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38605" to="WorldTileMapLayer/@Area2D@38605" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38606" to="WorldTileMapLayer/@Area2D@38606" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38611" to="WorldTileMapLayer/@Area2D@38611" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38612" to="WorldTileMapLayer/@Area2D@38612" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38613" to="WorldTileMapLayer/@Area2D@38613" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38618" to="WorldTileMapLayer/@Area2D@38618" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38619" to="WorldTileMapLayer/@Area2D@38619" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38620" to="WorldTileMapLayer/@Area2D@38620" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38625" to="WorldTileMapLayer/@Area2D@38625" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38626" to="WorldTileMapLayer/@Area2D@38626" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38631" to="WorldTileMapLayer/@Area2D@38631" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38632" to="WorldTileMapLayer/@Area2D@38632" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38637" to="WorldTileMapLayer/@Area2D@38637" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38638" to="WorldTileMapLayer/@Area2D@38638" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38639" to="WorldTileMapLayer/@Area2D@38639" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38644" to="WorldTileMapLayer/@Area2D@38644" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38645" to="WorldTileMapLayer/@Area2D@38645" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38646" to="WorldTileMapLayer/@Area2D@38646" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@38651" to="WorldTileMapLayer/@Area2D@38651" method="_on_body_entered"]

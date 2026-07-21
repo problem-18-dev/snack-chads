@@ -13,7 +13,6 @@ enum Sfx {
 	LEVEL_CLEAR,
 	CONSUME,
 	PLAYER_HURT,
-	PING,
 	SLIPPER_THROW,
 	EXPLOSION,
 }
@@ -31,7 +30,6 @@ var sfx_paths := {
 	Sfx.LEVEL_CLEAR: "uid://by1uybv0oanki",
 	Sfx.CONSUME: "uid://d8muhrqdwn6x",
 	Sfx.PLAYER_HURT: "uid://5604oesivdw5",
-	Sfx.PING: "uid://b7q2ii3tfcx5",
 	Sfx.SLIPPER_THROW: "uid://0ujni8c0efs0",
 	Sfx.EXPLOSION: "uid://c7pxsl6lwnn8m",
 }
