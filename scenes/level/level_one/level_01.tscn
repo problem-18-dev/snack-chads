@@ -36,6 +36,7 @@ current_level = 1
 next_level = 3
 transition = NodePath("Transition")
 level_time = 240
+music = 1
 start_pipe = NodePath("Objects/PipeExit")
 
 [node name="Background" parent="." index="0" unique_id=350663284]
@@ -119,22 +120,22 @@ libraries/ = SubResource("AnimationLibrary_rvqhv")
 autoplay = &"instructions"
 
 [connection signal="body_entered" from="WorldTileMapLayer/Coin" to="WorldTileMapLayer/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69786" to="WorldTileMapLayer/@Area2D@69786" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69787" to="WorldTileMapLayer/@Area2D@69787" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69788" to="WorldTileMapLayer/@Area2D@69788" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69789" to="WorldTileMapLayer/@Area2D@69789" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69790" to="WorldTileMapLayer/@Area2D@69790" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69798" to="WorldTileMapLayer/@Area2D@69798" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69799" to="WorldTileMapLayer/@Area2D@69799" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69800" to="WorldTileMapLayer/@Area2D@69800" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69801" to="WorldTileMapLayer/@Area2D@69801" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69802" to="WorldTileMapLayer/@Area2D@69802" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69803" to="WorldTileMapLayer/@Area2D@69803" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69804" to="WorldTileMapLayer/@Area2D@69804" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69805" to="WorldTileMapLayer/@Area2D@69805" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69806" to="WorldTileMapLayer/@Area2D@69806" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69807" to="WorldTileMapLayer/@Area2D@69807" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69808" to="WorldTileMapLayer/@Area2D@69808" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69809" to="WorldTileMapLayer/@Area2D@69809" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69810" to="WorldTileMapLayer/@Area2D@69810" method="_on_body_entered"]
-[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@69811" to="WorldTileMapLayer/@Area2D@69811" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53031" to="WorldTileMapLayer/@Area2D@53031" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53032" to="WorldTileMapLayer/@Area2D@53032" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53033" to="WorldTileMapLayer/@Area2D@53033" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53034" to="WorldTileMapLayer/@Area2D@53034" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53035" to="WorldTileMapLayer/@Area2D@53035" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53043" to="WorldTileMapLayer/@Area2D@53043" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53044" to="WorldTileMapLayer/@Area2D@53044" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53045" to="WorldTileMapLayer/@Area2D@53045" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53046" to="WorldTileMapLayer/@Area2D@53046" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53047" to="WorldTileMapLayer/@Area2D@53047" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53048" to="WorldTileMapLayer/@Area2D@53048" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53049" to="WorldTileMapLayer/@Area2D@53049" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53050" to="WorldTileMapLayer/@Area2D@53050" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53051" to="WorldTileMapLayer/@Area2D@53051" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53052" to="WorldTileMapLayer/@Area2D@53052" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53053" to="WorldTileMapLayer/@Area2D@53053" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53054" to="WorldTileMapLayer/@Area2D@53054" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53055" to="WorldTileMapLayer/@Area2D@53055" method="_on_body_entered"]
+[connection signal="body_entered" from="WorldTileMapLayer/@Area2D@53056" to="WorldTileMapLayer/@Area2D@53056" method="_on_body_entered"]

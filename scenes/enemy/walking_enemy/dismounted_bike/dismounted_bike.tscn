@@ -49,10 +49,15 @@ animations = [{
 radius = 6.0
 height = 15.999999
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xneyv"]
+radius = 7.0
+height = 32.0
+
 [node name="DismountedBike" unique_id=792489795 groups=["pushables"] instance=ExtResource("1_k4coe")]
 script = ExtResource("2_2rdu0")
 speed = 160.0
 turn_around_on_cliff = false
+points = 100
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=253899374]
 position = Vector2(0, -12)
@@ -79,4 +84,14 @@ position = Vector2(-5, -8)
 [node name="GroundCheckRightRayCast" parent="." index="5" unique_id=1567533170]
 position = Vector2(5, -8)
 
+[node name="Area2D" type="Area2D" parent="." index="6" unique_id=1915455535]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=1437769665]
+position = Vector2(0, -6)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_xneyv")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

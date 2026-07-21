@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://dxamxphi8iwss"]
 
 [ext_resource type="Script" uid="uid://bji8wqqxpxsjn" path="res://core/main/main.gd" id="1_8fcwd"]
+[ext_resource type="PackedScene" uid="uid://1i3yw1qf6mji" path="res://core/globals/audio_manager/audio_manager.tscn" id="2_6vymn"]
+[ext_resource type="Script" uid="uid://b7kyfgjni5s3x" path="res://core/globals/music_player.gd" id="3_vwfi5"]
 
 [node name="Main" type="Node" unique_id=698738702]
 process_mode = 3
 script = ExtResource("1_8fcwd")
 initial_scene = 0
+
+[node name="AudioManager" parent="." unique_id=1256001745 instance=ExtResource("2_6vymn")]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1148081506]
+bus = &"Music"
+script = ExtResource("3_vwfi5")

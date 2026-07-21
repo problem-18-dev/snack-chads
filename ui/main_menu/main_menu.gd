@@ -4,6 +4,10 @@ extends Control
 @onready var level_select: Control = $"Level Select"
 
 
+func _ready() -> void:
+	MusicPlayer.play_music(MusicPlayer.Music.MAIN_MENU)
+
+
 func _on_play_button_pressed() -> void:
 	GameManager.main.load_scene(Main.Scene.LEVEL_ONE)
 

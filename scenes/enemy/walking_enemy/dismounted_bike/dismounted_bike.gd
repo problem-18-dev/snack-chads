@@ -31,17 +31,12 @@ func _handle_collision() -> void:
 	if is_on_wall() and sign(get_wall_normal().x) == -sign(_direction):
 		_direction *= -1
 
-	for i in get_slide_collision_count():
-		var collision := get_slide_collision(i)
-		var collider := collision.get_collider()
-
-		if collider == null:
-			continue
-
-		if collider.is_in_group("enemies") and not _is_stopped():
-			AudioManager.play_sfx(AudioManager.Sfx.STOMP)
-			collider.die()
-
 
 func _on_timer_timeout() -> void:
 	add_to_group("enemies")
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies") and not _is_stopped():
+		AudioManager.play_sfx(AudioManager.Sfx.STOMP)
+		body.die()
