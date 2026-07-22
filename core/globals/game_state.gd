@@ -7,14 +7,32 @@ signal time_stopped
 
 enum ReturnPoint { START, PIPE }
 
+const SAVE_PATH := "user://high_score.tres"
 const DEFAULT_LIVES := 5
 
+var save: SaveResource = null
 var player_mode := Player.PlayerMode.NORMAL
 var player_energy_time_left := 0.0
 var return_point := ReturnPoint.START
 var points := 0
 var lives := DEFAULT_LIVES
 var time_left := 0
+
+
+func _ready() -> void:
+	if ResourceLoader.exists(SAVE_PATH):
+		save = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
+	else:
+		save = SaveResource.new()
+
+
+func save_high_score() -> int:
+	if not save or points <= 0 or points <= save.high_score:
+		return 0
+
+	save.high_score = points
+	ResourceSaver.save(save, SAVE_PATH)
+	return points
 
 
 func save_player_mode(current_player_mode: Player.PlayerMode) -> void:
@@ -60,6 +78,7 @@ func reset_player() -> void:
 
 
 func reset_game_state() -> void:
+	save_high_score()
 	reset_player()
 	lives = DEFAULT_LIVES
 	points = 0

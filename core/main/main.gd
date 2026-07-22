@@ -10,10 +10,11 @@ enum Scene {
 	LEVEL_TWO_ROOM_TWO,
 	LEVEL_THREE,
 	LEVEL_FOUR,
+	CREDITS,
 }
 
 @export_group("Scenes")
-@export var initial_scene := Scene.LEVEL_ONE
+@export var initial_scene := Scene.MAIN_MENU
 
 var _current_scene: Node
 var _scene_paths: Dictionary[Scene, String] = {
@@ -25,6 +26,7 @@ var _scene_paths: Dictionary[Scene, String] = {
 	Scene.LEVEL_TWO_ROOM_TWO: "uid://cnf5awhp2i2ox",
 	Scene.LEVEL_THREE: "uid://bwcvt8pdnord",
 	Scene.LEVEL_FOUR: "uid://ndxe33khqqff",
+	Scene.CREDITS: "uid://b0g4wspv5na7q",
 }
 
 

@@ -223,7 +223,6 @@ grow_vertical = 2
 script = ExtResource("1_uhj5c")
 
 [node name="Background" type="ColorRect" parent="." unique_id=501320429]
-z_index = -4
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -247,7 +246,6 @@ rotation = 1.5707964
 texture = SubResource("GradientTexture1D_u184e")
 
 [node name="FarParallax" type="Parallax2D" parent="." unique_id=1369581103]
-z_index = -2
 scroll_scale = Vector2(0.05, 1)
 repeat_size = Vector2(240, 0)
 autoscroll = Vector2(-2, 0)
@@ -261,7 +259,6 @@ texture = ExtResource("3_3c04x")
 centered = false
 
 [node name="NearParallax" type="Parallax2D" parent="." unique_id=1460801567]
-z_index = -2
 scroll_scale = Vector2(0.4, 1)
 repeat_size = Vector2(240, 0)
 autoscroll = Vector2(-6, 0)
@@ -287,6 +284,7 @@ sprite_frames = SubResource("SpriteFrames_rkggs")
 autoplay = "default"
 
 [node name="Store" parent="." unique_id=553863471 instance=ExtResource("6_joh67")]
+z_index = 1
 position = Vector2(560, 336)
 scale = Vector2(1.5, 1.5)
 
@@ -336,7 +334,22 @@ custom_minimum_size = Vector2(126, 56)
 layout_mode = 2
 button_text = "Levels"
 
-[node name="Level Select" type="Control" parent="." unique_id=172785783]
+[node name="HighScore" type="Label" parent="Main" unique_id=872247896]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -315.0
+offset_right = 37.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme = ExtResource("7_u184e")
+theme_type_variation = &"TernaryLabel"
+text = "High score: "
+
+[node name="LevelSelect" type="Control" parent="." unique_id=172785783]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -345,7 +358,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Level Select" unique_id=45886391]
+[node name="Title" type="Label" parent="LevelSelect" unique_id=45886391]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -359,7 +372,7 @@ theme = ExtResource("7_u184e")
 theme_type_variation = &"HeaderLarge"
 text = "Level Select"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Level Select" unique_id=1908350060]
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect" unique_id=1908350060]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -375,23 +388,23 @@ grow_vertical = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="LevelOneButton" parent="Level Select/HBoxContainer" unique_id=1394713527 instance=ExtResource("9_xio0d")]
+[node name="LevelOneButton" parent="LevelSelect/HBoxContainer" unique_id=1394713527 instance=ExtResource("9_xio0d")]
 layout_mode = 2
 image = ExtResource("9_w2r0d")
 
-[node name="LevelTwoButton" parent="Level Select/HBoxContainer" unique_id=1338278625 instance=ExtResource("9_xio0d")]
+[node name="LevelTwoButton" parent="LevelSelect/HBoxContainer" unique_id=1338278625 instance=ExtResource("9_xio0d")]
 layout_mode = 2
 image = ExtResource("10_4e78x")
 
-[node name="LevelThreeButton" parent="Level Select/HBoxContainer" unique_id=1046025453 instance=ExtResource("9_xio0d")]
+[node name="LevelThreeButton" parent="LevelSelect/HBoxContainer" unique_id=1046025453 instance=ExtResource("9_xio0d")]
 layout_mode = 2
 image = ExtResource("11_xio0d")
 
-[node name="LevelFourButton" parent="Level Select/HBoxContainer" unique_id=1223812065 instance=ExtResource("9_xio0d")]
+[node name="LevelFourButton" parent="LevelSelect/HBoxContainer" unique_id=1223812065 instance=ExtResource("9_xio0d")]
 layout_mode = 2
 image = ExtResource("12_tf5ef")
 
-[node name="BackButton" parent="Level Select" unique_id=1039945589 instance=ExtResource("8_6mijq")]
+[node name="BackButton" parent="LevelSelect" unique_id=1039945589 instance=ExtResource("8_6mijq")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -412,8 +425,8 @@ autoplay = &"menu"
 
 [connection signal="pressed" from="Main/ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Main/ButtonsContainer/LevelsButton" to="." method="_on_levels_button_pressed"]
-[connection signal="pressed" from="Level Select/HBoxContainer/LevelOneButton" to="." method="_on_level_one_button_pressed"]
-[connection signal="pressed" from="Level Select/HBoxContainer/LevelTwoButton" to="." method="_on_level_two_button_pressed"]
-[connection signal="pressed" from="Level Select/HBoxContainer/LevelThreeButton" to="." method="_on_level_three_button_pressed"]
-[connection signal="pressed" from="Level Select/HBoxContainer/LevelFourButton" to="." method="_on_level_four_button_pressed"]
-[connection signal="pressed" from="Level Select/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="LevelSelect/HBoxContainer/LevelOneButton" to="." method="_on_level_one_button_pressed"]
+[connection signal="pressed" from="LevelSelect/HBoxContainer/LevelTwoButton" to="." method="_on_level_two_button_pressed"]
+[connection signal="pressed" from="LevelSelect/HBoxContainer/LevelThreeButton" to="." method="_on_level_three_button_pressed"]
+[connection signal="pressed" from="LevelSelect/HBoxContainer/LevelFourButton" to="." method="_on_level_four_button_pressed"]
+[connection signal="pressed" from="LevelSelect/BackButton" to="." method="_on_back_button_pressed"]

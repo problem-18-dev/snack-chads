@@ -7,7 +7,6 @@
 [node name="Main" type="Node" unique_id=698738702]
 process_mode = 3
 script = ExtResource("1_8fcwd")
-initial_scene = 0
 
 [node name="AudioManager" parent="." unique_id=1256001745 instance=ExtResource("2_6vymn")]
 

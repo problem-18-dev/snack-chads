@@ -61,7 +61,8 @@ func _attack() -> void:
 	AudioManager.play_sfx(AudioManager.Sfx.SLIPPER_THROW)
 	var slipper := SLIPPER_SCENE.instantiate()
 	slipper.start(attack_marker.global_position)
-	get_parent().add_child(slipper)
+	var projectiles := get_tree().get_first_node_in_group("projectiles")
+	projectiles.add_child(slipper)
 
 	sprite.play("attack")
 	await sprite.animation_finished

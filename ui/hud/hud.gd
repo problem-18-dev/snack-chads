@@ -4,6 +4,7 @@ extends CanvasLayer
 signal game_resumed
 signal game_quit
 
+@onready var margin_container: MarginContainer = $MarginContainer
 @onready var pause_container: Control = $PauseContainer
 @onready var background_opacity: ColorRect = $BackgroundOpacity
 @onready var score_label: Label = %ScoreLabel
@@ -20,6 +21,10 @@ func _ready() -> void:
 	score_label.text = Util.get_points_text(GameState.points)
 	time_label.text = Util.get_time_text(GameState.time_left)
 	lives_label.text = "x %s" % str(GameState.lives)
+
+
+func start() -> void:
+	margin_container.show()
 
 
 func pause() -> void:

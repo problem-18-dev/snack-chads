@@ -9,7 +9,6 @@ const PLAYER_PACKED = preload("uid://d251v5fi15bp4")
 @export var transition: Transition
 @export var level_time := 300
 @export_group("Audio")
-@export var replace_music := true
 @export var music: MusicPlayer.Music
 @export_group("Properties")
 @export var start_pipe: PipeExit
@@ -30,10 +29,10 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	if replace_music and not spawn_in_pipe:
-		MusicPlayer.play_music(music)
+	MusicPlayer.play_music(music)
 
 	if not transition or spawn_in_pipe:
+		hud.start()
 		_start_level()
 		return
 
@@ -136,6 +135,7 @@ func _on_hud_game_resumed() -> void:
 
 func _on_transition_visibility_changed() -> void:
 	if transition and not transition.visible:
+		hud.start()
 		_start_level()
 
 

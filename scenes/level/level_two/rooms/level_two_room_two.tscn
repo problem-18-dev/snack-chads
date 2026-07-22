@@ -10,7 +10,7 @@
 [node name="LevelTwoRoomTwo" unique_id=48944664 node_paths=PackedStringArray("start_pipe") instance=ExtResource("1_dmqnb")]
 current_level = 5
 next_level = 6
-replace_music = false
+music = 2
 start_pipe = NodePath("Objects/PipeExit")
 update_player_left = false
 

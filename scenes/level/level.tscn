@@ -23,10 +23,10 @@ offset_bottom = -296.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HUD" parent="." unique_id=1923680103 instance=ExtResource("2_qkmgm")]
-
 [node name="Transition" parent="." unique_id=1971988051 instance=ExtResource("5_hnne4")]
 visible = false
+
+[node name="HUD" parent="." unique_id=1923680103 instance=ExtResource("2_qkmgm")]
 
 [node name="FarParallax" type="Parallax2D" parent="." unique_id=396682803]
 z_index = -2
@@ -42,7 +42,7 @@ repeat_size = Vector2(240, 0)
 
 [node name="Objects" type="Node2D" parent="." unique_id=391740209]
 
-[node name="Projectiles" type="Node2D" parent="." unique_id=464281269]
+[node name="Projectiles" type="Node2D" parent="." unique_id=464281269 groups=["projectiles"]]
 
 [node name="Points" type="Node2D" parent="." unique_id=1109105176]
 z_index = 10
@@ -60,7 +60,7 @@ collision_layer = 8
 [node name="CountdownTimer" type="Timer" parent="." unique_id=126041452]
 process_mode = 1
 
+[connection signal="visibility_changed" from="Transition" to="." method="_on_transition_visibility_changed"]
 [connection signal="game_quit" from="HUD" to="." method="_on_hud_game_quit"]
 [connection signal="game_resumed" from="HUD" to="." method="_on_hud_game_resumed"]
-[connection signal="visibility_changed" from="Transition" to="." method="_on_transition_visibility_changed"]
 [connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]

@@ -199,7 +199,8 @@ func shoot() -> void:
 	var projectile: Projectile = PROJECTILE.instantiate()
 	var direction := -1 if sprite.flip_h else 1
 	projectile.spawn(shoot_marker.global_position, direction, velocity.x)
-	get_tree().root.add_child(projectile)
+	var projectiles := get_tree().get_first_node_in_group("projectiles")
+	projectiles.add_child(projectile)
 
 	_can_shoot = false
 	shoot_cooldown_timer.start()
@@ -273,7 +274,7 @@ func enable_energy(duration := energy_duration) -> void:
 	if debug_player_mode:
 		Debug.log("Player is in star mode for %s sec!" % duration)
 
-	MusicPlayer.pause_music()
+	MusicPlayer.lower_volume()
 	energy_audio_player.play()
 	is_energized = true
 	energy_area.monitoring = true
@@ -407,7 +408,7 @@ func _on_energy_timer_timeout() -> void:
 	energy_area.monitoring = false
 	sprite.material.shader = null
 	energy_particles.emitting = false
-	MusicPlayer.unpause_music()
+	MusicPlayer.restore_volume()
 	energy_audio_player.stop()
 	set_collision_mask_value(ENEMY_MASK_LAYER, true)
 

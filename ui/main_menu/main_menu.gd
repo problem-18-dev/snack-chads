@@ -1,11 +1,16 @@
 extends Control
 
 @onready var main: Control = $Main
-@onready var level_select: Control = $"Level Select"
+@onready var level_select: Control = $LevelSelect
+@onready var high_score: Label = %HighScore
 
 
 func _ready() -> void:
 	MusicPlayer.play_music(MusicPlayer.Music.MAIN_MENU)
+
+	if GameState.save.high_score > 0:
+		high_score.text += Util.get_points_text(GameState.save.high_score)
+		high_score.show()
 
 
 func _on_play_button_pressed() -> void:

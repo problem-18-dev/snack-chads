@@ -1,0 +1,249 @@
+[gd_scene format=4 uid="uid://b0g4wspv5na7q"]
+
+[ext_resource type="Script" uid="uid://dbjiwa0j7shgf" path="res://ui/credits/credits.gd" id="1_cva3t"]
+[ext_resource type="Texture2D" uid="uid://bl2cllo4akbcp" path="res://scenes/level/textures/small_clouds.png" id="1_nnsry"]
+[ext_resource type="Texture2D" uid="uid://dbi64rfk4xpro" path="res://scenes/level/textures/large_clouds.png" id="2_rqgi2"]
+[ext_resource type="PackedScene" uid="uid://hdisw1n8q63w" path="res://scenes/level/tile_map_layer/world_tile_map_layer.tscn" id="3_sunqn"]
+[ext_resource type="Texture2D" uid="uid://dgsx47xq58u0t" path="res://scenes/player/sprites/player_big.png" id="4_sunqn"]
+[ext_resource type="PackedScene" uid="uid://ckc2eppbf4hv4" path="res://scenes/store/store.tscn" id="5_xwmn8"]
+[ext_resource type="Theme" uid="uid://dm2a8fvc6fv71" path="res://ui/theme/main_theme.tres" id="6_xwmn8"]
+[ext_resource type="PackedScene" uid="uid://dmu5n21le6yqi" path="res://ui/theme/buttons/primary_button/primary_button.tscn" id="8_2d0lf"]
+
+[sub_resource type="Gradient" id="Gradient_qao3l"]
+offsets = PackedFloat32Array(0, 0.475)
+colors = PackedColorArray(1, 0.96862745, 0.627451, 0.39215687, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xwmn8"]
+gradient = SubResource("Gradient_qao3l")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e78x"]
+atlas = ExtResource("4_sunqn")
+region = Rect2(0, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4pem"]
+atlas = ExtResource("4_sunqn")
+region = Rect2(18, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c04x"]
+atlas = ExtResource("4_sunqn")
+region = Rect2(36, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joh67"]
+atlas = ExtResource("4_sunqn")
+region = Rect2(54, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u184e"]
+atlas = ExtResource("4_sunqn")
+region = Rect2(72, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mijq"]
+atlas = ExtResource("4_sunqn")
+region = Rect2(90, 0, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2r0d"]
+atlas = ExtResource("4_sunqn")
+region = Rect2(108, 0, 18, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cva3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e78x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4pem")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c04x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joh67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u184e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mijq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2r0d")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_2d0lf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContinueButton:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_twsdw"]
+resource_name = "continue"
+length = 1.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContinueButton:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(192, 40), Vector2(192, 36), Vector2(192, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hfqo3"]
+_data = {
+&"RESET": SubResource("Animation_2d0lf"),
+&"continue": SubResource("Animation_twsdw")
+}
+
+[node name="Credits" type="Control" unique_id=1507702011]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cva3t")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1947019171]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6745098, 0.8, 0.89411765, 1)
+
+[node name="Light" type="TextureRect" parent="Background" unique_id=2016557410]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 640.0
+offset_top = 1.2239188e-05
+offset_right = 360.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_xwmn8")
+
+[node name="FarParallax" type="Parallax2D" parent="." unique_id=1852926375]
+scroll_scale = Vector2(0.05, 1)
+repeat_size = Vector2(240, 0)
+autoscroll = Vector2(-2, 0)
+repeat_times = 4
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="SmallClouds" type="Sprite2D" parent="FarParallax" unique_id=747931287]
+position = Vector2(296, 96)
+texture = ExtResource("1_nnsry")
+centered = false
+
+[node name="NearParallax" type="Parallax2D" parent="." unique_id=1484784287]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(240, 0)
+autoscroll = Vector2(-6, 0)
+repeat_times = 4
+
+[node name="BigClouds" type="Sprite2D" parent="NearParallax" unique_id=443809119]
+position = Vector2(384, 0)
+texture = ExtResource("2_rqgi2")
+centered = false
+
+[node name="WorldTileMapLayer" parent="." unique_id=1077262160 instance=ExtResource("3_sunqn")]
+tile_map_data = PackedByteArray("AAAPABYAAAABAAEAAAAPABUAAAABAAAAAAAOABYAAAABAAEAAAAOABUAAAABAAAAAAANABYAAAABAAEAAAANABUAAAABAAAAAAAMABYAAAABAAEAAAAMABUAAAABAAAAAAALABYAAAABAAEAAAALABUAAAABAAAAAAAKABYAAAABAAEAAAAKABUAAAABAAAAAAAJABYAAAABAAEAAAAJABUAAAABAAAAAAAIABYAAAABAAEAAAAIABUAAAABAAAAAAAHABYAAAABAAEAAAAHABUAAAABAAAAAAAGABYAAAABAAEAAAAGABUAAAABAAAAAAAFABYAAAABAAEAAAAFABUAAAABAAAAAAAEABYAAAABAAEAAAAEABUAAAABAAAAAAADABYAAAABAAEAAAADABUAAAABAAAAAAACABYAAAABAAEAAAACABUAAAABAAAAAAABABYAAAABAAEAAAABABUAAAABAAAAAAAAABYAAAABAAEAAAAAABUAAAABAAAAAAAnABcAAAABAAIAAAAnABYAAAABAAEAAAAnABUAAAABAAAAAAAmABcAAAABAAIAAAAmABYAAAABAAEAAAAmABUAAAABAAAAAAAlABcAAAABAAIAAAAlABYAAAABAAEAAAAlABUAAAABAAAAAAAkABcAAAABAAIAAAAkABYAAAABAAEAAAAkABUAAAABAAAAAAAjABcAAAABAAIAAAAjABYAAAABAAEAAAAjABUAAAABAAAAAAAiABcAAAABAAIAAAAiABYAAAABAAEAAAAiABUAAAABAAAAAAAhABcAAAABAAIAAAAhABYAAAABAAEAAAAhABUAAAABAAAAAAAgABcAAAABAAIAAAAgABYAAAABAAEAAAAgABUAAAABAAAAAAAfABcAAAABAAIAAAAfABYAAAABAAEAAAAfABUAAAABAAAAAAAeABcAAAABAAIAAAAeABYAAAABAAEAAAAeABUAAAABAAAAAAAdABcAAAABAAIAAAAdABYAAAABAAEAAAAdABUAAAABAAAAAAAcABcAAAABAAIAAAAcABYAAAABAAEAAAAcABUAAAABAAAAAAAbABcAAAABAAIAAAAbABYAAAABAAEAAAAbABUAAAABAAAAAAAaABcAAAABAAIAAAAaABYAAAABAAEAAAAaABUAAAABAAAAAAAZABcAAAABAAIAAAAZABYAAAABAAEAAAAZABUAAAABAAAAAAAPABcAAAABAAIAAAAOABcAAAABAAIAAAANABcAAAABAAIAAAAMABcAAAABAAIAAAALABcAAAABAAIAAAAKABcAAAABAAIAAAAJABcAAAABAAIAAAAIABcAAAABAAIAAAAHABcAAAABAAIAAAAGABcAAAABAAIAAAAFABcAAAABAAIAAAAEABcAAAABAAIAAAADABcAAAABAAIAAAACABcAAAABAAIAAAABABcAAAABAAIAAAAAABcAAAABAAIAAAD//xcAAAAAAAIAAAD//xYAAAAAAAEAAAD//xUAAAAAAAAAAAAoABcAAAACAAIAAAAoABYAAAACAAEAAAAoABUAAAACAAAAAAAYABcAAAABAAIAAAAYABYAAAABAAEAAAAYABUAAAABAAAAAAAQABYAAAABAAEAAAARABYAAAABAAEAAAATABYAAAABAAEAAAASABYAAAABAAEAAAAUABYAAAABAAEAAAAWABcAAAABAAIAAAAVABYAAAABAAEAAAAXABcAAAABAAIAAAAXABYAAAABAAEAAAAXABUAAAABAAAAAAAWABYAAAABAAEAAAAWABUAAAABAAAAAAAVABcAAAABAAIAAAAVABUAAAABAAAAAAAUABcAAAABAAIAAAAUABUAAAABAAAAAAATABcAAAABAAIAAAATABUAAAABAAAAAAASABcAAAABAAIAAAASABUAAAABAAAAAAARABcAAAABAAIAAAARABUAAAABAAAAAAAQABcAAAABAAIAAAAQABUAAAABAAAAAAAOABQABAAKAAAAAAA=")
+
+[node name="Store" parent="." unique_id=553863471 instance=ExtResource("5_xwmn8")]
+z_index = 1
+position = Vector2(425, 336.5)
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=90205494]
+position = Vector2(425, 320.5)
+sprite_frames = SubResource("SpriteFrames_cva3t")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.59282535
+
+[node name="Title" type="Label" parent="." unique_id=1237407006]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 40.0
+offset_right = 200.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme = ExtResource("6_xwmn8")
+theme_type_variation = &"HeaderLarge"
+text = "You deserve it!"
+
+[node name="Subtitle" type="Label" parent="." unique_id=811551118]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 112.0
+offset_right = 236.0
+offset_bottom = 184.0
+grow_horizontal = 2
+theme = ExtResource("6_xwmn8")
+theme_type_variation = &"TernaryLabel"
+text = "Can never have enough though..."
+
+[node name="HighScore" type="Label" parent="." unique_id=1955060957]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 160.0
+offset_right = 152.0
+offset_bottom = 232.0
+grow_horizontal = 2
+theme = ExtResource("6_xwmn8")
+theme_type_variation = &"SecondaryLabel"
+theme_override_colors/font_color = Color(1, 0.96862745, 0.627451, 1)
+text = "New highscore!"
+
+[node name="ContinueButton" parent="." unique_id=1039945589 instance=ExtResource("8_2d0lf")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -88.0
+offset_right = 232.0
+offset_bottom = -48.0
+grow_vertical = 0
+button_text = "Continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1960152522]
+libraries/ = SubResource("AnimationLibrary_hfqo3")
+autoplay = &"continue"
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
