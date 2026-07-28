@@ -14,7 +14,8 @@ config/name="Snack Chads"
 config/description="Game #6 in the Problem 18 challenge."
 config/version="1.0.0"
 run/main_scene="uid://dxamxphi8iwss"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="uid://b5omg1635w3g3"
 
 [audio]
 

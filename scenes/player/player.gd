@@ -27,6 +27,7 @@ const PLAYER_RESOURCES := {
 @export_subgroup("Jump")
 @export var jump_force := 375.0
 @export var jump_running_force := 400.0
+@export var jump_minimum_velocity_shake := 490.0
 @export_range(1, 2, 0.01) var jump_release_divider := 1.5
 @export var bounce_force := 150.0
 @export var bounce_force_multiplier := 3.0

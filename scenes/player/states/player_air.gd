@@ -2,6 +2,7 @@ extends PlayerState
 
 var _coyote := false
 var _should_jump_on_land := false
+var _should_shake := false
 
 @onready var coyote_timer: Timer = $CoyoteTimer
 
@@ -21,6 +22,9 @@ func _enter(data := { }) -> void:
 func _physics_update(delta: float) -> void:
 	_apply_gravity(delta)
 	_process_air_movement()
+
+	if player.jump_minimum_velocity_shake < player.velocity.y:
+		_should_shake = true
 
 	player.move_and_slide()
 	var should_handle_landing := _handle_collision()
@@ -109,6 +113,7 @@ func _check_block_hits(normal: Vector2) -> void:
 		var collider: Block = hit_ray_cast.get_collider()
 		if player.can_destroy_blocks():
 			collider.hit()
+			player.player_camera.screen_shake(PlayerCamera.SMALL_INTENSITY, PlayerCamera.SHORT_LENGTH)
 			continue
 
 		collider.bump()
@@ -148,6 +153,9 @@ func _handle_landing() -> void:
 
 	player.elastic_land_component.use()
 	player.land_particles.emitting = true
+	if _should_shake:
+		player.player_camera.screen_shake(PlayerCamera.MEDIUM_INTENSITY, PlayerCamera.SHORT_LENGTH)
+		_should_shake = false
 	# Run if holding run
 	# Walk if not
 	# Idle if not moving at all
